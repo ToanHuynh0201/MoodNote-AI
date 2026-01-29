@@ -1,0 +1,14 @@
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  workers: 1
+
+model:
+  path: "models/best_model"
+  device: "cuda"  # or "cpu"
+  max_batch_size: 32
+
+preprocessing:
+  segmenter: "pyvi"
+  max_length: 128

@@ -1,0 +1,52 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environment variables
+.env
+.env.local
+
+# Data
+data/raw/
+data/processed/
+data/cache/
+
+# Models
+models/checkpoints/
+models/best_model/
+
+# Logs
+logs/
+wandb/
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.tmp
+nul

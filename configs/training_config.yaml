@@ -1,0 +1,27 @@
+training:
+  learning_rate: 3e-5
+  batch_size: 16
+  num_epochs: 5
+  warmup_steps: 500
+  weight_decay: 0.01
+  fp16: true  # Mixed precision training
+  seed: 42
+
+optimizer:
+  type: "AdamW"
+  betas: [0.9, 0.999]
+  eps: 1e-8
+
+scheduler:
+  type: "linear"
+
+logging:
+  log_steps: 100
+  eval_steps: 500
+  save_steps: 500
+  save_total_limit: 3
+
+wandb:
+  project: "moodnote-ai"
+  name: "phobert-base-vsmec"
+  enabled: true

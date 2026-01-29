@@ -1,0 +1,18 @@
+model:
+  name: "vinai/phobert-base"
+  num_labels: 7
+  max_seq_length: 128
+  dropout: 0.1
+
+emotion_labels:
+  0: "Enjoyment"
+  1: "Sadness"
+  2: "Anger"
+  3: "Fear"
+  4: "Disgust"
+  5: "Surprise"
+  6: "Other"
+
+preprocessing:
+  segmenter: "pyvi"  # Fast alternative to VnCoreNLP
+  lowercase: false
