@@ -1,9 +1,9 @@
 training:
-    learning_rate: 0.00002
+    learning_rate: 0.00001  # giảm LR: tránh overfit nhanh
     batch_size: 16
     num_epochs: 15
-    warmup_steps: 300
-    weight_decay: 0.01
+    warmup_steps: 500       # warmup dài hơn: ổn định giai đoạn đầu
+    weight_decay: 0.05      # tăng L2 regularization: 0.01 → 0.05
     fp16: true # Mixed precision training
     seed: 42
 
