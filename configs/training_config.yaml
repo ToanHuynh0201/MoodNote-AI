@@ -1,8 +1,8 @@
 training:
     learning_rate: 0.00003
     batch_size: 16
-    num_epochs: 5
-    warmup_steps: 100
+    num_epochs: 10
+    warmup_steps: 200
     weight_decay: 0.01
     fp16: true # Mixed precision training
     seed: 42

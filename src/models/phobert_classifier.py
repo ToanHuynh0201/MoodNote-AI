@@ -26,7 +26,8 @@ class PhoBERTEmotionClassifier(nn.Module):
         model_name="vinai/phobert-base",
         num_labels=7,
         dropout=0.1,
-        freeze_bert=False
+        freeze_bert=False,
+        class_weights=None
     ):
         """
         Initialize PhoBERT classifier
@@ -55,6 +56,9 @@ class PhoBERTEmotionClassifier(nn.Module):
         # Classification head
         self.classifier = nn.Linear(self.hidden_size, num_labels)
 
+        # Class weights for imbalanced dataset
+        self.class_weights = class_weights
+
         # Optionally freeze BERT parameters
         if freeze_bert:
             for param in self.bert.parameters():
@@ -78,7 +82,8 @@ class PhoBERTEmotionClassifier(nn.Module):
 
         loss = None
         if labels is not None:
-            loss = nn.CrossEntropyLoss()(logits, labels)
+            weight = self.class_weights.to(logits.device) if self.class_weights is not None else None
+            loss = nn.CrossEntropyLoss(weight=weight)(logits, labels)
 
         return SequenceClassifierOutput(loss=loss, logits=logits)
 
