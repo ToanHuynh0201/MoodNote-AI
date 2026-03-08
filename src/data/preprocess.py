@@ -132,18 +132,21 @@ def preprocess_dataset(
 
         print(f"Using column '{text_col}' for text")
 
-        # Detect label column
+        # Detect label column (case-insensitive)
         label_col = None
-        for col in ['label', 'labels', 'emotion']:
-            if col in df.columns:
+        for col in df.columns:
+            if col.lower() in ['label', 'labels', 'emotion']:
                 label_col = col
                 break
 
         if label_col is None:
-            # Use last column
             label_col = df.columns[-1]
 
         print(f"Using column '{label_col}' for labels")
+
+        # Build label mapping from config (invert: "Enjoyment" -> 0)
+        emotion_labels = config.get('emotion_labels', {})
+        label_to_int = {v: int(k) for k, v in emotion_labels.items()}
 
         # Preprocess texts
         print("Applying word segmentation...")
@@ -153,10 +156,17 @@ def preprocess_dataset(
             segmented = preprocessor.preprocess_text(text, lowercase=lowercase)
             segmented_texts.append(segmented)
 
+        # Convert string labels to int
+        raw_labels = df[label_col].tolist()
+        if label_to_int and isinstance(raw_labels[0], str):
+            int_labels = [label_to_int[lbl] for lbl in raw_labels]
+        else:
+            int_labels = [int(lbl) for lbl in raw_labels]
+
         # Create new DataFrame
         processed_df = pd.DataFrame({
             'text': segmented_texts,
-            'label': df[label_col]
+            'label': int_labels
         })
 
         # Save preprocessed data
