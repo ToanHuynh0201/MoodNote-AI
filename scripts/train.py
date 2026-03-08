@@ -115,7 +115,8 @@ def main():
         model_name=model_config['model']['name'],
         num_labels=model_config['model']['num_labels'],
         dropout=model_config['model']['dropout'],
-        label_smoothing=model_config['model'].get('label_smoothing', 0.1)
+        label_smoothing=model_config['model'].get('label_smoothing', 0.0),
+        focal_gamma=model_config['model'].get('focal_gamma', 2.0)
     )
 
     model.to(device)

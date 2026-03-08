@@ -3,8 +3,31 @@ PhoBERT model for emotion classification
 """
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from transformers import AutoModel, AutoConfig
 from transformers.modeling_outputs import SequenceClassifierOutput
+
+
+class FocalLoss(nn.Module):
+    """
+    Focal Loss for class-imbalanced classification.
+
+    FL(p_t) = -(1 - p_t)^gamma * log(p_t)
+
+    gamma=0 → standard CrossEntropyLoss
+    gamma=2 → focuses training on hard/misclassified examples
+    """
+
+    def __init__(self, gamma=2.0, weight=None):
+        super().__init__()
+        self.gamma = gamma
+        self.weight = weight
+
+    def forward(self, logits, targets):
+        ce_loss = F.cross_entropy(logits, targets, weight=self.weight, reduction='none')
+        pt = torch.exp(-ce_loss)
+        focal_loss = (1 - pt) ** self.gamma * ce_loss
+        return focal_loss.mean()
 
 
 class PhoBERTEmotionClassifier(nn.Module):
@@ -18,7 +41,7 @@ class PhoBERTEmotionClassifier(nn.Module):
             ↓
         Dropout (0.1)
             ↓
-        Linear Layer (768 → num_labels)
+        Linear Layer (hidden_size → num_labels)
     """
 
     def __init__(
@@ -28,7 +51,8 @@ class PhoBERTEmotionClassifier(nn.Module):
         dropout=0.1,
         freeze_bert=False,
         class_weights=None,
-        label_smoothing=0.1
+        label_smoothing=0.0,
+        focal_gamma=2.0
     ):
         """
         Initialize PhoBERT classifier
@@ -38,18 +62,20 @@ class PhoBERTEmotionClassifier(nn.Module):
             num_labels: Number of emotion classes
             dropout: Dropout rate
             freeze_bert: Whether to freeze BERT parameters
-            label_smoothing: Label smoothing factor for CrossEntropyLoss
+            label_smoothing: Label smoothing factor (set 0.0 to disable)
+            focal_gamma: Gamma for Focal Loss (set 0.0 to use CrossEntropyLoss)
         """
         super(PhoBERTEmotionClassifier, self).__init__()
 
         self.model_name = model_name
         self.num_labels = num_labels
         self.label_smoothing = label_smoothing
+        self.focal_gamma = focal_gamma
 
         # Load PhoBERT model
         self.bert = AutoModel.from_pretrained(model_name)
 
-        # Get hidden size from config
+        # Get hidden size from config (768 for base, 1024 for large)
         config = AutoConfig.from_pretrained(model_name)
         self.hidden_size = config.hidden_size
 
@@ -86,7 +112,10 @@ class PhoBERTEmotionClassifier(nn.Module):
         loss = None
         if labels is not None:
             weight = self.class_weights.to(logits.device) if self.class_weights is not None else None
-            loss = nn.CrossEntropyLoss(weight=weight, label_smoothing=self.label_smoothing)(logits, labels)
+            if self.focal_gamma > 0:
+                loss = FocalLoss(gamma=self.focal_gamma, weight=weight)(logits, labels)
+            else:
+                loss = nn.CrossEntropyLoss(weight=weight, label_smoothing=self.label_smoothing)(logits, labels)
 
         return SequenceClassifierOutput(loss=loss, logits=logits)
 

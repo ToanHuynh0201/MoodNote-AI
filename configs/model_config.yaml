@@ -1,10 +1,11 @@
 model:
-  name: "vinai/phobert-base"
-  # name: "vinai/phobert-large"  # uncomment nếu GPU có đủ RAM (>= 16GB)
+  # name: "vinai/phobert-base"
+  name: "vinai/phobert-large"   # 370M params, hidden_size=1024
   num_labels: 7
   max_seq_length: 128
-  dropout: 0.2         # tăng dropout: 0.1 → 0.2 để regularize mạnh hơn
-  label_smoothing: 0.1
+  dropout: 0.1
+  label_smoothing: 0.0
+  focal_gamma: 2.0              # Focal Loss gamma (0.0 = CrossEntropy)
 
 emotion_labels:
   0: "Enjoyment"

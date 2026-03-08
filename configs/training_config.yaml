@@ -1,9 +1,9 @@
 training:
-    learning_rate: 0.00001  # giảm LR: tránh overfit nhanh
-    batch_size: 16
+    learning_rate: 0.00002  # LR thấp hơn 1 chút cho large model
+    batch_size: 8           # giảm batch_size để fit VRAM T4 với phobert-large
     num_epochs: 15
-    warmup_steps: 500       # warmup dài hơn: ổn định giai đoạn đầu
-    weight_decay: 0.05      # tăng L2 regularization: 0.01 → 0.05
+    warmup_steps: 300
+    weight_decay: 0.01
     fp16: true # Mixed precision training
     seed: 42
 

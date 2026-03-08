@@ -28,7 +28,8 @@ def save_model(model, tokenizer, save_dir, config=None):
         'num_labels': model.num_labels,
         'hidden_size': model.hidden_size,
         'dropout': model.dropout.p,
-        'label_smoothing': model.label_smoothing
+        'label_smoothing': model.label_smoothing,
+        'focal_gamma': model.focal_gamma
     }, model_path)
 
     # Save tokenizer
@@ -66,7 +67,8 @@ def load_model(load_dir, device='cpu'):
         model_name=checkpoint['model_name'],
         num_labels=checkpoint['num_labels'],
         dropout=checkpoint.get('dropout', 0.1),
-        label_smoothing=checkpoint.get('label_smoothing', 0.0)
+        label_smoothing=checkpoint.get('label_smoothing', 0.0),
+        focal_gamma=checkpoint.get('focal_gamma', 0.0)
     )
 
     # Load state dict
