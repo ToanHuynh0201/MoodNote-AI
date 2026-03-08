@@ -107,36 +107,7 @@ def init_wandb(config, project_name, run_name=None):
     logger.info(f"W&B initialized: {project_name}/{run_name}")
 
 
-class EmotionTrainer(Trainer):
-    """Custom Trainer for emotion classification"""
-
-    def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
-        """
-        Custom loss computation
-
-        Args:
-            model: The model
-            inputs: Input batch
-            return_outputs: Whether to return outputs
-
-        Returns:
-            Loss or (loss, outputs)
-        """
-        labels = inputs.pop("labels")
-
-        # Forward pass
-        outputs = model(
-            input_ids=inputs["input_ids"],
-            attention_mask=inputs["attention_mask"]
-        )
-
-        logits = outputs
-
-        # Compute loss
-        loss_fct = torch.nn.CrossEntropyLoss()
-        loss = loss_fct(logits, labels)
-
-        return (loss, logits) if return_outputs else loss
+EmotionTrainer = Trainer
 
 
 def train_model(

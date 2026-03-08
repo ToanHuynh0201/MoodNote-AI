@@ -4,6 +4,7 @@ PhoBERT model for emotion classification
 import torch
 import torch.nn as nn
 from transformers import AutoModel, AutoConfig
+from transformers.modeling_outputs import SequenceClassifierOutput
 
 
 class PhoBERTEmotionClassifier(nn.Module):
@@ -66,26 +67,20 @@ class PhoBERTEmotionClassifier(nn.Module):
         Args:
             input_ids: Input token IDs (batch_size, seq_len)
             attention_mask: Attention mask (batch_size, seq_len)
+            labels: Ground truth labels (batch_size,) — optional
 
         Returns:
-            logits: Classification logits (batch_size, num_labels)
+            SequenceClassifierOutput with loss (if labels provided) and logits
         """
-        # Get BERT outputs
-        outputs = self.bert(
-            input_ids=input_ids,
-            attention_mask=attention_mask
-        )
-
-        # Get [CLS] token representation (first token)
-        pooled_output = outputs.last_hidden_state[:, 0, :]
-
-        # Apply dropout
-        pooled_output = self.dropout(pooled_output)
-
-        # Classification
+        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
+        pooled_output = self.dropout(outputs.last_hidden_state[:, 0, :])
         logits = self.classifier(pooled_output)
 
-        return logits
+        loss = None
+        if labels is not None:
+            loss = nn.CrossEntropyLoss()(logits, labels)
+
+        return SequenceClassifierOutput(loss=loss, logits=logits)
 
     def get_num_parameters(self):
         """Get number of trainable parameters"""
