@@ -29,6 +29,7 @@ def create_training_arguments(
     eval_steps=500,
     save_steps=500,
     save_total_limit=3,
+    gradient_accumulation_steps=1,
     wandb_config=None
 ):
     """
@@ -62,6 +63,7 @@ def create_training_arguments(
         num_train_epochs=num_epochs,
         per_device_train_batch_size=batch_size,
         per_device_eval_batch_size=batch_size,
+        gradient_accumulation_steps=gradient_accumulation_steps,
         learning_rate=learning_rate,
         warmup_steps=warmup_steps,
         weight_decay=weight_decay,
@@ -151,6 +153,7 @@ def train_model(
         output_dir=output_dir,
         num_epochs=training_config['training']['num_epochs'],
         batch_size=training_config['training']['batch_size'],
+        gradient_accumulation_steps=training_config['training'].get('gradient_accumulation_steps', 1),
         learning_rate=float(training_config['training']['learning_rate']),
         warmup_steps=training_config['training']['warmup_steps'],
         weight_decay=training_config['training']['weight_decay'],

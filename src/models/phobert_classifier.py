@@ -10,22 +10,38 @@ from transformers.modeling_outputs import SequenceClassifierOutput
 
 class FocalLoss(nn.Module):
     """
-    Focal Loss for class-imbalanced classification.
+    Focal Loss for class-imbalanced classification, with optional label smoothing.
 
     FL(p_t) = -(1 - p_t)^gamma * log(p_t)
 
     gamma=0 → standard CrossEntropyLoss
     gamma=2 → focuses training on hard/misclassified examples
+    label_smoothing > 0 → soft targets to prevent overconfidence
     """
 
-    def __init__(self, gamma=2.0, weight=None):
+    def __init__(self, gamma=2.0, weight=None, label_smoothing=0.0):
         super().__init__()
         self.gamma = gamma
         self.weight = weight
+        self.label_smoothing = label_smoothing
 
     def forward(self, logits, targets):
-        ce_loss = F.cross_entropy(logits, targets, weight=self.weight, reduction='none')
-        pt = torch.exp(-ce_loss)
+        num_classes = logits.size(-1)
+
+        if self.label_smoothing > 0:
+            # Build soft targets: (1 - eps) for true class, eps/(C-1) for others
+            with torch.no_grad():
+                soft_targets = torch.full_like(logits, self.label_smoothing / (num_classes - 1))
+                soft_targets.scatter_(1, targets.unsqueeze(1), 1.0 - self.label_smoothing)
+            log_probs = F.log_softmax(logits, dim=-1)
+            # CE with soft targets
+            ce_loss = -(soft_targets * log_probs).sum(dim=-1)
+            # Focal weight based on true class probability
+            pt = torch.exp(log_probs).gather(1, targets.unsqueeze(1)).squeeze(1)
+        else:
+            ce_loss = F.cross_entropy(logits, targets, weight=self.weight, reduction='none')
+            pt = torch.exp(-ce_loss)
+
         focal_loss = (1 - pt) ** self.gamma * ce_loss
         return focal_loss.mean()
 
@@ -39,9 +55,13 @@ class PhoBERTEmotionClassifier(nn.Module):
             ↓
         [CLS] token representation
             ↓
-        Dropout (0.1)
+        Dropout
             ↓
-        Linear Layer (hidden_size → num_labels)
+        Linear (hidden_size → hidden_size // 2)
+            ↓
+        GELU + LayerNorm + Dropout
+            ↓
+        Linear (hidden_size // 2 → num_labels)
     """
 
     def __init__(
@@ -79,11 +99,17 @@ class PhoBERTEmotionClassifier(nn.Module):
         config = AutoConfig.from_pretrained(model_name)
         self.hidden_size = config.hidden_size
 
-        # Dropout layer
+        # Input dropout
         self.dropout = nn.Dropout(dropout)
 
-        # Classification head
-        self.classifier = nn.Linear(self.hidden_size, num_labels)
+        # Multi-layer classification head: hidden → hidden//2 → num_labels
+        self.classifier = nn.Sequential(
+            nn.Linear(self.hidden_size, self.hidden_size // 2),
+            nn.GELU(),
+            nn.LayerNorm(self.hidden_size // 2),
+            nn.Dropout(dropout),
+            nn.Linear(self.hidden_size // 2, num_labels)
+        )
 
         # Class weights for imbalanced dataset
         self.class_weights = class_weights
@@ -113,7 +139,7 @@ class PhoBERTEmotionClassifier(nn.Module):
         if labels is not None:
             weight = self.class_weights.to(logits.device) if self.class_weights is not None else None
             if self.focal_gamma > 0:
-                loss = FocalLoss(gamma=self.focal_gamma, weight=weight)(logits, labels)
+                loss = FocalLoss(gamma=self.focal_gamma, weight=weight, label_smoothing=self.label_smoothing)(logits, labels)
             else:
                 loss = nn.CrossEntropyLoss(weight=weight, label_smoothing=self.label_smoothing)(logits, labels)
 

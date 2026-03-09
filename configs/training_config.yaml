@@ -1,6 +1,7 @@
 training:
-    learning_rate: 0.00002  # LR thấp hơn 1 chút cho large model
-    batch_size: 8           # giảm batch_size để fit VRAM T4 với phobert-large
+    learning_rate: 0.00002          # LR thấp hơn 1 chút cho large model
+    batch_size: 8                   # giảm batch_size để fit VRAM T4 với phobert-large
+    gradient_accumulation_steps: 4  # effective batch = 8 * 4 = 32
     num_epochs: 15
     warmup_steps: 300
     weight_decay: 0.01

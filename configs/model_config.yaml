@@ -3,8 +3,8 @@ model:
   name: "vinai/phobert-large"   # 370M params, hidden_size=1024
   num_labels: 7
   max_seq_length: 128
-  dropout: 0.1
-  label_smoothing: 0.0
+  dropout: 0.3
+  label_smoothing: 0.1
   focal_gamma: 2.0              # Focal Loss gamma (0.0 = CrossEntropy)
 
 emotion_labels:
