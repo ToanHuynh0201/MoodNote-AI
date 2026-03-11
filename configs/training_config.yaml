@@ -1,7 +1,7 @@
 training:
     learning_rate: 3e-5              # tăng nhẹ (LLRD sẽ giảm cho bottom layers tự động)
-    batch_size: 8                    # giữ nguyên cho T4 compatibility
-    gradient_accumulation_steps: 4  # effective batch = 8 * 4 = 32
+    batch_size: 16                   # phobert-base nhẹ hơn, T4 có thể dùng batch lớn hơn
+    gradient_accumulation_steps: 2  # effective batch = 16 * 2 = 32 (giữ nguyên effective)
     num_epochs: 15                   # tăng, early stopping sẽ dừng đúng lúc
     warmup_ratio: 0.06               # ~100 steps warmup thay vì 500 cứng (6% of total steps)
     weight_decay: 0.01               # giảm từ 0.1 → 0.01 (chuẩn cho transformer)
@@ -28,5 +28,5 @@ logging:
 
 wandb:
     project: "moodnote-ai"
-    name: "phobert-large-llrd-classweights"
+    name: "phobert-base-llrd-classweights"
     enabled: true

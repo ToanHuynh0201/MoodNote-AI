@@ -1,30 +1,30 @@
 model:
-  # name: "vinai/phobert-base"
-  name: "vinai/phobert-large"   # 370M params, hidden_size=1024
-  num_labels: 7
-  max_seq_length: 128
-  dropout: 0.3                        # giảm từ 0.4 → 0.3 (0.4 quá aggressive)
-  label_smoothing: 0.1                # giảm từ 0.15 → 0.1
-  focal_gamma: 2.0              # Focal Loss gamma (0.0 = CrossEntropy)
+    name: "vinai/phobert-base"
+    # name: "vinai/phobert-large"   # 370M params, hidden_size=1024
+    num_labels: 7
+    max_seq_length: 128
+    dropout: 0.3 # giảm từ 0.4 → 0.3 (0.4 quá aggressive)
+    label_smoothing: 0.1 # giảm từ 0.15 → 0.1
+    focal_gamma: 2.0 # Focal Loss gamma (0.0 = CrossEntropy)
 
 emotion_labels:
-  0: "Enjoyment"
-  1: "Sadness"
-  2: "Anger"
-  3: "Fear"
-  4: "Disgust"
-  5: "Surprise"
-  6: "Other"
+    0: "Enjoyment"
+    1: "Sadness"
+    2: "Anger"
+    3: "Fear"
+    4: "Disgust"
+    5: "Surprise"
+    6: "Other"
 
 sentiment_scores:
-  Enjoyment: 1.0
-  Surprise: 0.3
-  Other: 0.0
-  Fear: -0.5
-  Disgust: -0.7
-  Sadness: -0.8
-  Anger: -0.9
+    Enjoyment: 1.0
+    Surprise: 0.3
+    Other: 0.0
+    Fear: -0.5
+    Disgust: -0.7
+    Sadness: -0.8
+    Anger: -0.9
 
 preprocessing:
-  segmenter: "pyvi"  # Fast alternative to VnCoreNLP
-  lowercase: false
+    segmenter: "pyvi" # Fast alternative to VnCoreNLP
+    lowercase: false
