@@ -1,13 +1,13 @@
 training:
-    learning_rate: 3e-5              # tăng nhẹ (LLRD sẽ giảm cho bottom layers tự động)
-    batch_size: 16                   # phobert-base nhẹ hơn, T4 có thể dùng batch lớn hơn
-    gradient_accumulation_steps: 2  # effective batch = 16 * 2 = 32 (giữ nguyên effective)
-    num_epochs: 15                   # tăng, early stopping sẽ dừng đúng lúc
-    warmup_ratio: 0.06               # ~100 steps warmup thay vì 500 cứng (6% of total steps)
-    weight_decay: 0.01               # giảm từ 0.1 → 0.01 (chuẩn cho transformer)
+    learning_rate: 2e-5              # giảm từ 3e-5 → fit chậm hơn, ít overfit hơn
+    batch_size: 16
+    gradient_accumulation_steps: 2  # effective batch = 16 * 2 = 32
+    num_epochs: 20                   # tăng ceiling, early stopping sẽ dừng đúng lúc
+    warmup_ratio: 0.10               # tăng từ 0.06 → warmup dài hơn, training ổn định hơn
+    weight_decay: 0.05               # tăng từ 0.01 → L2 regularization mạnh hơn cho dataset nhỏ
     fp16: true
     seed: 42
-    early_stopping_patience: 5      # configurable (trước bị hardcode là 3)
+    early_stopping_patience: 3      # giảm từ 5 → fire sớm hơn (~150 steps sau peak)
     use_llrd: true                   # Layer-wise LR Decay
     llrd_factor: 0.9                 # mỗi layer giảm 10% so với layer trên
     use_class_weights: true          # tính class weights từ training data
@@ -21,12 +21,12 @@ scheduler:
     type: "cosine"
 
 logging:
-    log_steps: 50
-    eval_steps: 100
-    save_steps: 100
-    save_total_limit: 3
+    log_steps: 25                    # tăng granularity từ 50 → 25
+    eval_steps: 50                   # evaluate 2x nhiều hơn để bắt peak sớm hơn
+    save_steps: 50                   # match eval_steps
+    save_total_limit: 5              # giữ nhiều checkpoint hơn gần vùng peak
 
 wandb:
     project: "moodnote-ai"
-    name: "phobert-base-llrd-classweights"
+    name: "phobert-base-v2-augmented"
     enabled: true

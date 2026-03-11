@@ -136,7 +136,11 @@ class PhoBERTEmotionClassifier(nn.Module):
             SequenceClassifierOutput with loss (if labels provided) and logits
         """
         outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
-        pooled_output = self.dropout(outputs.last_hidden_state[:, 0, :])
+        # Mean pooling over non-padding tokens (better than CLS-only for short social media text)
+        last_hidden = outputs.last_hidden_state
+        mask = attention_mask.unsqueeze(-1).float()
+        mean_pooled = (last_hidden * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
+        pooled_output = self.dropout(mean_pooled)
         logits = self.classifier(pooled_output)
 
         loss = None
