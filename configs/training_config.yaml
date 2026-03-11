@@ -7,7 +7,7 @@ training:
     weight_decay: 0.05               # tăng từ 0.01 → L2 regularization mạnh hơn cho dataset nhỏ
     fp16: true
     seed: 42
-    early_stopping_patience: 3      # giảm từ 5 → fire sớm hơn (~150 steps sau peak)
+    early_stopping_patience: 7      # tăng từ 3 → đủ rộng để vượt qua fluctuation (~350 steps sau peak)
     use_llrd: true                   # Layer-wise LR Decay
     llrd_factor: 0.9                 # mỗi layer giảm 10% so với layer trên
     use_class_weights: true          # tính class weights từ training data
@@ -22,8 +22,8 @@ scheduler:
 
 logging:
     log_steps: 25                    # tăng granularity từ 50 → 25
-    eval_steps: 50                   # evaluate 2x nhiều hơn để bắt peak sớm hơn
-    save_steps: 50                   # match eval_steps
+    eval_steps: 100                  # không quá dày để tránh fluctuation trigger early stopping
+    save_steps: 100                  # match eval_steps
     save_total_limit: 5              # giữ nhiều checkpoint hơn gần vùng peak
 
 wandb:

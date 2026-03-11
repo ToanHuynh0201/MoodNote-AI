@@ -154,18 +154,13 @@ def augment_dataset(
             technique = techniques[technique_idx % len(techniques)]
             aug_text = augmenter.augment(source_text, technique=technique)
 
-            # Only add if augmented text differs from source (avoid exact duplicates)
-            if aug_text != source_text:
+                # Allow duplicate if text is very short (≤3 tokens) — no choice
+            is_short = len(source_text.split()) <= 3
+            if aug_text != source_text or is_short:
                 augmented_rows.append({'text': aug_text, 'label': class_idx})
                 generated += 1
 
             technique_idx += 1
-
-            # Safety: if a technique always produces same result (very short text),
-            # try the other technique instead
-            if technique_idx > needed * len(techniques) * 2:
-                print(f"  Warning: Could only generate {generated}/{needed} unique samples for {name}")
-                break
 
         print(f"  Generated {generated} augmented samples")
 
