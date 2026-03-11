@@ -5,7 +5,7 @@ model:
     max_seq_length: 128
     dropout: 0.3
     label_smoothing: 0.05            # giảm từ 0.1 → soft targets vừa phải hơn cho 7-class
-    focal_gamma: 0.0                 # tắt Focal Loss, dùng CrossEntropy + class weights (ổn định hơn)
+    focal_gamma: 1.5                 # giảm từ 2.0 → 1.5 (vẫn focus hard examples nhưng nhẹ hơn)
 
 emotion_labels:
     0: "Enjoyment"

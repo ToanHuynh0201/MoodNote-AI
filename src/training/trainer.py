@@ -24,7 +24,6 @@ def create_training_arguments(
     batch_size=16,
     learning_rate=3e-5,
     warmup_steps=100,
-    warmup_ratio=0.0,
     weight_decay=0.01,
     fp16=True,
     seed=42,
@@ -43,8 +42,7 @@ def create_training_arguments(
         num_epochs: Number of training epochs
         batch_size: Training batch size
         learning_rate: Learning rate
-        warmup_steps: Number of warmup steps (ignored if warmup_ratio > 0)
-        warmup_ratio: Fraction of training steps for warmup (overrides warmup_steps if > 0)
+        warmup_steps: Number of warmup steps
         weight_decay: Weight decay for optimizer
         fp16: Whether to use mixed precision training
         seed: Random seed
@@ -62,8 +60,8 @@ def create_training_arguments(
     if wandb_config and wandb_config.get('enabled', True):
         report_to.append('wandb')
 
-    # warmup_ratio takes priority over warmup_steps
-    warmup_kwargs = {"warmup_ratio": warmup_ratio} if warmup_ratio > 0 else {"warmup_steps": warmup_steps}
+    import os
+    os.environ['TENSORBOARD_LOGGING_DIR'] = str(Path(output_dir) / "logs")
 
     args = TrainingArguments(
         output_dir=output_dir,
@@ -75,7 +73,7 @@ def create_training_arguments(
         weight_decay=weight_decay,
         fp16=fp16 and torch.cuda.is_available(),
         seed=seed,
-        logging_dir=str(Path(output_dir) / "logs"),
+        warmup_steps=warmup_steps,
         logging_steps=log_steps,
         eval_strategy="steps",
         eval_steps=eval_steps,
@@ -198,17 +196,19 @@ def train_model(
 
     # Create training arguments
     t_cfg = training_config['training']
+    grad_accum = t_cfg.get('gradient_accumulation_steps', 1)
+    steps_per_epoch = len(train_dataset) // (t_cfg['batch_size'] * grad_accum)
+    total_steps = steps_per_epoch * t_cfg['num_epochs']
     warmup_ratio = t_cfg.get('warmup_ratio', 0.0)
-    warmup_steps = t_cfg.get('warmup_steps', 100)
+    warmup_steps = int(total_steps * warmup_ratio) if warmup_ratio > 0 else t_cfg.get('warmup_steps', 100)
 
     training_args = create_training_arguments(
         output_dir=output_dir,
         num_epochs=t_cfg['num_epochs'],
         batch_size=t_cfg['batch_size'],
-        gradient_accumulation_steps=t_cfg.get('gradient_accumulation_steps', 1),
+        gradient_accumulation_steps=grad_accum,
         learning_rate=float(t_cfg['learning_rate']),
         warmup_steps=warmup_steps,
-        warmup_ratio=warmup_ratio,
         weight_decay=t_cfg['weight_decay'],
         fp16=t_cfg.get('fp16', True),
         seed=t_cfg.get('seed', 42),
