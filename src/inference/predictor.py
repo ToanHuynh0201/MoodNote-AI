@@ -1,7 +1,6 @@
 """
 Prediction utilities for emotion classification
 """
-import json
 import torch
 import numpy as np
 from pathlib import Path
@@ -19,8 +18,7 @@ class EmotionPredictor:
         device='cpu',
         segmenter='pyvi',
         emotion_labels=None,
-        sentiment_scores=None,
-        thresholds_path=None
+        sentiment_scores=None
     ):
         """
         Initialize predictor
@@ -31,7 +29,6 @@ class EmotionPredictor:
             segmenter: Vietnamese word segmenter to use
             emotion_labels: Dictionary mapping label indices to names
             sentiment_scores: Dictionary mapping emotion names to sentiment values (-1 to +1)
-            thresholds_path: Path to thresholds.json from optimize_thresholds.py (optional)
         """
         self.device = device
         self.model_path = model_path
@@ -67,19 +64,6 @@ class EmotionPredictor:
         # Load model and tokenizer
         print(f"Loading model from {model_path}...")
         self.model, self.tokenizer = load_model(model_path, device=device)
-
-        # Load per-class thresholds (optional)
-        self.thresholds = None
-        if thresholds_path is None:
-            # Auto-detect thresholds.json next to the model
-            candidate = Path(model_path) / "thresholds.json"
-            if candidate.exists():
-                thresholds_path = candidate
-        if thresholds_path is not None and Path(thresholds_path).exists():
-            with open(thresholds_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            self.thresholds = np.array(data["thresholds"], dtype=np.float32)
-            print(f"Loaded per-class thresholds from {thresholds_path}")
 
         # Initialize preprocessor
         self.preprocessor = VietnamesePreprocessor(segmenter=segmenter)
@@ -139,12 +123,8 @@ class EmotionPredictor:
         probs = torch.softmax(logits, dim=-1)
         probs = probs.cpu().numpy()[0]
 
-        # Get prediction — use per-class thresholds if available
-        if self.thresholds is not None:
-            scaled = probs / self.thresholds
-            pred_idx = int(np.argmax(scaled))
-        else:
-            pred_idx = int(np.argmax(probs))
+        # Get prediction
+        pred_idx = int(np.argmax(probs))
         pred_emotion = self.emotion_labels[pred_idx]
         confidence = float(probs[pred_idx])
 
