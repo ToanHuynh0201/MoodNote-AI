@@ -2,15 +2,16 @@ training:
     learning_rate: 2e-5              # giảm từ 3e-5 → fit chậm hơn, ít overfit hơn
     batch_size: 16
     gradient_accumulation_steps: 2  # effective batch = 16 * 2 = 32
-    num_epochs: 20                   # tăng ceiling, early stopping sẽ dừng đúng lúc
-    warmup_ratio: 0.10               # tăng từ 0.06 → warmup dài hơn, training ổn định hơn
-    weight_decay: 0.05               # tăng từ 0.01 → L2 regularization mạnh hơn cho dataset nhỏ
+    num_epochs: 20                   # ceiling; early stopping dừng đúng lúc
+    warmup_ratio: 0.10               # warmup dài hơn → training ổn định hơn
+    weight_decay: 0.10               # tăng từ 0.05 → L2 mạnh hơn để chống overfit
     fp16: true
     seed: 42
-    early_stopping_patience: 7      # tăng từ 3 → đủ rộng để vượt qua fluctuation (~350 steps sau peak)
+    early_stopping_patience: 3      # giảm từ 7 → dừng sớm hơn, tránh overfit sau peak
     use_llrd: true                   # Layer-wise LR Decay
     llrd_factor: 0.9                 # mỗi layer giảm 10% so với layer trên
     use_class_weights: true          # tính class weights từ training data
+    rdrop_alpha: 0.3                 # R-Drop: KL divergence weight (0 = tắt)
 
 optimizer:
     type: "AdamW"

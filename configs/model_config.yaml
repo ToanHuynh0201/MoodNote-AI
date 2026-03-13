@@ -3,8 +3,8 @@ model:
     # name: "vinai/phobert-large"   # 370M params, hidden_size=1024
     num_labels: 7
     max_seq_length: 128
-    dropout: 0.3
-    label_smoothing: 0.05            # giảm từ 0.1 → soft targets vừa phải hơn cho 7-class
+    dropout: 0.4                     # tăng từ 0.3 → regularization mạnh hơn
+    label_smoothing: 0.10            # tăng từ 0.05 → giảm overconfidence, đặc biệt class Anger/Other
     focal_gamma: 1.5                 # giảm từ 2.0 → 1.5 (vẫn focus hard examples nhưng nhẹ hơn)
 
 emotion_labels:
