@@ -1,7 +1,7 @@
 training:
     learning_rate: 1e-5
-    batch_size: 16
-    gradient_accumulation_steps: 2 # effective batch = 16 * 2 = 32
+    batch_size: 8
+    gradient_accumulation_steps: 4 # effective batch = 8 * 4 = 32
     num_epochs: 20
     warmup_ratio: 0.15
     weight_decay: 0.1
@@ -28,5 +28,5 @@ logging:
 
 wandb:
     project: "moodnote-ai"
-    name: "phobert-base-v3-merged-vigoemotions"
+    name: "phobert-large-v4-curriculum-singlelabel"
     enabled: true

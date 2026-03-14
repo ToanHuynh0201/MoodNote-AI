@@ -125,9 +125,15 @@ def load_vigoemotions_split(csv_path: str | Path) -> pd.DataFrame:
 
 def convert_vigoemotions_to_vsmec_format(
     df: pd.DataFrame,
+    single_label_only: bool = True,
 ) -> tuple[pd.DataFrame, dict]:
     """
     Apply resolve_multilabel() to every ViGoEmotions row.
+
+    Args:
+        df: ViGoEmotions DataFrame with 'text' and 'labels' columns
+        single_label_only: If True, skip samples with more than 1 original label.
+                           Eliminates priority-cascade noise from multi-label samples.
 
     Returns:
         (converted_df, stats)
@@ -149,6 +155,13 @@ def convert_vigoemotions_to_vsmec_format(
 
     for _, row in df.iterrows():
         labels: list[str] = row["labels"]
+
+        if single_label_only and len(labels) != 1:
+            skipped_empty += 1
+            if len(conflict_examples) < 10:
+                conflict_examples.append({"text": row["text"], "labels": labels})
+            continue
+
         vsmec_class = resolve_multilabel(labels)
 
         if vsmec_class is None:
@@ -199,6 +212,7 @@ def merge_split(
     vigoemotions_path: str | Path,
     output_path: str | Path,
     include_vigoemotions: bool = True,
+    single_label_only: bool = True,
     seed: int = 42,
 ) -> dict:
     """
@@ -230,7 +244,7 @@ def merge_split(
 
     if include_vigoemotions:
         vigo_df = load_vigoemotions_split(vigoemotions_path)
-        converted_df, conv_stats = convert_vigoemotions_to_vsmec_format(vigo_df)
+        converted_df, conv_stats = convert_vigoemotions_to_vsmec_format(vigo_df, single_label_only=single_label_only)
 
         stats["vigo_total_input"] = conv_stats["total_input"]
         stats["vigo_resolved"] = conv_stats["resolved"]
@@ -360,6 +374,7 @@ def main(
             vigoemotions_path=vigo_file,
             output_path=out_path / f"{split}.csv",
             include_vigoemotions=include_vigo,
+            single_label_only=True,
         )
         all_stats[split] = stats
         print_merge_report(split, stats)

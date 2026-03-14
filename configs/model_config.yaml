@@ -1,9 +1,9 @@
 model:
-    name: "vinai/phobert-base"
-    # name: "vinai/phobert-large"   # 370M params, hidden_size=1024
+    # name: "vinai/phobert-base"   # 135M params, hidden_size=768
+    name: "vinai/phobert-large"    # 370M params, hidden_size=1024
     num_labels: 7
     max_seq_length: 128
-    dropout: 0.4
+    dropout: 0.3
     label_smoothing: 0.1
     focal_gamma: 2.0
 
