@@ -126,7 +126,7 @@ def load_vigoemotions_split(csv_path: str | Path) -> pd.DataFrame:
 
 def convert_vigoemotions_to_vsmec_format(
     df: pd.DataFrame,
-    single_label_only: bool = True,
+    single_label_only: bool = False,
 ) -> tuple[pd.DataFrame, dict]:
     """
     Apply resolve_multilabel() to every ViGoEmotions row.
@@ -375,7 +375,7 @@ def main(
             vigoemotions_path=vigo_file,
             output_path=out_path / f"{split}.csv",
             include_vigoemotions=include_vigo,
-            single_label_only=True,
+            single_label_only=False,
         )
         all_stats[split] = stats
         print_merge_report(split, stats)
