@@ -1,5 +1,5 @@
 training:
-    learning_rate: 2e-5  # tăng từ 1e-5 → hội tụ nhanh hơn với phobert-base
+    learning_rate: 1e-5  # giảm từ 2e-5 → ổn định hơn ở Stage 2, tránh overfit sớm
     batch_size: 8
     gradient_accumulation_steps: 4 # effective batch = 8 * 4 = 32
     num_epochs: 20
@@ -7,7 +7,7 @@ training:
     weight_decay: 0.01
     fp16: true
     seed: 42
-    early_stopping_patience: 7 # tăng từ 3 → cho model đủ thời gian hội tụ
+    early_stopping_patience: 5 # giảm từ 7 → dừng sớm hơn khi Stage 2 bắt đầu overfit
     use_llrd: true # Layer-wise LR Decay
     llrd_factor: 0.9 # mỗi layer giảm 10% so với layer trên
     use_class_weights: true # tính class weights từ training data
