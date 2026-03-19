@@ -4,7 +4,7 @@ training:
     gradient_accumulation_steps: 4 # effective batch = 8 * 4 = 32
     num_epochs: 20
     warmup_ratio: 0.1
-    weight_decay: 0.1
+    weight_decay: 0.01
     fp16: true
     seed: 42
     early_stopping_patience: 7 # tăng từ 3 → cho model đủ thời gian hội tụ

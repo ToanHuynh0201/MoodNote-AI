@@ -134,27 +134,25 @@ class EmotionTrainer(Trainer):
                 base_lr=self.args.learning_rate,
                 llrd_factor=self.llrd_factor
             )
-            # Add weight_decay to all groups (skip bias and LayerNorm)
-            decay_params = []
-            no_decay_params = []
+            # Build param_id → name map for correct no-decay detection
             no_decay_names = ["bias", "LayerNorm.weight", "layer_norm.weight"]
+            param_to_name = {id(p): n for n, p in self.model.named_parameters()}
+
+            optimizer_grouped_params = []
             for group in param_groups:
                 wd_group = {"params": [], "lr": group["lr"], "weight_decay": self.args.weight_decay}
                 no_wd_group = {"params": [], "lr": group["lr"], "weight_decay": 0.0}
-                for name, param in zip(
-                    [n for n, _ in self.model.named_parameters()],
-                    group["params"]
-                ):
+                for param in group["params"]:
+                    name = param_to_name.get(id(param), "")
                     if any(nd in name for nd in no_decay_names):
                         no_wd_group["params"].append(param)
                     else:
                         wd_group["params"].append(param)
                 if wd_group["params"]:
-                    decay_params.append(wd_group)
+                    optimizer_grouped_params.append(wd_group)
                 if no_wd_group["params"]:
-                    no_decay_params.append(no_wd_group)
+                    optimizer_grouped_params.append(no_wd_group)
 
-            optimizer_grouped_params = decay_params + no_decay_params
             self.optimizer = AdamW(optimizer_grouped_params, eps=1e-8)
             logger.info(f"LLRD optimizer created with {len(param_groups)} layer groups (factor={self.llrd_factor})")
             return self.optimizer
