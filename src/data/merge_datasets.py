@@ -214,6 +214,8 @@ def merge_split(
     output_path: str | Path,
     include_vigoemotions: bool = True,
     single_label_only: bool = True,
+    minority_classes: set[str] | None = None,
+    max_per_class: dict[str, int] | None = None,
     seed: int = 42,
 ) -> dict:
     """
@@ -223,10 +225,20 @@ def merge_split(
       1. Load VSMEC split
       2. Load ViGoEmotions split (if include_vigoemotions)
       3. Convert ViGoEmotions → VSMEC format
-      4. Deduplicate ViGoEmotions against VSMEC
-      5. Concatenate VSMEC + converted ViGoEmotions
-      6. Shuffle with seed
-      7. Save as CSV (columns: Sentence, Emotion)
+      4. Filter to minority_classes only (if specified)
+      5. Cap samples per class via max_per_class (if specified)
+      6. Deduplicate ViGoEmotions against VSMEC
+      7. Concatenate VSMEC + converted ViGoEmotions
+      8. Shuffle with seed
+      9. Save as CSV (columns: Sentence, Emotion)
+
+    Args:
+        minority_classes: If set, only keep ViGoEmotions samples whose mapped
+                          emotion is in this set. Use to supplement only
+                          under-represented classes (e.g. {"Anger", "Fear", "Surprise"}).
+        max_per_class:    Dict mapping emotion name → max samples to take from
+                          ViGoEmotions for that class (after dedup).
+                          E.g. {"Anger": 500, "Fear": 400, "Surprise": 300}.
 
     Returns:
         stats dict with merge details
@@ -237,6 +249,7 @@ def merge_split(
         "vigo_total_input": 0,
         "vigo_resolved": 0,
         "vigo_skipped_empty": 0,
+        "vigo_filtered_class": 0,
         "vigo_dedup_removed": 0,
         "vigo_added": 0,
         "label_distribution_vigo": Counter(),
@@ -253,11 +266,29 @@ def merge_split(
         stats["label_distribution_vigo"] = conv_stats["label_distribution"]
         stats["conflict_examples"] = conv_stats["conflict_examples"]
 
+        # Filter to minority classes only
+        if minority_classes is not None:
+            before = len(converted_df)
+            converted_df = converted_df[converted_df["Emotion"].isin(minority_classes)].reset_index(drop=True)
+            stats["vigo_filtered_class"] = before - len(converted_df)
+
         # Deduplicate against VSMEC
         existing = {_normalize_sentence(s) for s in vsmec_df["Sentence"]}
         deduped_df, n_removed = deduplicate(converted_df, existing)
         stats["vigo_dedup_removed"] = n_removed
+
+        # Cap samples per class
+        if max_per_class is not None:
+            capped_parts = []
+            for emotion, group in deduped_df.groupby("Emotion"):
+                cap = max_per_class.get(emotion)
+                if cap is not None and len(group) > cap:
+                    group = group.sample(n=cap, random_state=seed)
+                capped_parts.append(group)
+            deduped_df = pd.concat(capped_parts, ignore_index=True) if capped_parts else deduped_df
+
         stats["vigo_added"] = len(deduped_df)
+        stats["label_distribution_vigo"] = Counter(deduped_df["Emotion"].tolist())
 
         merged_df = pd.concat([vsmec_df, deduped_df], ignore_index=True)
         merged_df = merged_df.sample(frac=1, random_state=seed).reset_index(drop=True)
@@ -287,6 +318,9 @@ def print_merge_report(split_name: str, stats: dict) -> None:
         print(f"  ViGoEmotions input:       {stats['vigo_total_input']:6d}")
         print(f"  ViGoEmotions resolved:    {stats['vigo_resolved']:6d}")
         print(f"  ViGoEmotions skipped:     {stats['vigo_skipped_empty']:6d}  ({skip_pct:.1f}%)")
+        if stats.get("vigo_filtered_class", 0) > 0:
+            filter_pct = stats["vigo_filtered_class"] / max(stats["vigo_resolved"], 1) * 100
+            print(f"  ViGoEmotions filtered:    {stats['vigo_filtered_class']:6d}  ({filter_pct:.1f}% — non-minority classes)")
         print(f"  ViGoEmotions deduped:     {stats['vigo_dedup_removed']:6d}  ({dedup_pct:.1f}% of resolved)")
         print(f"  ViGoEmotions added:       {stats['vigo_added']:6d}")
 
@@ -339,19 +373,37 @@ def main(
 ) -> None:
     """
     Merge all splits:
-      - train:      VSMEC train + ViGoEmotions train
-      - validation: VSMEC val   + ViGoEmotions val
+      - train:      VSMEC train + ViGoEmotions train (minority classes only)
+      - validation: VSMEC val   + ViGoEmotions val   (minority classes only)
       - test:       VSMEC test only (copy as-is, benchmark stays clean)
+
+    ViGoEmotions is used ONLY to supplement under-represented classes
+    (Anger, Fear, Surprise, Other) — not Enjoyment/Sadness which already
+    have sufficient samples in VSMEC.
     """
     vsmec_path = Path(vsmec_dir)
     vigo_path = Path(vigoemotions_dir)
     out_path = Path(output_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
+    # Classes to supplement from ViGoEmotions (VSMEC-only counts below):
+    #   Anger: 391 | Fear: 318 | Surprise: 242
+    #   Enjoyment: 1558 | Sadness: 947 | Disgust: 1071 | Other: 1021 → already sufficient
+    minority_classes = {"Anger", "Fear", "Surprise"}
+
+    # Cap to bring each minority class up to ~800 samples total
+    max_per_class = {
+        "Anger":    500,   # 391 + 500 → ~891
+        "Fear":     500,   # 318 + 500 → ~818
+        "Surprise": 600,   # 242 + 600 → ~842
+    }
+
     print("Starting dataset merge: UIT-VSMEC + ViGoEmotions")
     print(f"  VSMEC source:       {vsmec_path}")
     print(f"  ViGoEmotions source:{vigo_path}")
     print(f"  Output:             {out_path}")
+    print(f"  Minority classes:   {sorted(minority_classes)}")
+    print(f"  Max per class:      {max_per_class}")
 
     all_stats = {}
 
@@ -375,7 +427,9 @@ def main(
             vigoemotions_path=vigo_file,
             output_path=out_path / f"{split}.csv",
             include_vigoemotions=include_vigo,
-            single_label_only=False,
+            single_label_only=True,
+            minority_classes=minority_classes,
+            max_per_class=max_per_class,
         )
         all_stats[split] = stats
         print_merge_report(split, stats)
