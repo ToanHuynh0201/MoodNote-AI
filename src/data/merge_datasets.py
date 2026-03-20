@@ -281,7 +281,7 @@ def merge_split(
         if max_per_class is not None:
             capped_parts = []
             for emotion, group in deduped_df.groupby("Emotion"):
-                cap = max_per_class.get(emotion)
+                cap = max_per_class.get(str(emotion))
                 if cap is not None and len(group) > cap:
                     group = group.sample(n=cap, random_state=seed)
                 capped_parts.append(group)
@@ -386,16 +386,20 @@ def main(
     out_path = Path(output_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
-    # Classes to supplement from ViGoEmotions (VSMEC-only counts below):
-    #   Anger: 391 | Fear: 318 | Surprise: 242
-    #   Enjoyment: 1558 | Sadness: 947 | Disgust: 1071 | Other: 1021 → already sufficient
-    minority_classes = {"Anger", "Fear", "Surprise"}
+    # Classes to supplement from ViGoEmotions (VSMEC-only train counts):
+    #   Anger: 391 | Fear: 318 | Surprise: 242 | Disgust: 838 | Other: 896
+    #   Enjoyment: 1558 | Sadness: 947 → already sufficient
+    # Test results show Disgust (F1=0.551) and Other (F1=0.488) are also weak
+    # → add them to minority_classes to pull more samples from ViGoEmotions
+    minority_classes = {"Anger", "Fear", "Disgust", "Surprise", "Other"}
 
-    # Cap to bring each minority class up to ~800 samples total
+    # Cap per class from ViGoEmotions (after dedup)
     max_per_class = {
-        "Anger":    500,   # 391 + 500 → ~891
-        "Fear":     500,   # 318 + 500 → ~818
-        "Surprise": 600,   # 242 + 600 → ~842
+        "Anger":    500,   # 391  + 500 → ~891
+        "Fear":     500,   # 318  + 500 → ~818
+        "Disgust":  500,   # 838  + 500 → ~1338
+        "Surprise": 600,   # 242  + 600 → ~842
+        "Other":    400,   # 896  + 400 → ~1296
     }
 
     print("Starting dataset merge: UIT-VSMEC + ViGoEmotions")
