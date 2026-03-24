@@ -1,6 +1,6 @@
 """
 Data augmentation for Vietnamese emotion classification.
-Applies Random Deletion, Random Swap, and Random Insertion to minority classes.
+Applies Random Deletion, Random Swap, Random Insertion, and Back-Translation to minority classes.
 
 Input: processed CSV with 'text' (pyvi-segmented) and 'label' (int) columns.
 Output: augmented CSV with original + synthetic samples.
@@ -25,6 +25,7 @@ class VietnameseAugmenter:
     - random_deletion: Remove tokens with probability p
     - random_swap: Swap two random tokens n times
     - random_insertion: Insert a copy of an existing token at a random position
+    - back_translation: Vietnamese → English → Vietnamese (requires deep_translator)
     """
 
     def __init__(self, seed=42):
@@ -101,13 +102,38 @@ class VietnameseAugmenter:
 
         return " ".join(tokens)
 
+    def back_translate(self, text: str) -> str:
+        """
+        Back-translate: Vietnamese → English → Vietnamese.
+
+        Creates semantically diverse paraphrases that differ in word choice
+        while preserving the original meaning. Much more effective than
+        random deletion/swap for learning diverse representations.
+
+        Requires: pip install deep_translator
+        Falls back to original text on error (rate limit, network, etc.)
+
+        Args:
+            text: Input text (pyvi-segmented or raw Vietnamese)
+
+        Returns:
+            Back-translated text, or original text on failure
+        """
+        try:
+            from deep_translator import GoogleTranslator
+            en = GoogleTranslator(source='vi', target='en').translate(text)
+            vi = GoogleTranslator(source='en', target='vi').translate(en)
+            return vi if vi and vi.strip() else text
+        except Exception:
+            return text
+
     def augment(self, text: str, technique: str = "deletion") -> str:
         """
         Apply a single augmentation technique.
 
         Args:
             text: Input text
-            technique: "deletion" or "swap"
+            technique: "deletion", "swap", "insertion", or "back_translation"
 
         Returns:
             Augmented text
@@ -118,9 +144,12 @@ class VietnameseAugmenter:
             return self.random_swap(text)
         elif technique == "insertion":
             return self.random_insertion(text)
+        elif technique == "back_translation":
+            return self.back_translate(text)
         else:
             raise ValueError(
-                f"Unknown technique: {technique}. Use 'deletion', 'swap', or 'insertion'."
+                f"Unknown technique: {technique}. "
+                f"Use 'deletion', 'swap', 'insertion', or 'back_translation'."
             )
 
 

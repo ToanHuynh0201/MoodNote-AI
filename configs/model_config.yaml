@@ -3,9 +3,9 @@ model:
     # name: "vinai/phobert-large"    # 370M params, hidden_size=1024
     num_labels: 7
     max_seq_length: 128
-    dropout: 0.2
-    label_smoothing: 0.1
-    focal_gamma: 2.0
+    dropout: 0.3          # tăng từ 0.2 → giảm overfitting (train loss=0.085 vs val loss=1.092)
+    label_smoothing: 0.15 # tăng từ 0.1 → regularization mềm hơn
+    focal_gamma: 3.0      # tăng từ 2.0 → phạt nặng hơn với Anger/Disgust confused samples
 
 emotion_labels:
     0: "Enjoyment"

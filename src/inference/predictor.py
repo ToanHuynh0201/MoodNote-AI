@@ -85,13 +85,17 @@ class EmotionPredictor:
         """
         return self.preprocessor.segment_text(text)
 
-    def predict(self, text, return_probabilities=True):
+    def predict(self, text, return_probabilities=True, other_threshold=0.0):
         """
         Predict emotion for a single text
 
         Args:
             text: Input Vietnamese text
             return_probabilities: Whether to return probabilities for all classes
+            other_threshold: If max(softmax) < threshold, predict "Other" instead.
+                             Set > 0 to catch low-confidence predictions as "Other"
+                             (e.g. 0.40 works well for this model).
+                             Default 0.0 = disabled (original argmax behavior).
 
         Returns:
             dict: Prediction results
@@ -124,7 +128,11 @@ class EmotionPredictor:
         probs = probs.cpu().numpy()[0]
 
         # Get prediction
-        pred_idx = int(np.argmax(probs))
+        max_prob = float(np.max(probs))
+        if other_threshold > 0 and max_prob < other_threshold:
+            pred_idx = 6  # Other — model không đủ confident về bất kỳ class nào
+        else:
+            pred_idx = int(np.argmax(probs))
         pred_emotion = self.emotion_labels[pred_idx]
         confidence = float(probs[pred_idx])
 
