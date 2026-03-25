@@ -140,8 +140,12 @@ class PhoBERTEmotionClassifier(nn.Module):
         last_hidden = outputs.last_hidden_state
         mask = attention_mask.unsqueeze(-1).float()
         mean_pooled = (last_hidden * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-9)
-        pooled_output = self.dropout(mean_pooled)
-        logits = self.classifier(pooled_output)
+        # Multi-sample Dropout: average K predictions during training for better regularization
+        if self.training:
+            K = 5
+            logits = torch.stack([self.classifier(self.dropout(mean_pooled)) for _ in range(K)]).mean(0)
+        else:
+            logits = self.classifier(self.dropout(mean_pooled))
 
         loss = None
         if labels is not None:

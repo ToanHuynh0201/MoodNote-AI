@@ -2,6 +2,7 @@
 Training utilities using Hugging Face Trainer API
 """
 import torch
+import torch.nn.functional as F
 import numpy as np
 from typing import Any
 from torch.optim import AdamW
@@ -122,9 +123,26 @@ class EmotionTrainer(Trainer):
     each BERT layer gets a progressively smaller learning rate.
     """
 
-    def __init__(self, *args, llrd_factor=None, **kwargs):
+    def __init__(self, *args, llrd_factor=None, rdrop_alpha=0.0, **kwargs):
         self.llrd_factor = llrd_factor
+        self.rdrop_alpha = rdrop_alpha
         super().__init__(*args, **kwargs)
+
+    def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
+        if self.rdrop_alpha > 0 and model.training:
+            # R-Drop: two forward passes with different dropout masks + KL divergence
+            # Ref: "R-Drop: Regularized Dropout for Neural Networks" (NeurIPS 2021)
+            outputs1 = model(**inputs)
+            outputs2 = model(**inputs)
+            loss = (outputs1.loss + outputs2.loss) / 2
+            p1 = F.softmax(outputs1.logits, dim=-1)
+            p2 = F.softmax(outputs2.logits, dim=-1)
+            kl = (F.kl_div(F.log_softmax(outputs1.logits, dim=-1), p2, reduction='batchmean') +
+                  F.kl_div(F.log_softmax(outputs2.logits, dim=-1), p1, reduction='batchmean')) / 2
+            loss = loss + self.rdrop_alpha * kl
+            return (loss, outputs1) if return_outputs else loss
+        outputs = model(**inputs)
+        return (outputs.loss, outputs) if return_outputs else outputs.loss
 
     def create_optimizer(self, model=None):  # noqa: ARG002
         if self.llrd_factor and hasattr(self.model, 'get_parameter_groups'):
@@ -225,6 +243,11 @@ def train_model(
         llrd_factor = t_cfg.get('llrd_factor', 0.9)
         logger.info(f"Layer-wise LR Decay enabled (factor={llrd_factor})")
 
+    # R-Drop config (default disabled, enable in Stage 2 by setting rdrop_alpha > 0)
+    rdrop_alpha = t_cfg.get('rdrop_alpha', 0.0)
+    if rdrop_alpha > 0:
+        logger.info(f"R-Drop enabled (alpha={rdrop_alpha})")
+
     # Early stopping patience from config
     patience = t_cfg.get('early_stopping_patience', 5)
 
@@ -236,7 +259,8 @@ def train_model(
         eval_dataset=eval_dataset,
         compute_metrics=compute_metrics_for_trainer,
         callbacks=[EarlyStoppingCallback(early_stopping_patience=patience)],
-        llrd_factor=llrd_factor
+        llrd_factor=llrd_factor,
+        rdrop_alpha=rdrop_alpha
     )
 
     # Train

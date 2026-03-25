@@ -7,10 +7,11 @@ training:
     weight_decay: 0.05    # tăng từ 0.01 → L2 regularization mạnh hơn để giảm overfitting
     fp16: true
     seed: 42
-    early_stopping_patience: 8 # tăng từ 5 → dataset lớn hơn cần nhiều thời gian hơn để hội tụ
+    early_stopping_patience: 10 # tăng từ 8 → R-Drop cần thêm thời gian để hội tụ
     use_llrd: true # Layer-wise LR Decay
     llrd_factor: 0.9 # mỗi layer giảm 10% so với layer trên
     use_class_weights: true # tính class weights từ training data
+    rdrop_alpha: 0.0  # R-Drop alpha (0.0 = tắt); override trong notebook: Stage 2 dùng 4.0
 
 optimizer:
     type: "AdamW"
