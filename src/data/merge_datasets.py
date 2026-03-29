@@ -414,32 +414,43 @@ def main(
 
     all_stats = {}
 
-    # train + validation: merge both sources
-    for split in ["train", "validation"]:
-        vsmec_file = vsmec_path / f"{split}.csv"
-        vigo_file = vigo_path / f"{split}.csv"
-
-        if not vsmec_file.exists():
-            print(f"Warning: {vsmec_file} not found, skipping {split}.")
-            continue
-
-        if not vigo_file.exists():
-            print(f"Warning: {vigo_file} not found. Merging {split} with VSMEC only.")
-            include_vigo = False
-        else:
-            include_vigo = True
-
+    # train only: merge VSMEC + ViGoEmotions
+    train_vsmec = vsmec_path / "train.csv"
+    train_vigo = vigo_path / "train.csv"
+    if not train_vsmec.exists():
+        print(f"Warning: {train_vsmec} not found, skipping train.")
+    else:
+        include_vigo = train_vigo.exists()
+        if not include_vigo:
+            print(f"Warning: {train_vigo} not found. Merging train with VSMEC only.")
         stats = merge_split(
-            vsmec_path=vsmec_file,
-            vigoemotions_path=vigo_file,
-            output_path=out_path / f"{split}.csv",
+            vsmec_path=train_vsmec,
+            vigoemotions_path=train_vigo,
+            output_path=out_path / "train.csv",
             include_vigoemotions=include_vigo,
             single_label_only=True,
             minority_classes=minority_classes,
             max_per_class=max_per_class,
         )
-        all_stats[split] = stats
-        print_merge_report(split, stats)
+        all_stats["train"] = stats
+        print_merge_report("train", stats)
+
+    # validation: VSMEC only (keep benchmark clean, same policy as test)
+    val_src = vsmec_path / "validation.csv"
+    val_dst = out_path / "validation.csv"
+    if val_src.exists():
+        shutil.copy2(val_src, val_dst)
+        val_df = pd.read_csv(val_dst)
+        print(f"\n{'='*60}")
+        print(f"  VALIDATION SPLIT: copied VSMEC validation as-is ({len(val_df)} samples)")
+        print(f"  → {val_dst}")
+        dist = Counter(val_df["Emotion"].tolist())
+        total = sum(dist.values())
+        for cls in VSMEC_CLASSES:
+            cnt = dist.get(cls, 0)
+            print(f"    {cls:12s}: {cnt:5d} ({cnt/total*100:5.1f}%)")
+    else:
+        print(f"Warning: {val_src} not found. Validation split not created.")
 
     # test: VSMEC only (copy)
     test_src = vsmec_path / "test.csv"

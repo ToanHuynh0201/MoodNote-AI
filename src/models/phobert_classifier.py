@@ -236,7 +236,7 @@ if __name__ == "__main__":
     print("Testing PhoBERT model...")
 
     model = PhoBERTEmotionClassifier(
-        model_name="vinai/phobert-base",
+        model_name="uitnlp/visobert",
         num_labels=7,
         dropout=0.1
     )

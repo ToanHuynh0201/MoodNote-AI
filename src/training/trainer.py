@@ -145,7 +145,7 @@ class EmotionTrainer(Trainer):
         outputs = model(**inputs)
         return (outputs.loss, outputs) if return_outputs else outputs.loss
 
-    def create_optimizer(self, model=None):  # noqa: ARG002
+    def create_optimizer(self):
         if self.llrd_factor and hasattr(self.model, 'get_parameter_groups'):
             assert self.model is not None
             _model: Any = self.model

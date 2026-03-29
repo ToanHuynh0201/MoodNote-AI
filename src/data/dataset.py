@@ -14,7 +14,7 @@ class EmotionDataset(Dataset):
     def __init__(
         self,
         data_path,
-        tokenizer_name="vinai/phobert-base",
+        tokenizer_name="uitnlp/visobert",
         max_length=128,
         tokenizer=None
     ):
@@ -41,39 +41,30 @@ class EmotionDataset(Dataset):
             self.tokenizer = tokenizer
 
         # Extract texts and labels
-        self.texts = self.df['text'].tolist()
+        texts = self.df['text'].tolist()
         self.labels = self.df['label'].tolist()
 
-    def __len__(self):
-        """Return dataset size"""
-        return len(self.texts)
-
-    def __getitem__(self, idx):
-        """
-        Get item by index
-
-        Args:
-            idx: Index
-
-        Returns:
-            dict: Dictionary containing input_ids, attention_mask, and label
-        """
-        text = str(self.texts[idx])
-        label = int(self.labels[idx])
-
-        # Tokenize
-        encoding = self.tokenizer(
-            text,
+        # Pre-tokenize entire dataset once to avoid repeated tokenization per epoch
+        print(f"Tokenizing {len(texts)} samples...")
+        encodings = self.tokenizer(
+            [str(t) for t in texts],
             max_length=self.max_length,
             padding='max_length',
             truncation=True,
             return_tensors='pt'
         )
+        self.input_ids = encodings['input_ids']
+        self.attention_mask = encodings['attention_mask']
 
+    def __len__(self):
+        """Return dataset size"""
+        return len(self.labels)
+
+    def __getitem__(self, idx):
         return {
-            'input_ids': encoding['input_ids'].flatten(),
-            'attention_mask': encoding['attention_mask'].flatten(),
-            'labels': torch.tensor(label, dtype=torch.long)
+            'input_ids': self.input_ids[idx],
+            'attention_mask': self.attention_mask[idx],
+            'labels': torch.tensor(self.labels[idx], dtype=torch.long)
         }
 
 
@@ -81,7 +72,7 @@ def create_dataloaders(
     train_path,
     val_path,
     test_path,
-    tokenizer_name="vinai/phobert-base",
+    tokenizer_name="uitnlp/visobert",
     batch_size=16,
     max_length=128,
     num_workers=0
@@ -129,25 +120,30 @@ def create_dataloaders(
     )
 
     # Create DataLoaders
+    _pin = torch.cuda.is_available()
+
     train_loader = DataLoader(
         train_dataset,
         batch_size=batch_size,
         shuffle=True,
-        num_workers=num_workers
+        num_workers=num_workers,
+        pin_memory=_pin
     )
 
     val_loader = DataLoader(
         val_dataset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=num_workers
+        num_workers=num_workers,
+        pin_memory=_pin
     )
 
     test_loader = DataLoader(
         test_dataset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=num_workers
+        num_workers=num_workers,
+        pin_memory=_pin
     )
 
     print(f"\nDataLoaders created:")
