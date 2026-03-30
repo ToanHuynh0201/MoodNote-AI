@@ -263,7 +263,8 @@ if __name__ == "__main__":
         #   Anger   (2): recall=0.35 → target 1800 (confused with Disgust, needs more)
         #   Fear    (3): ~818 samples, below median (~1100) → target 1400
         #   Disgust (4): recall=0.57 → target 1300 (cap to avoid overwhelming Anger)
-        #   Surprise(5): recall=0.30 → target 2000 (lowest recall, needs most boost)
-        target_counts={2: 1800, 3: 1400, 4: 1300, 5: 2000},
+        #   Surprise(5): recall=0.30 → target 1300 (giảm từ 2000; random aug ratio 0.95x thay vì 1.95x,
+        #                phần còn lại dùng back-translation để tránh noise)
+        target_counts={2: 1800, 3: 1400, 4: 1300, 5: 1300},
         techniques=["deletion", "swap", "insertion"]
     )

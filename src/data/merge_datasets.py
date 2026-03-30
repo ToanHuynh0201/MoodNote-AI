@@ -30,7 +30,7 @@ VIGOEMOTIONS_TO_VSMEC: dict[str, str] = {
     # Sadness
     "sadness": "Sadness", "grief": "Sadness",
     "disappointment": "Sadness", "remorse": "Sadness",
-    "disapproval": "Sadness",   # moved from Anger — closer to disappointment in Vietnamese
+    "disapproval": "Disgust",   # rejection/moral aversion → Disgust (closer than Sadness in Vietnamese)
     # Anger — chỉ giữ intense anger, loại bỏ ambiguous labels
     "anger": "Anger",
     # Fear
@@ -38,10 +38,11 @@ VIGOEMOTIONS_TO_VSMEC: dict[str, str] = {
     # Disgust
     "disgust": "Disgust", "embarrassment": "Disgust",
     # Surprise — loại bỏ curiosity (curiosity ≠ surprise, sai nghĩa)
-    "surprise": "Surprise",
+    "surprise":    "Surprise",
+    "realization": "Surprise",  # sudden unexpected insight mang tính surprise trong tiếng Việt
     # Other — chỉ giữ neutral (rõ ràng); loại bỏ ambiguous/cognitive states:
     # annoyance (gần Anger/Disgust hơn Other), curiosity (đã loại ở Surprise),
-    # confusion và realization (cognitive states, không phải cảm xúc)
+    # confusion (cognitive state, không phải cảm xúc)
     "neutral": "Other",
 }
 

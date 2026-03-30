@@ -7,11 +7,11 @@ training:
     weight_decay: 0.05
     fp16: true
     seed: 42
-    early_stopping_patience: 10
+    early_stopping_patience: 5   # giảm từ 10 — với eval_steps=100, patience=10 cho phép 1000 steps không cải thiện
     use_llrd: true # Layer-wise LR Decay
     llrd_factor: 0.9 # mỗi layer giảm 10% so với layer trên (12 layers với ViSoBERT base)
     use_class_weights: true
-    rdrop_alpha: 0.0  # R-Drop alpha (0.0 = tắt); override trong notebook: Stage 2 dùng 4.0
+    rdrop_alpha: 0.0  # R-Drop alpha (0.0 = tắt); override trong notebook: Stage 2 dùng 1.0
 
 optimizer:
     type: "AdamW"

@@ -5,7 +5,7 @@ model:
     max_seq_length: 128
     dropout: 0.3          # giữ nguyên; R-Drop + large model cung cấp đủ regularization
     label_smoothing: 0.15 # giữ nguyên
-    focal_gamma: 2.5      # giữ nguyên
+    focal_gamma: 1.5      # giảm từ 2.5 — tránh down-weighting quá aggressive gây mất gradient ổn định
 
 emotion_labels:
     0: "Enjoyment"
