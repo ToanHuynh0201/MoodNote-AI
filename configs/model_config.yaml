@@ -1,6 +1,6 @@
 model:
-    # name: "vinai/phobert-base"     # 135M params, hidden_size=768
-    name: "uitnlp/visobert"        # 135M params, hidden_size=768, pre-trained trên social media tiếng Việt
+    name: "vinai/phobert-base-v2"  # PhoBERT base v2, improved over original
+    # name: "uitnlp/visobert"        # 135M params, hidden_size=768, pre-trained trên social media tiếng Việt
     num_labels: 7
     max_seq_length: 128
     dropout: 0.3          # giữ nguyên; R-Drop + large model cung cấp đủ regularization
