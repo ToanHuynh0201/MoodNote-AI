@@ -161,7 +161,7 @@ class PhoBERTEmotionClassifier(nn.Module):
                 loss_fn = nn.CrossEntropyLoss(weight=weight, label_smoothing=self.label_smoothing)
                 loss = loss_fn(logits, labels)
 
-        return SequenceClassifierOutput(loss=loss, logits=logits)
+        return SequenceClassifierOutput(loss=loss, logits=logits)  # type: ignore[arg-type]
 
     def get_num_parameters(self):
         """Get number of trainable parameters"""
