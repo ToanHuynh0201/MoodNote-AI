@@ -61,3 +61,6 @@ nul
 ./data
 
 best_model
+
+*.bat
+Makefile

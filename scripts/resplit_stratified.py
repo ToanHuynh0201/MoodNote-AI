@@ -11,13 +11,12 @@ EMOTION_NAMES = {
     3: "Fear", 4: "Disgust", 5: "Surprise", 6: "Other"
 }
 
-# ── Load all splits ───────────────────────────────────────────────────────────
+# ── Load train + val only (test giữ nguyên làm held-out benchmark) ────────────
 merged_train = pd.read_csv(PROCESSED_DIR / "train.csv",      encoding='utf-8')
-merged_test  = pd.read_csv(PROCESSED_DIR / "test.csv",       encoding='utf-8')
 merged_val   = pd.read_csv(PROCESSED_DIR / "validation.csv", encoding='utf-8')
 
-all_data = pd.concat([merged_train, merged_val, merged_test], ignore_index=True)
-print(f"Total samples before deduplication: {len(all_data)}")
+all_data = pd.concat([merged_train, merged_val], ignore_index=True)
+print(f"Total samples (train+val) before deduplication: {len(all_data)}")
 
 # ── Deduplication ─────────────────────────────────────────────────────────────
 # For each unique text:
@@ -63,7 +62,9 @@ for label in range(7):
     cnt = (all_data["label"] == label).sum()
     print(f"  {EMOTION_NAMES[label]:12s} ({label}): {cnt:5d}")
 
-# ── Stratified split 80 / 10 / 10 ────────────────────────────────────────────
+# ── Stratified split 89 / 11 (≈ 80/10/10 của tổng ban đầu khi test chiếm ~10%) ──
+# Vì test set đã được giữ nguyên từ VSMEC gốc (~10%), phần còn lại split 89/11
+# để tỉ lệ train/val/test xấp xỉ 80/10/10 trên toàn bộ data.
 np.random.seed(42)
 all_data["_rand"]  = np.random.random(len(all_data))
 all_data["_split"] = pd.array([None] * len(all_data), dtype=object)
@@ -74,21 +75,21 @@ for label in range(7):
     n       = len(indices)
 
     rand_sorted = np.argsort(all_data.loc[indices, "_rand"].to_numpy())
-    train_n = int(n * 0.8)
-    val_n   = int(n * 0.1)
+    train_n = int(n * 0.89)
 
-    all_data.loc[indices[rand_sorted[:train_n]],            "_split"] = "train"
-    all_data.loc[indices[rand_sorted[train_n:train_n+val_n]], "_split"] = "val"
-    all_data.loc[indices[rand_sorted[train_n+val_n:]],      "_split"] = "test"
+    all_data.loc[indices[rand_sorted[:train_n]],  "_split"] = "train"
+    all_data.loc[indices[rand_sorted[train_n:]], "_split"] = "val"
 
 train = all_data[all_data["_split"] == "train"].drop(columns=["_split", "_rand"]).reset_index(drop=True)
 val   = all_data[all_data["_split"] == "val"]  .drop(columns=["_split", "_rand"]).reset_index(drop=True)
-test  = all_data[all_data["_split"] == "test"] .drop(columns=["_split", "_rand"]).reset_index(drop=True)
+
+# Test set: giữ nguyên file test.csv hiện tại (VSMEC gốc, không bị contaminate)
+test = pd.read_csv(PROCESSED_DIR / "test.csv", encoding='utf-8')
 
 print(f"\n=== NEW SPLITS ===")
 print(f"Train: {len(train):5d} samples")
 print(f"Val:   {len(val):5d} samples")
-print(f"Test:  {len(test):5d} samples")
+print(f"Test:  {len(test):5d} samples  (held-out, không thay đổi)")
 
 print(f"\n=== DISTRIBUTION PER SPLIT ===")
 header = f"{'Label':<14} {'Train':>6} {'Val':>6} {'Test':>6}"
@@ -100,9 +101,8 @@ for label in range(7):
     s = (test["label"]  == label).sum()
     print(f"{EMOTION_NAMES[label]:<14} {t:>6} {v:>6} {s:>6}")
 
-# ── Save ──────────────────────────────────────────────────────────────────────
+# ── Save (chỉ ghi train + val; test không đổi) ────────────────────────────────
 train.to_csv(PROCESSED_DIR / "train.csv",      index=False, encoding="utf-8")
 val.to_csv(  PROCESSED_DIR / "validation.csv", index=False, encoding="utf-8")
-test.to_csv( PROCESSED_DIR / "test.csv",       index=False, encoding="utf-8")
 
-print("\nFiles saved!")
+print("\nFiles saved! (test.csv giữ nguyên)")
