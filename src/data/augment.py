@@ -275,6 +275,6 @@ if __name__ == "__main__":
         #   Fear    (3): F1=0.67, ổn → giữ 1500
         #   Disgust (4): F1=0.59, giữ 1300 (tránh lấn át Anger)
         #   Surprise(5): F1=0.49, recall=0.38, 9/37 nhầm sang Other → tăng lên 1800 + back_translation
-        target_counts={2: 2200, 3: 1500, 4: 1300, 5: 1800},
-        techniques=["deletion", "swap", "insertion"]
+        target_counts={2: 1200, 3: 1500, 4: 1300, 5: 1500},
+        techniques=["swap", "insertion"]
     )
