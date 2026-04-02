@@ -2,12 +2,12 @@ training:
     learning_rate: 2e-5  # standard base-size RoBERTa fine-tuning LR
     batch_size: 16       # T4 16GB safe với ViSoBERT 135M + R-Drop
     gradient_accumulation_steps: 2 # effective batch = 16 * 2 = 32
-    num_epochs: 10        # giảm từ 20 → best ckpt xuất hiện ở epoch ~4-5, không cần train lâu
+    num_epochs: 6         # giảm từ 10 → best val loss xuất hiện ở step ~800 (epoch ~2.7); 6 epochs đủ buffer
     warmup_ratio: 0.1
     weight_decay: 0.01  # standard cho BERT fine-tuning; 0.1 quá cao → over-regularize
     fp16: true
     seed: 42
-    early_stopping_patience: 10  # tăng từ 7 → 10; cho model thêm 300 steps để thoát local optima
+    early_stopping_patience: 4   # giảm từ 10 → 4; patience=10 cho phép overfit 3+ epochs thừa
     use_llrd: true # Layer-wise LR Decay
     llrd_factor: 0.85 # mỗi layer giảm 15% so với layer trên — bảo vệ pretrained features tốt hơn
     use_class_weights: true

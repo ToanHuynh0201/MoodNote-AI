@@ -98,7 +98,7 @@ def main():
         augment_dataset(
             input_csv=str(REPO_ROOT / "data" / "processed" / "train.csv"),
             output_csv=augmented_train,
-            target_counts={2: 1200, 3: 1500, 4: 1300, 5: 1500},
+            target_counts={0: 2000, 2: 1800, 3: 1500, 4: 1100, 5: 1800},
             techniques=["swap", "insertion"],
             seed=42,
         )
