@@ -25,7 +25,7 @@ logging:
     log_steps: 50 # merged dataset ~3-4x lớn hơn, giảm log noise
     eval_steps: 100 # granular hơn để bắt best checkpoint sớm hơn
     save_steps: 100 # match eval_steps
-    save_total_limit: 4
+    save_total_limit: 1  # chỉ giữ 1 checkpoint (best) — tiết kiệm ~1.5GB local storage
 
 wandb:
     project: "moodnote-ai"

@@ -5,11 +5,13 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 import math
+import shutil
 from typing import Any
 from torch.optim import AdamW
 from transformers import (
     Trainer,
     TrainingArguments,
+    TrainerCallback,
     EarlyStoppingCallback,
     get_cosine_schedule_with_warmup
 )
@@ -19,6 +21,19 @@ from ..utils.metrics import compute_metrics_for_trainer
 from ..utils.logger import get_logger
 
 logger = get_logger()
+
+
+class SaveBestOnlyCallback(TrainerCallback):
+    """Xóa các checkpoint không phải best ngay sau mỗi lần save."""
+
+    def on_save(self, args, state, control, **kwargs):
+        if not state.best_model_checkpoint:
+            return
+        output_dir = Path(args.output_dir)
+        best_ckpt = Path(state.best_model_checkpoint).resolve()
+        for ckpt in output_dir.glob("checkpoint-*"):
+            if ckpt.resolve() != best_ckpt:
+                shutil.rmtree(ckpt, ignore_errors=True)
 
 
 def create_training_arguments(
@@ -272,7 +287,7 @@ def train_model(
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         compute_metrics=compute_metrics_for_trainer,
-        callbacks=[EarlyStoppingCallback(early_stopping_patience=patience)],
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=patience), SaveBestOnlyCallback()],
         llrd_factor=llrd_factor,
         rdrop_alpha=rdrop_alpha
     )
