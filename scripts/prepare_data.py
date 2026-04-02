@@ -99,7 +99,7 @@ def main():
             input_csv=str(REPO_ROOT / "data" / "processed" / "train.csv"),
             output_csv=augmented_train,
             target_counts={2: 2200, 3: 1500, 4: 1300, 5: 1800},
-            techniques=["deletion", "swap", "insertion", "back_translation"],
+            techniques=["deletion", "swap", "insertion"],
             seed=42,
         )
 

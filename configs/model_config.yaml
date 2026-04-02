@@ -3,7 +3,7 @@ model:
     # name: "uitnlp/visobert"        # 135M params, hidden_size=768, pre-trained trên social media tiếng Việt
     num_labels: 7
     max_seq_length: 128
-    dropout: 0.3          # giữ nguyên; R-Drop + large model cung cấp đủ regularization
+    dropout: 0.4          # tăng từ 0.3 → giảm overfitting (best ckpt step 1500, train đến 4500)
     label_smoothing: 0.1  # giảm từ 0.15 → bớt uncertainty, giúp model commit hơn với Anger/Surprise
     focal_gamma: 2.0      # tăng từ 1.0 → focus mạnh hơn vào hard examples (Anger bị nhầm sang Disgust)
 

@@ -2,7 +2,7 @@ training:
     learning_rate: 2e-5  # standard base-size RoBERTa fine-tuning LR
     batch_size: 16       # T4 16GB safe với ViSoBERT 135M + R-Drop
     gradient_accumulation_steps: 2 # effective batch = 16 * 2 = 32
-    num_epochs: 20
+    num_epochs: 10        # giảm từ 20 → best ckpt xuất hiện ở epoch ~4-5, không cần train lâu
     warmup_ratio: 0.1
     weight_decay: 0.01  # standard cho BERT fine-tuning; 0.1 quá cao → over-regularize
     fp16: true
