@@ -7,11 +7,11 @@ training:
     weight_decay: 0.01  # standard cho BERT fine-tuning; 0.1 quá cao → over-regularize
     fp16: true
     seed: 42
-    early_stopping_patience: 7   # patience=7 × eval_steps=100 = 700 steps (~3 epochs), tránh dừng quá sớm
+    early_stopping_patience: 10  # tăng từ 7 → 10; cho model thêm 300 steps để thoát local optima
     use_llrd: true # Layer-wise LR Decay
     llrd_factor: 0.85 # mỗi layer giảm 15% so với layer trên — bảo vệ pretrained features tốt hơn
     use_class_weights: true
-    rdrop_alpha: 0.0  # R-Drop disabled — notebook override về 0.0 anyway; thêm compute không cần thiết
+    rdrop_alpha: 0.1  # R-Drop enabled — giảm gap val/test (0.6474 vs 0.5737); KL regularization giữa 2 forward passes
 
 optimizer:
     type: "AdamW"

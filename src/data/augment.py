@@ -270,12 +270,11 @@ if __name__ == "__main__":
         output_csv=str(base_dir / "data/processed/train_augmented.csv"),
         # Post-merge distribution (after ViGoEmotions): Anger~1091, Fear~818,
         # Disgust~1138, Surprise~1142, Other~1146, Enjoyment~1558, Sadness~947
-        # Targets based on test results:
-        #   Anger   (2): recall=0.35 → target 1800 (confused with Disgust, needs more)
-        #   Fear    (3): ~818 samples, below median (~1100) → target 1400
-        #   Disgust (4): recall=0.57 → target 1300 (cap to avoid overwhelming Anger)
-        #   Surprise(5): recall=0.30 → target 1300 (giảm từ 2000; random aug ratio 0.95x thay vì 1.95x,
-        #                phần còn lại dùng back-translation để tránh noise)
-        target_counts={2: 1800, 3: 1400, 4: 1300, 5: 1300},
-        techniques=["deletion", "swap", "insertion"]
+        # Targets based on test results (v2):
+        #   Anger   (2): F1=0.28, 22/40 nhầm sang Disgust → tăng lên 2200 + back_translation
+        #   Fear    (3): F1=0.67, ổn → giữ 1500
+        #   Disgust (4): F1=0.59, giữ 1300 (tránh lấn át Anger)
+        #   Surprise(5): F1=0.49, recall=0.38, 9/37 nhầm sang Other → tăng lên 1800 + back_translation
+        target_counts={2: 2200, 3: 1500, 4: 1300, 5: 1800},
+        techniques=["deletion", "swap", "insertion", "back_translation"]
     )

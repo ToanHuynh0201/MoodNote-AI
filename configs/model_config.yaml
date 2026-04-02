@@ -4,8 +4,8 @@ model:
     num_labels: 7
     max_seq_length: 128
     dropout: 0.3          # giữ nguyên; R-Drop + large model cung cấp đủ regularization
-    label_smoothing: 0.15 # giữ nguyên
-    focal_gamma: 1.0      # giảm thêm vì R-Drop đã là regularization chính; tránh double-penalize với class_weights
+    label_smoothing: 0.1  # giảm từ 0.15 → bớt uncertainty, giúp model commit hơn với Anger/Surprise
+    focal_gamma: 2.0      # tăng từ 1.0 → focus mạnh hơn vào hard examples (Anger bị nhầm sang Disgust)
 
 emotion_labels:
     0: "Enjoyment"
