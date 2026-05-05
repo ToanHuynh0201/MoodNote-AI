@@ -27,17 +27,18 @@ class SaveBestOnlyCallback(TrainerCallback):
     """Xóa các checkpoint không phải best ngay sau mỗi lần save."""
 
     def on_save(self, args, state, control, **kwargs):
-        if not state.best_model_checkpoint:
+        checkpoint = state.best_model_checkpoint
+        if not checkpoint or not args.output_dir:
             return
         output_dir = Path(args.output_dir)
-        best_ckpt = Path(state.best_model_checkpoint).resolve()
+        best_ckpt = Path(checkpoint).resolve()
         for ckpt in output_dir.glob("checkpoint-*"):
             if ckpt.resolve() != best_ckpt:
                 shutil.rmtree(ckpt, ignore_errors=True)
 
 
 def create_training_arguments(
-    output_dir,
+    output_dir: str,
     num_epochs=5,
     batch_size=16,
     learning_rate=3e-5,
@@ -144,7 +145,7 @@ class EmotionTrainer(Trainer):
         self.rdrop_alpha = rdrop_alpha
         super().__init__(*args, **kwargs)
 
-    def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
+    def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         if self.rdrop_alpha > 0 and model.training:
             # R-Drop: two forward passes with different dropout masks + KL divergence
             # Ref: "R-Drop: Regularized Dropout for Neural Networks" (NeurIPS 2021)
@@ -160,17 +161,18 @@ class EmotionTrainer(Trainer):
         outputs = model(**inputs)
         return (outputs.loss, outputs) if return_outputs else outputs.loss
 
-    def create_optimizer(self):
-        if self.llrd_factor and hasattr(self.model, 'get_parameter_groups'):
-            assert self.model is not None
-            _model: Any = self.model
+    def create_optimizer(self, model=None):
+        model = model if model is not None else self.model
+        if self.llrd_factor and hasattr(model, 'get_parameter_groups'):
+            assert model is not None
+            _model: Any = model
             param_groups = _model.get_parameter_groups(
                 base_lr=self.args.learning_rate,
                 llrd_factor=self.llrd_factor
             )
             # Build param_id → name map for correct no-decay detection
             no_decay_names = ["bias", "LayerNorm.weight", "layer_norm.weight"]
-            param_to_name = {id(p): n for n, p in self.model.named_parameters()}
+            param_to_name = {id(p): n for n, p in _model.named_parameters()}
 
             optimizer_grouped_params = []
             for group in param_groups:

@@ -1,15 +1,17 @@
 """
 FastAPI application for emotion prediction
 """
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, BackgroundTasks
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Any
+from datetime import datetime, timezone
 import torch
 from pathlib import Path
 from .predictor import EmotionPredictor
 from ..utils.config import load_config
 from ..utils.logger import get_logger
+from ..utils.database import get_training_collection, close_client
 
 logger = get_logger("api")
 
@@ -89,11 +91,22 @@ class SentencePrediction(BaseModel):
     probabilities: Dict[str, float]
 
 
+class TagItem(BaseModel):
+    name: str
+    type: str
+
+
 class DiaryAnalysisRequest(BaseModel):
     """Yêu cầu phân tích đoạn nhật ký"""
     text: str = Field(..., description="Đoạn nhật ký tiếng Việt cần phân tích", min_length=1)
     keyword_count: int = Field(default=10, ge=3, le=10, description="Số từ khóa trích xuất (3-10)")
     other_threshold: float = Field(default=0.0, ge=0.0, lt=1.0, description="Ngưỡng tin cậy tối thiểu (0.0 = tắt)")
+    # Training fields — optional, ignored nếu không gửi
+    allow_training: bool = False
+    input_method: str = "TEXT"
+    word_count: int = Field(default=0, ge=0)
+    entry_date: Optional[str] = None  # "YYYY-MM-DD"
+    tags: List[TagItem] = []
 
     class Config:
         json_schema_extra = {
@@ -280,7 +293,7 @@ async def predict_batch(request: BatchPredictionRequest):
 
 
 @app.post("/predict/diary", tags=["Prediction"])
-async def predict_diary(request: DiaryAnalysisRequest):
+async def predict_diary(request: DiaryAnalysisRequest, background_tasks: BackgroundTasks):
     """
     Phân tích cảm xúc cho toàn bộ đoạn nhật ký.
 
@@ -317,6 +330,17 @@ async def predict_diary(request: DiaryAnalysisRequest):
             sentences=sentences,
         )
 
+        if request.allow_training:
+            background_tasks.add_task(
+                _save_training_sample,
+                text=request.text,
+                input_method=request.input_method,
+                word_count=request.word_count,
+                entry_date=request.entry_date,
+                tags=[t.model_dump() for t in request.tags],
+                analysis=response.model_dump(),
+            )
+
         return {
             "success": True,
             "message": "Phân tích nhật ký thành công",
@@ -328,6 +352,40 @@ async def predict_diary(request: DiaryAnalysisRequest):
     except Exception as e:
         logger.error(f"Lỗi phân tích nhật ký: {e}")
         raise HTTPException(status_code=500, detail=f"Phân tích thất bại: {str(e)}")
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    close_client()
+
+
+def _save_training_sample(
+    text: str,
+    input_method: str,
+    word_count: int,
+    entry_date: Optional[str],
+    tags: list,
+    analysis: dict,
+):
+    try:
+        doc = {
+            "text": text,
+            "wordCount": word_count,
+            "inputMethod": input_method,
+            "entryDate": entry_date,
+            "tags": tags,
+            "primaryEmotion": analysis["overall_emotion"],
+            "sentimentScore": analysis["overall_sentiment"],
+            "intensity": analysis["overall_intensity"],
+            "confidence": analysis["overall_confidence"],
+            "emotionDistribution": analysis["emotion_distribution"],
+            "keywords": analysis["keywords"],
+            "sentenceCount": analysis["sentence_count"],
+            "createdAt": datetime.now(timezone.utc),
+        }
+        get_training_collection().insert_one(doc)
+    except Exception as e:
+        logger.warning(f"[Training] Failed to save sample (non-critical): {e}")
 
 
 if __name__ == "__main__":

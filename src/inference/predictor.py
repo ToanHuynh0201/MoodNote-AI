@@ -164,11 +164,10 @@ class EmotionPredictor:
         ))
         sentiment_score = round(sentiment_score, 4)
 
-        # FR-12: Intensity (0-100) — based on prediction entropy
-        # Low entropy = model is confident = high intensity
-        entropy = -np.sum(probs * np.log(probs + 1e-9))
-        max_entropy = np.log(len(probs))  # log(7) ≈ 1.946
-        intensity = round(float((1.0 - entropy / max_entropy) * 100), 2)
+        # FR-12: Intensity (0-100) — extremity of predicted emotion (|sentiment_weight| × 100)
+        # Other → 0, Anger/Enjoyment → high, regardless of model confidence
+        extremity = abs(self.sentiment_scores.get(pred_emotion, 0.0))
+        intensity = round(float(extremity * 100), 2)
 
         # FR-13: Keyword extraction (3-10 keywords)
         keywords = self.keyword_extractor.extract(text, n=5)
@@ -228,12 +227,7 @@ class EmotionPredictor:
             sum(w * r['intensity'] for w, r in zip(weights, results)) / total_weight, 2
         )
 
-        # Phân bố cảm xúc theo số lượng câu
-        counts = {name: 0 for name in emotion_names}
-        for r in results:
-            counts[r['emotion']] = counts.get(r['emotion'], 0) + 1
-        n = len(results)
-        emotion_distribution = {name: round(counts[name] / n, 4) for name in emotion_names}
+        emotion_distribution = {name: round(p_avg[k], 2) for k, name in enumerate(emotion_names)}
 
         return {
             'overall_emotion':      overall_emotion,
