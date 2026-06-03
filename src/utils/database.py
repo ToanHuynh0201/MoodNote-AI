@@ -1,6 +1,7 @@
+import os
+
 from pymongo import MongoClient
 from pymongo.collection import Collection
-import os
 
 _client: MongoClient | None = None
 

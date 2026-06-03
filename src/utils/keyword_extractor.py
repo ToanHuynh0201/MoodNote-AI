@@ -2,6 +2,8 @@
 Vietnamese keyword extraction using YAKE algorithm
 """
 
+from __future__ import annotations
+
 
 class VietnameseKeywordExtractor:
     """
@@ -12,7 +14,7 @@ class VietnameseKeywordExtractor:
     Lower YAKE score = more important keyword.
     """
 
-    def __init__(self, max_keywords=10):
+    def __init__(self, max_keywords: int = 10) -> None:
         """
         Initialize YAKE keyword extractor.
 
@@ -21,22 +23,21 @@ class VietnameseKeywordExtractor:
         """
         try:
             import yake
-        except ImportError:
+        except ImportError as exc:
             raise ImportError(
-                "YAKE is required for keyword extraction. "
-                "Install it with: pip install yake"
-            )
+                "YAKE is required for keyword extraction. Install it with: pip install yake"
+            ) from exc
 
         self.max_keywords = max_keywords
         self.extractor = yake.KeywordExtractor(
             lan="vi",
-            n=1,            # unigrams only
-            dedupLim=0.7,   # deduplication threshold
+            n=1,  # unigrams only
+            dedupLim=0.7,  # deduplication threshold
             top=max_keywords,
-            features=None
+            features=None,
         )
 
-    def extract(self, text, n=5):
+    def extract(self, text: str, n: int = 5) -> list[str]:
         """
         Extract keywords from Vietnamese text.
 
@@ -55,21 +56,4 @@ class VietnameseKeywordExtractor:
         keywords = self.extractor.extract_keywords(text)
 
         # YAKE returns (keyword, score) — lower score = more important
-        result = [kw[0].replace("_", " ") for kw in keywords[:n]]
-
-        return result
-
-
-if __name__ == "__main__":
-    extractor = VietnameseKeywordExtractor()
-
-    test_texts = [
-        "Hôm nay tôi rất buồn và mệt mỏi vì bị mất việc làm, không biết làm gì tiếp theo",
-        "Tôi cảm thấy vui và hạnh phúc khi được gặp lại bạn bè sau bao lâu",
-        "Tôi tức giận vì bị đối xử không công bằng tại nơi làm việc"
-    ]
-
-    for text in test_texts:
-        keywords = extractor.extract(text, n=5)
-        print(f"Text: {text[:50]}...")
-        print(f"Keywords: {keywords}\n")
+        return [kw[0].replace("_", " ") for kw in keywords[:n]]

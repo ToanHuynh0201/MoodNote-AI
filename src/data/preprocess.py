@@ -1,10 +1,17 @@
 """
 Vietnamese text preprocessing with word segmentation for PhoBERT
 """
-import pandas as pd
+from __future__ import annotations
+
 from pathlib import Path
-from tqdm import tqdm
+
+import pandas as pd
 import yaml
+from tqdm import tqdm
+
+from ..utils.logger import get_logger
+
+logger = get_logger("preprocess")
 
 try:
     from pyvi import ViTokenizer
@@ -12,13 +19,13 @@ try:
 except ImportError:
     ViTokenizer = None  # type: ignore[assignment]
     PYVI_AVAILABLE = False
-    print("Warning: pyvi not installed. Install with: pip install pyvi")
+    logger.warning("pyvi not installed. Install with: pip install pyvi")
 
 
 class VietnamesePreprocessor:
     """Vietnamese text preprocessor with word segmentation"""
 
-    def __init__(self, segmenter="pyvi"):
+    def __init__(self, segmenter: str = "pyvi") -> None:
         """
         Initialize preprocessor
 
@@ -30,7 +37,7 @@ class VietnamesePreprocessor:
         if segmenter == "pyvi" and not PYVI_AVAILABLE:
             raise ImportError("pyvi is not installed. Install with: pip install pyvi")
 
-    def segment_text(self, text):
+    def segment_text(self, text: str) -> str:
         """
         Segment Vietnamese text into words
 
@@ -55,7 +62,7 @@ class VietnamesePreprocessor:
         else:
             raise ValueError(f"Unsupported segmenter: {self.segmenter}")
 
-    def preprocess_text(self, text, lowercase=False):
+    def preprocess_text(self, text: str, lowercase: bool = False) -> str:
         """
         Preprocess Vietnamese text
 
@@ -77,10 +84,10 @@ class VietnamesePreprocessor:
 
 
 def preprocess_dataset(
-    input_dir="data/raw",
-    output_dir="data/processed",
-    config_path="configs/model_config.yaml"
-):
+    input_dir: str = "data/raw",
+    output_dir: str = "data/processed",
+    config_path: str = "configs/model_config.yaml",
+) -> None:
     """
     Preprocess UIT-VSMEC dataset with Vietnamese word segmentation
 
@@ -89,7 +96,7 @@ def preprocess_dataset(
         output_dir: Directory to save preprocessed files
         config_path: Path to model configuration file
     """
-    print("Starting Vietnamese text preprocessing...")
+    logger.info("Starting Vietnamese text preprocessing...")
 
     # Load configuration
     with open(config_path, 'r', encoding='utf-8') as f:
@@ -100,7 +107,7 @@ def preprocess_dataset(
 
     # Initialize preprocessor
     preprocessor = VietnamesePreprocessor(segmenter=segmenter)
-    print(f"Using segmenter: {segmenter}")
+    logger.info(f"Using segmenter: {segmenter}")
 
     # Create output directory
     output_path = Path(output_dir)
@@ -111,14 +118,14 @@ def preprocess_dataset(
         input_file = Path(input_dir) / f"{split_name}.csv"
 
         if not input_file.exists():
-            print(f"Warning: {input_file} not found. Skipping...")
+            logger.warning(f"{input_file} not found. Skipping...")
             continue
 
-        print(f"\nProcessing {split_name} split...")
+        logger.info(f"Processing {split_name} split...")
 
         # Load data
         df = pd.read_csv(input_file)
-        print(f"Loaded {len(df)} samples")
+        logger.info(f"Loaded {len(df)} samples")
 
         # Detect text column
         text_col = None
@@ -132,7 +139,7 @@ def preprocess_dataset(
             label_cols = ['label', 'labels', 'emotion']
             text_col = [col for col in df.columns if col not in label_cols][0]
 
-        print(f"Using column '{text_col}' for text")
+        logger.info(f"Using column '{text_col}' for text")
 
         # Detect label column (case-insensitive)
         label_col = None
@@ -144,14 +151,14 @@ def preprocess_dataset(
         if label_col is None:
             label_col = df.columns[-1]
 
-        print(f"Using column '{label_col}' for labels")
+        logger.info(f"Using column '{label_col}' for labels")
 
         # Build label mapping from config (invert: "Enjoyment" -> 0)
         emotion_labels = config.get('emotion_labels', {})
         label_to_int = {v: int(k) for k, v in emotion_labels.items()}
 
         # Preprocess texts
-        print("Applying word segmentation...")
+        logger.info("Applying word segmentation...")
         segmented_texts = []
 
         for text in tqdm(df[text_col], desc=f"Segmenting {split_name}"):
@@ -174,19 +181,18 @@ def preprocess_dataset(
         # Save preprocessed data
         output_file = output_path / f"{split_name}.csv"
         processed_df.to_csv(output_file, index=False, encoding='utf-8')
-        print(f"Saved preprocessed data to {output_file}")
+        logger.info(f"Saved preprocessed data to {output_file}")
 
         # Show examples
-        print("\nExamples:")
         for i in range(min(3, len(df))):
-            print(f"\nOriginal: {df[text_col].iloc[i]}")
-            print(f"Segmented: {processed_df['text'].iloc[i]}")
-            print(f"Label: {processed_df['label'].iloc[i]}")
+            logger.debug(f"Original:  {df[text_col].iloc[i]}")
+            logger.debug(f"Segmented: {processed_df['text'].iloc[i]}")
+            logger.debug(f"Label:     {processed_df['label'].iloc[i]}")
 
-    print("\n✓ Preprocessing complete!")
+    logger.info("Preprocessing complete!")
 
 
-def main():
+def main() -> None:
     """Main function"""
     import argparse
     parser = argparse.ArgumentParser(description="Preprocess Vietnamese emotion dataset")

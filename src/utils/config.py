@@ -1,12 +1,18 @@
 """
 Configuration management utilities
 """
-import yaml
+
 from pathlib import Path
-from typing import Dict, Any, Union
+from typing import Any
+
+import yaml
+
+from .logger import get_logger
+
+logger = get_logger("config")
 
 
-def load_config(config_path: Union[str, Path]) -> Dict[str, Any]:
+def load_config(config_path: str | Path) -> dict[str, Any]:
     """
     Load YAML configuration file
 
@@ -21,13 +27,13 @@ def load_config(config_path: Union[str, Path]) -> Dict[str, Any]:
     if not config_file.exists():
         raise FileNotFoundError(f"Config file not found: {config_path}")
 
-    with open(config_file, 'r', encoding='utf-8') as f:
+    with open(config_file, encoding="utf-8") as f:
         config = yaml.safe_load(f)
 
     return config
 
 
-def load_all_configs(config_dir: str = "configs") -> Dict[str, Dict[str, Any]]:
+def load_all_configs(config_dir: str = "configs") -> dict[str, dict[str, Any]]:
     """
     Load all configuration files
 
@@ -40,15 +46,15 @@ def load_all_configs(config_dir: str = "configs") -> Dict[str, Dict[str, Any]]:
     config_path = Path(config_dir)
 
     configs = {
-        'model': load_config(config_path / "model_config.yaml"),
-        'training': load_config(config_path / "training_config.yaml"),
-        'api': load_config(config_path / "api_config.yaml")
+        "model": load_config(config_path / "model_config.yaml"),
+        "training": load_config(config_path / "training_config.yaml"),
+        "api": load_config(config_path / "api_config.yaml"),
     }
 
     return configs
 
 
-def save_config(config: Dict[str, Any], config_path: Union[str, Path]):
+def save_config(config: dict[str, Any], config_path: str | Path) -> None:
     """
     Save configuration to YAML file
 
@@ -59,13 +65,13 @@ def save_config(config: Dict[str, Any], config_path: Union[str, Path]):
     config_file = Path(config_path)
     config_file.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(config_file, 'w', encoding='utf-8') as f:
+    with open(config_file, "w", encoding="utf-8") as f:
         yaml.dump(config, f, default_flow_style=False)
 
-    print(f"Config saved to {config_path}")
+    logger.info(f"Config saved to {config_path}")
 
 
-def merge_configs(*configs: Dict[str, Any]) -> Dict[str, Any]:
+def merge_configs(*configs: dict[str, Any]) -> dict[str, Any]:
     """
     Merge multiple configuration dictionaries
 
@@ -83,7 +89,7 @@ def merge_configs(*configs: Dict[str, Any]) -> Dict[str, Any]:
     return merged
 
 
-def get_config_value(config: Dict[str, Any], key_path: str, default=None):
+def get_config_value(config: dict[str, Any], key_path: str, default: Any = None) -> Any:
     """
     Get nested config value using dot notation
 
@@ -95,7 +101,7 @@ def get_config_value(config: Dict[str, Any], key_path: str, default=None):
     Returns:
         Value at key_path or default
     """
-    keys = key_path.split('.')
+    keys = key_path.split(".")
     value = config
 
     try:
@@ -104,24 +110,3 @@ def get_config_value(config: Dict[str, Any], key_path: str, default=None):
         return value
     except (KeyError, TypeError):
         return default
-
-
-if __name__ == "__main__":
-    # Test config loading
-    print("Testing configuration utilities...")
-
-    # Load all configs
-    configs = load_all_configs()
-
-    print("\nModel config:")
-    print(yaml.dump(configs['model'], default_flow_style=False))
-
-    print("\nTraining config:")
-    print(yaml.dump(configs['training'], default_flow_style=False))
-
-    # Test get_config_value
-    model_name = get_config_value(configs, 'model.model.name')
-    print(f"\nModel name: {model_name}")
-
-    learning_rate = get_config_value(configs, 'training.training.learning_rate')
-    print(f"Learning rate: {learning_rate}")

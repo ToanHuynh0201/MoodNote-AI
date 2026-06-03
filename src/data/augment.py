@@ -5,15 +5,31 @@ Applies Random Deletion, Random Swap, Random Insertion, and Back-Translation to 
 Input: processed CSV with 'text' (pyvi-segmented) and 'label' (int) columns.
 Output: augmented CSV with original + synthetic samples.
 """
+from __future__ import annotations
+
 import random
-import pandas as pd
 from pathlib import Path
 
+import pandas as pd
 
-# Emotion label index → name (for logging)
-EMOTION_NAMES = {
-    0: "Enjoyment", 1: "Sadness", 2: "Anger",
-    3: "Fear", 4: "Disgust", 5: "Surprise", 6: "Other"
+from ..utils.emotion_constants import DEFAULT_EMOTION_LABELS
+from ..utils.logger import get_logger
+
+logger = get_logger("augment")
+
+# Emotion label index → name (for logging); single source of truth in emotion_constants.
+EMOTION_NAMES = DEFAULT_EMOTION_LABELS
+
+# Default augmentation plan (shared by scripts/prepare_data.py and scripts/augment_colab.py).
+# Post-merge distribution (after ViGoEmotions): Anger~1091, Fear~818, Disgust~1138,
+# Surprise~1142, Other~1146, Enjoyment~1558, Sadness~947.
+DEFAULT_AUGMENT_TARGETS: dict[int, int] = {0: 2000, 2: 1800, 3: 1200, 4: 1100, 5: 1800}
+DEFAULT_TECHNIQUES: list[str] = ["deletion", "swap"]
+# Classes 0/2/5 benefit from back-translation (semantically diverse paraphrases).
+DEFAULT_CLASS_TECHNIQUES: dict[int, list[str]] = {
+    0: ["back_translation", "swap"],
+    2: ["back_translation", "swap"],
+    5: ["back_translation", "swap"],
 }
 
 
@@ -28,8 +44,10 @@ class VietnameseAugmenter:
     - back_translation: Vietnamese → English → Vietnamese (requires deep_translator)
     """
 
-    def __init__(self, seed=42):
+    def __init__(self, seed: int = 42) -> None:
         random.seed(seed)
+        self._bt_import_warned = False
+        self._bt_error_warned = False
 
     def random_deletion(self, text: str, p: float = 0.20) -> str:
         """
@@ -128,13 +146,16 @@ class VietnameseAugmenter:
             vi = GoogleTranslator(source='en', target='vi').translate(en)
             return vi if vi and vi.strip() else text
         except ImportError:
-            if not getattr(self, '_bt_import_warned', False):
-                print("  [back_translate] deep_translator not installed. Run: pip install deep_translator")
+            if not self._bt_import_warned:
+                logger.warning(
+                    "[back_translate] deep_translator not installed. "
+                    "Run: pip install deep_translator"
+                )
                 self._bt_import_warned = True
             return text
         except Exception as e:
-            if not getattr(self, '_bt_error_warned', False):
-                print(f"  [back_translate] Error: {e}")
+            if not self._bt_error_warned:
+                logger.warning(f"[back_translate] Error: {e}")
                 self._bt_error_warned = True
             return text
 
@@ -164,13 +185,26 @@ class VietnameseAugmenter:
             )
 
 
+def _log_distribution(df: pd.DataFrame, header: str, targets: dict[int, int] | None = None) -> None:
+    """Log per-class sample counts, optionally annotated with target counts."""
+    logger.info(header)
+    for label_idx, count in sorted(df['label'].value_counts().items()):
+        idx = int(label_idx)
+        name = EMOTION_NAMES.get(idx, str(idx))
+        if targets is not None:
+            target = targets.get(idx, int(count))
+            logger.info(f"  {name:12s} (class {idx}): {count:4d} → target {target:4d}")
+        else:
+            logger.info(f"  {name:12s} (class {idx}): {count:4d}")
+
+
 def augment_dataset(
     input_csv: str,
     output_csv: str,
-    target_counts: dict,
-    techniques: list = ["deletion", "swap"],
-    class_techniques: "dict | None" = None,
-    seed: int = 42
+    target_counts: dict[int, int],
+    techniques: list[str] | None = None,
+    class_techniques: dict[int, list[str]] | None = None,
+    seed: int = 42,
 ) -> pd.DataFrame:
     """
     Augment minority classes in a processed dataset to reach target counts.
@@ -182,7 +216,8 @@ def augment_dataset(
                        e.g. {2: 700, 3: 700, 5: 600}
                        Only augments classes with fewer samples than target.
                        Classes NOT in this dict are left unchanged.
-        techniques: Default list of augmentation techniques to cycle through.
+        techniques: Default list of augmentation techniques to cycle through
+                    (defaults to DEFAULT_TECHNIQUES).
         class_techniques: Optional per-class technique override.
                           e.g. {2: ["back_translation", "swap"], 5: ["back_translation"]}
                           Classes not listed here fall back to `techniques`.
@@ -191,19 +226,15 @@ def augment_dataset(
     Returns:
         Augmented DataFrame
     """
+    techniques = techniques or DEFAULT_TECHNIQUES
+    class_techniques = class_techniques or {}
+
     random.seed(seed)
     augmenter = VietnameseAugmenter(seed=seed)
 
     df = pd.read_csv(input_csv)
-    print(f"Loaded {len(df)} samples from {input_csv}")
-
-    # Show current distribution
-    print("\nCurrent class distribution:")
-    for label_idx, count in sorted(df['label'].value_counts().items()):
-        idx: int = label_idx  # type: ignore[assignment]
-        name = EMOTION_NAMES.get(idx, str(idx))
-        target = target_counts.get(idx, int(count))
-        print(f"  {name:12s} (class {label_idx}): {count:4d} → target {target:4d}")
+    logger.info(f"Loaded {len(df)} samples from {input_csv}")
+    _log_distribution(df, "Current class distribution:", targets=target_counts)
 
     augmented_rows = []
 
@@ -211,18 +242,17 @@ def augment_dataset(
         class_df = df[df['label'] == class_idx]
         current_count = len(class_df)
         needed = target - current_count
+        name = EMOTION_NAMES.get(class_idx, str(class_idx))
 
         if needed <= 0:
-            name = EMOTION_NAMES.get(class_idx, str(class_idx))
-            print(f"\n{name}: already has {current_count} >= {target}, skipping.")
+            logger.info(f"{name}: already has {current_count} >= {target}, skipping.")
             continue
 
-        name = EMOTION_NAMES.get(class_idx, str(class_idx))
-        print(f"\nAugmenting {name} (class {class_idx}): {current_count} → {target} (+{needed})")
+        logger.info(f"Augmenting {name} (class {class_idx}): {current_count} → {target} (+{needed})")
 
         texts = class_df['text'].tolist()
-        active_techniques = (class_techniques or {}).get(class_idx, techniques)
-        print(f"  Techniques: {active_techniques}")
+        active_techniques = class_techniques.get(class_idx, techniques)
+        logger.info(f"  Techniques: {active_techniques}")
         generated = 0
         technique_idx = 0
 
@@ -239,7 +269,7 @@ def augment_dataset(
 
             technique_idx += 1
 
-        print(f"  Generated {generated} augmented samples")
+        logger.info(f"  Generated {generated} augmented samples")
 
     if augmented_rows:
         aug_df = pd.DataFrame(augmented_rows)
@@ -254,38 +284,20 @@ def augment_dataset(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     result_df.to_csv(output_csv, index=False, encoding='utf-8')
 
-    print(f"\nAugmented dataset: {len(df)} → {len(result_df)} samples")
-    print(f"Saved to {output_csv}")
-
-    print("\nFinal class distribution:")
-    for label_idx, count in sorted(result_df['label'].value_counts().items()):
-        idx: int = label_idx  # type: ignore[assignment]
-        name = EMOTION_NAMES.get(idx, str(idx))
-        print(f"  {name:12s} (class {idx}): {count:4d}")
+    logger.info(f"Augmented dataset: {len(df)} → {len(result_df)} samples")
+    logger.info(f"Saved to {output_csv}")
+    _log_distribution(result_df, "Final class distribution:")
 
     return result_df
 
 
 if __name__ == "__main__":
-    # Run augmentation on the standard processed train set
-    import os
+    # Run augmentation on the standard processed train set.
     base_dir = Path(__file__).resolve().parents[2]
     augment_dataset(
         input_csv=str(base_dir / "data/processed/train.csv"),
         output_csv=str(base_dir / "data/processed/train_augmented.csv"),
-        # Post-merge distribution (after ViGoEmotions): Anger~1091, Fear~818,
-        # Disgust~1138, Surprise~1142, Other~1146, Enjoyment~1558, Sadness~947
-        # Targets based on test results (v5):
-        #   Enjoyment(0): 2000, back_translation — fix Disgust confusion (v5: Disgust 40%)
-        #   Anger   (2): 1800, back_translation — fix Anger/Disgust boundary (F1=0.47)
-        #   Fear    (3): thêm lại 1200 swap/insertion — fix class weight (v5: weight=1.633 → ~1.0)
-        #   Disgust (4): 1100 swap/insertion — giữ để nới rộng khoảng cách với Anger
-        #   Surprise(5): 1800, back_translation — fix recall=0.38, nhầm sang Other
-        target_counts={0: 2000, 2: 1800, 3: 1200, 4: 1100, 5: 1800},
-        class_techniques={
-            0: ["back_translation", "swap"],
-            2: ["back_translation", "swap"],
-            5: ["back_translation", "swap"],
-        },
-        techniques=["swap", "insertion"]
+        target_counts=DEFAULT_AUGMENT_TARGETS,
+        class_techniques=DEFAULT_CLASS_TECHNIQUES,
+        techniques=["swap", "insertion"],
     )

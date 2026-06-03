@@ -1,11 +1,16 @@
 """
 PyTorch Dataset class for UIT-VSMEC
 """
+from __future__ import annotations
+
+import pandas as pd
 import torch
 from torch.utils.data import Dataset
-import pandas as pd
 from transformers import AutoTokenizer
-from pathlib import Path
+
+from ..utils.logger import get_logger
+
+logger = get_logger("dataset")
 
 
 class EmotionDataset(Dataset):
@@ -13,11 +18,11 @@ class EmotionDataset(Dataset):
 
     def __init__(
         self,
-        data_path,
-        tokenizer_name="uitnlp/visobert",
-        max_length=128,
-        tokenizer=None
-    ):
+        data_path: str,
+        tokenizer_name: str = "uitnlp/visobert",
+        max_length: int = 128,
+        tokenizer=None,
+    ) -> None:
         """
         Initialize dataset
 
@@ -32,7 +37,7 @@ class EmotionDataset(Dataset):
 
         # Load data
         self.df = pd.read_csv(data_path)
-        print(f"Loaded {len(self.df)} samples from {data_path}")
+        logger.info(f"Loaded {len(self.df)} samples from {data_path}")
 
         # Initialize tokenizer
         if tokenizer is None:
@@ -45,7 +50,7 @@ class EmotionDataset(Dataset):
         self.labels = self.df['label'].tolist()
 
         # Pre-tokenize entire dataset once to avoid repeated tokenization per epoch
-        print(f"Tokenizing {len(texts)} samples...")
+        logger.info(f"Tokenizing {len(texts)} samples...")
         encodings = self.tokenizer(
             [str(t) for t in texts],
             max_length=self.max_length,
@@ -56,11 +61,11 @@ class EmotionDataset(Dataset):
         self.input_ids = encodings['input_ids']
         self.attention_mask = encodings['attention_mask']
 
-    def __len__(self):
+    def __len__(self) -> int:
         """Return dataset size"""
         return len(self.labels)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx: int) -> dict:
         return {
             'input_ids': self.input_ids[idx],
             'attention_mask': self.attention_mask[idx],
@@ -69,13 +74,13 @@ class EmotionDataset(Dataset):
 
 
 def create_dataloaders(
-    train_path,
-    val_path,
-    test_path,
-    tokenizer_name="uitnlp/visobert",
-    batch_size=16,
-    max_length=128,
-    num_workers=0
+    train_path: str,
+    val_path: str,
+    test_path: str,
+    tokenizer_name: str = "uitnlp/visobert",
+    batch_size: int = 16,
+    max_length: int = 128,
+    num_workers: int = 0,
 ):
     """
     Create DataLoaders for train, validation, and test sets
@@ -146,24 +151,9 @@ def create_dataloaders(
         pin_memory=_pin
     )
 
-    print(f"\nDataLoaders created:")
-    print(f"Train batches: {len(train_loader)}")
-    print(f"Val batches: {len(val_loader)}")
-    print(f"Test batches: {len(test_loader)}")
-
-    return train_loader, val_loader, test_loader, tokenizer
-
-
-if __name__ == "__main__":
-    # Test dataset
-    dataset = EmotionDataset(
-        data_path="data/processed/train.csv",
-        max_length=128
+    logger.info(
+        f"DataLoaders created: "
+        f"train={len(train_loader)} | val={len(val_loader)} | test={len(test_loader)} batches"
     )
 
-    print(f"\nDataset size: {len(dataset)}")
-    print(f"\nSample item:")
-    sample = dataset[0]
-    print(f"Input IDs shape: {sample['input_ids'].shape}")
-    print(f"Attention mask shape: {sample['attention_mask'].shape}")
-    print(f"Label: {sample['labels']}")
+    return train_loader, val_loader, test_loader, tokenizer

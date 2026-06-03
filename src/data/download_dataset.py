@@ -1,13 +1,18 @@
 """
 Download UIT-VSMEC dataset from Hugging Face
 """
-import os
-from datasets import load_dataset
-import pandas as pd
 from pathlib import Path
 
+import pandas as pd
+from datasets import load_dataset
 
-def download_uit_vsmec(output_dir="data/raw"):
+from ..utils.emotion_constants import DEFAULT_EMOTION_LABELS
+from ..utils.logger import get_logger
+
+logger = get_logger("download_dataset")
+
+
+def download_uit_vsmec(output_dir: str = "data/raw") -> dict:
     """
     Download UIT-VSMEC dataset from Hugging Face and save to CSV files.
 
@@ -17,7 +22,7 @@ def download_uit_vsmec(output_dir="data/raw"):
     Returns:
         dict: Dictionary containing train, validation, and test DataFrames
     """
-    print("Downloading UIT-VSMEC dataset from Hugging Face...")
+    logger.info("Downloading UIT-VSMEC dataset from Hugging Face...")
 
     # Create output directory
     output_path = Path(output_dir)
@@ -27,10 +32,10 @@ def download_uit_vsmec(output_dir="data/raw"):
         # Load dataset from Hugging Face
         dataset = load_dataset("tridm/UIT-VSMEC")
 
-        print(f"Dataset loaded successfully!")
-        print(f"Train samples: {len(dataset['train'])}")
-        print(f"Validation samples: {len(dataset['validation'])}")
-        print(f"Test samples: {len(dataset['test'])}")
+        logger.info("Dataset loaded successfully!")
+        logger.info(f"Train samples: {len(dataset['train'])}")
+        logger.info(f"Validation samples: {len(dataset['validation'])}")
+        logger.info(f"Test samples: {len(dataset['test'])}")
 
         # Convert to pandas DataFrames and save
         splits = {}
@@ -42,52 +47,37 @@ def download_uit_vsmec(output_dir="data/raw"):
             # Save to CSV
             output_file = output_path / f"{split_name}.csv"
             df.to_csv(output_file, index=False, encoding='utf-8')
-            print(f"Saved {split_name} split to {output_file}")
+            logger.info(f"Saved {split_name} split to {output_file}")
 
-            # Print sample
-            print(f"\nSample from {split_name}:")
-            print(df.head(2))
-            print()
-
-        # Print emotion distribution
-        print("\nEmotion distribution in training set:")
-        emotion_labels = {
-            0: "Enjoyment",
-            1: "Sadness",
-            2: "Anger",
-            3: "Fear",
-            4: "Disgust",
-            5: "Surprise",
-            6: "Other"
-        }
-
+        # Log emotion distribution
+        logger.info("Emotion distribution in training set:")
         train_df = splits['train']
         if 'Emotion' in train_df.columns:
             emotion_counts = train_df['Emotion'].value_counts().sort_index()
             for emotion_name, count in emotion_counts.items():
                 percentage = (count / len(train_df)) * 100
-                print(f"{emotion_name}: {count} ({percentage:.2f}%)")
+                logger.info(f"  {emotion_name}: {count} ({percentage:.2f}%)")
         else:
             label_col = next((c for c in ('label', 'labels') if c in train_df.columns), None)
             if label_col is None:
-                print(f"Unknown column layout: {list(train_df.columns)}")
+                logger.warning(f"Unknown column layout: {list(train_df.columns)}")
             else:
                 emotion_counts = train_df[label_col].value_counts().sort_index()
                 for label, count in emotion_counts.items():
-                    emotion_name = emotion_labels.get(label, f"Unknown_{label}")
+                    emotion_name = DEFAULT_EMOTION_LABELS.get(label, f"Unknown_{label}")
                     percentage = (count / len(train_df)) * 100
-                    print(f"{emotion_name}: {count} ({percentage:.2f}%)")
+                    logger.info(f"  {emotion_name}: {count} ({percentage:.2f}%)")
 
-        print("\nDataset download complete!")
+        logger.info("Dataset download complete!")
         return splits
 
     except Exception as e:
-        print(f"Error downloading dataset: {e}")
-        print("Please make sure you have internet connection and the dataset is accessible.")
+        logger.error(f"Error downloading dataset: {e}")
+        logger.error("Ensure you have internet connection and the dataset is accessible.")
         raise
 
 
-def main():
+def main() -> None:
     """Main function to download dataset"""
     download_uit_vsmec()
 

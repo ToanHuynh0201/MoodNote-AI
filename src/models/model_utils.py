@@ -175,27 +175,3 @@ def print_model_summary(model):
     print("\nModel architecture:")
     print(model)
     print("=" * 50 + "\n")
-
-
-if __name__ == "__main__":
-    # Test model utils
-    from .phobert_classifier import PhoBERTEmotionClassifier
-
-    print("Testing model utilities...")
-
-    # Create model
-    model = PhoBERTEmotionClassifier(
-        model_name="vinai/phobert-base-v2",
-        num_labels=7
-    )
-
-    # Print summary
-    print_model_summary(model)
-
-    # Get device
-    device = get_device()
-
-    print("\nParameter counts:")
-    params = count_parameters(model)
-    for key, value in params.items():
-        print(f"{key}: {value:,}")

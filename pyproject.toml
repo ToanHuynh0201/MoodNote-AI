@@ -1,0 +1,20 @@
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["train_colab.ipynb", "data", "models", "logs"]
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, I: isort, UP: pyupgrade, B: flake8-bugbear
+select = ["E", "W", "F", "I", "UP", "B"]
+ignore = [
+    "E501",  # line length is handled by the formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Scripts insert the repo root onto sys.path before importing project modules,
+# so their project imports intentionally come after that side-effecting code.
+"scripts/*.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

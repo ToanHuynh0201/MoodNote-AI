@@ -1,24 +1,25 @@
 """
 Training utilities using Hugging Face Trainer API
 """
-import torch
-import torch.nn.functional as F
-import numpy as np
+
 import math
 import shutil
+from pathlib import Path
 from typing import Any
+
+import torch
+import torch.nn.functional as F
+import wandb
 from torch.optim import AdamW
 from transformers import (
-    Trainer,
-    TrainingArguments,
-    TrainerCallback,
     EarlyStoppingCallback,
-    get_cosine_schedule_with_warmup
+    Trainer,
+    TrainerCallback,
+    TrainingArguments,
 )
-from pathlib import Path
-import wandb
-from ..utils.metrics import compute_metrics_for_trainer
+
 from ..utils.logger import get_logger
+from ..utils.metrics import compute_metrics_for_trainer
 
 logger = get_logger()
 
@@ -51,7 +52,7 @@ def create_training_arguments(
     save_steps=500,
     save_total_limit=3,
     gradient_accumulation_steps=1,
-    wandb_config=None
+    wandb_config=None,
 ):
     """
     Create TrainingArguments for Hugging Face Trainer
@@ -76,11 +77,12 @@ def create_training_arguments(
     """
     # Determine report_to
     report_to = []
-    if wandb_config and wandb_config.get('enabled', True):
-        report_to.append('wandb')
+    if wandb_config and wandb_config.get("enabled", True):
+        report_to.append("wandb")
 
     import os
-    os.environ['TENSORBOARD_LOGGING_DIR'] = str(Path(output_dir) / "logs")
+
+    os.environ["TENSORBOARD_LOGGING_DIR"] = str(Path(output_dir) / "logs")
 
     args = TrainingArguments(
         output_dir=output_dir,
@@ -122,13 +124,10 @@ def init_wandb(config, project_name, run_name=None):
     """
     if run_name is None:
         from datetime import datetime
+
         run_name = f"phobert_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
-    wandb.init(
-        project=project_name,
-        name=run_name,
-        config=config
-    )
+    wandb.init(project=project_name, name=run_name, config=config)
 
     logger.info(f"W&B initialized: {project_name}/{run_name}")
 
@@ -154,8 +153,10 @@ class EmotionTrainer(Trainer):
             loss = (outputs1.loss + outputs2.loss) / 2
             p1 = F.softmax(outputs1.logits, dim=-1)
             p2 = F.softmax(outputs2.logits, dim=-1)
-            kl = (F.kl_div(F.log_softmax(outputs1.logits, dim=-1), p2, reduction='batchmean') +
-                  F.kl_div(F.log_softmax(outputs2.logits, dim=-1), p1, reduction='batchmean')) / 2
+            kl = (
+                F.kl_div(F.log_softmax(outputs1.logits, dim=-1), p2, reduction="batchmean")
+                + F.kl_div(F.log_softmax(outputs2.logits, dim=-1), p1, reduction="batchmean")
+            ) / 2
             loss = loss + self.rdrop_alpha * kl
             return (loss, outputs1) if return_outputs else loss
         outputs = model(**inputs)
@@ -163,12 +164,11 @@ class EmotionTrainer(Trainer):
 
     def create_optimizer(self, model=None):
         model = model if model is not None else self.model
-        if self.llrd_factor and hasattr(model, 'get_parameter_groups'):
+        if self.llrd_factor and hasattr(model, "get_parameter_groups"):
             assert model is not None
             _model: Any = model
             param_groups = _model.get_parameter_groups(
-                base_lr=self.args.learning_rate,
-                llrd_factor=self.llrd_factor
+                base_lr=self.args.learning_rate, llrd_factor=self.llrd_factor
             )
             # Build param_id → name map for correct no-decay detection
             no_decay_names = ["bias", "LayerNorm.weight", "layer_norm.weight"]
@@ -190,7 +190,9 @@ class EmotionTrainer(Trainer):
                     optimizer_grouped_params.append(no_wd_group)
 
             self.optimizer = AdamW(optimizer_grouped_params, eps=1e-8)
-            logger.info(f"LLRD optimizer created with {len(param_groups)} layer groups (factor={self.llrd_factor})")
+            logger.info(
+                f"LLRD optimizer created with {len(param_groups)} layer groups (factor={self.llrd_factor})"
+            )
             return self.optimizer
         return super().create_optimizer()
 
@@ -201,7 +203,7 @@ def train_model(
     eval_dataset,
     training_config,
     output_dir="models/checkpoints",
-    use_wandb=True
+    use_wandb=True,
 ):
     """
     Train PhoBERT model
@@ -223,28 +225,28 @@ def train_model(
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
     # Initialize W&B if enabled
-    if use_wandb and training_config.get('wandb', {}).get('enabled', True):
+    if use_wandb and training_config.get("wandb", {}).get("enabled", True):
         init_wandb(
             config=training_config,
-            project_name=training_config['wandb']['project'],
-            run_name=training_config['wandb'].get('name')
+            project_name=training_config["wandb"]["project"],
+            run_name=training_config["wandb"].get("name"),
         )
 
     # Create training arguments
-    t_cfg = training_config['training']
-    grad_accum = t_cfg.get('gradient_accumulation_steps', 1)
+    t_cfg = training_config["training"]
+    grad_accum = t_cfg.get("gradient_accumulation_steps", 1)
     train_size = len(train_dataset)
     if train_size == 0:
         raise ValueError("Training dataset is empty.")
 
-    effective_batch_size = t_cfg['batch_size'] * grad_accum
+    effective_batch_size = t_cfg["batch_size"] * grad_accum
     steps_per_epoch = max(1, math.ceil(train_size / effective_batch_size))
-    total_steps = max(1, steps_per_epoch * t_cfg['num_epochs'])
-    warmup_ratio = t_cfg.get('warmup_ratio', 0.0)
+    total_steps = max(1, steps_per_epoch * t_cfg["num_epochs"])
+    warmup_ratio = t_cfg.get("warmup_ratio", 0.0)
     if warmup_ratio > 0:
         warmup_steps = max(1, int(total_steps * warmup_ratio))
     else:
-        warmup_steps = t_cfg.get('warmup_steps', 100)
+        warmup_steps = t_cfg.get("warmup_steps", 100)
 
     logger.info(
         f"Training schedule: train_size={train_size}, effective_batch_size={effective_batch_size}, "
@@ -253,34 +255,34 @@ def train_model(
 
     training_args = create_training_arguments(
         output_dir=output_dir,
-        num_epochs=t_cfg['num_epochs'],
-        batch_size=t_cfg['batch_size'],
+        num_epochs=t_cfg["num_epochs"],
+        batch_size=t_cfg["batch_size"],
         gradient_accumulation_steps=grad_accum,
-        learning_rate=float(t_cfg['learning_rate']),
+        learning_rate=float(t_cfg["learning_rate"]),
         warmup_steps=warmup_steps,
-        weight_decay=t_cfg['weight_decay'],
-        fp16=t_cfg.get('fp16', True),
-        seed=t_cfg.get('seed', 42),
-        log_steps=training_config['logging']['log_steps'],
-        eval_steps=training_config['logging']['eval_steps'],
-        save_steps=training_config['logging']['save_steps'],
-        save_total_limit=training_config['logging']['save_total_limit'],
-        wandb_config=training_config.get('wandb')
+        weight_decay=t_cfg["weight_decay"],
+        fp16=t_cfg.get("fp16", True),
+        seed=t_cfg.get("seed", 42),
+        log_steps=training_config["logging"]["log_steps"],
+        eval_steps=training_config["logging"]["eval_steps"],
+        save_steps=training_config["logging"]["save_steps"],
+        save_total_limit=training_config["logging"]["save_total_limit"],
+        wandb_config=training_config.get("wandb"),
     )
 
     # LLRD config
     llrd_factor = None
-    if t_cfg.get('use_llrd', False):
-        llrd_factor = t_cfg.get('llrd_factor', 0.9)
+    if t_cfg.get("use_llrd", False):
+        llrd_factor = t_cfg.get("llrd_factor", 0.9)
         logger.info(f"Layer-wise LR Decay enabled (factor={llrd_factor})")
 
     # R-Drop config (default disabled, enable in Stage 2 by setting rdrop_alpha > 0)
-    rdrop_alpha = t_cfg.get('rdrop_alpha', 0.0)
+    rdrop_alpha = t_cfg.get("rdrop_alpha", 0.0)
     if rdrop_alpha > 0:
         logger.info(f"R-Drop enabled (alpha={rdrop_alpha})")
 
     # Early stopping patience from config
-    patience = t_cfg.get('early_stopping_patience', 5)
+    patience = t_cfg.get("early_stopping_patience", 5)
 
     # Create trainer
     trainer = EmotionTrainer(
@@ -291,7 +293,7 @@ def train_model(
         compute_metrics=compute_metrics_for_trainer,
         callbacks=[EarlyStoppingCallback(early_stopping_patience=patience), SaveBestOnlyCallback()],
         llrd_factor=llrd_factor,
-        rdrop_alpha=rdrop_alpha
+        rdrop_alpha=rdrop_alpha,
     )
 
     # Train
@@ -299,56 +301,15 @@ def train_model(
     train_result = trainer.train()
 
     # Log training results
-    logger.info(f"Training completed!")
+    logger.info("Training completed!")
     logger.info(f"Training loss: {train_result.training_loss:.4f}")
 
     # Evaluate on validation set
     logger.info("Evaluating on validation set...")
     eval_results = trainer.evaluate()
 
-    logger.info(f"Validation results:")
+    logger.info("Validation results:")
     for key, value in eval_results.items():
         logger.info(f"  {key}: {value:.4f}")
 
     return trainer
-
-
-if __name__ == "__main__":
-    # Test trainer setup
-    print("Testing trainer setup...")
-
-    config = {
-        'training': {
-            'num_epochs': 3,
-            'batch_size': 16,
-            'learning_rate': 3e-5,
-            'warmup_steps': 500,
-            'weight_decay': 0.01,
-            'fp16': False,
-            'seed': 42
-        },
-        'logging': {
-            'log_steps': 100,
-            'eval_steps': 500,
-            'save_steps': 500,
-            'save_total_limit': 3
-        },
-        'wandb': {
-            'project': 'moodnote-ai',
-            'name': 'test-run',
-            'enabled': False
-        }
-    }
-
-    args = create_training_arguments(
-        output_dir="test_output",
-        **config['training'],
-        **config['logging'],
-        wandb_config=config['wandb']
-    )
-
-    print("\nTraining Arguments:")
-    print(f"Output dir: {args.output_dir}")
-    print(f"Num epochs: {args.num_train_epochs}")
-    print(f"Batch size: {args.per_device_train_batch_size}")
-    print(f"Learning rate: {args.learning_rate}")

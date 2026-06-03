@@ -4,9 +4,13 @@ PhoBERT model for emotion classification
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from transformers import AutoModel, AutoConfig
+from transformers import AutoConfig, AutoModel
 from transformers import logging as hf_logging
 from transformers.modeling_outputs import SequenceClassifierOutput
+
+from ..utils.logger import get_logger
+
+logger = get_logger("phobert_classifier")
 
 
 class FocalLoss(nn.Module):
@@ -235,38 +239,7 @@ def create_model(config, class_weights=None):
     )
 
     num_params = model.get_num_parameters()
-    print(f"Model created: {config['model']['name']}")
-    print(f"Trainable parameters: {num_params:,}")
+    logger.info(f"Model created: {config['model']['name']}")
+    logger.info(f"Trainable parameters: {num_params:,}")
 
     return model
-
-
-if __name__ == "__main__":
-    # Test model creation
-    print("Testing PhoBERT model...")
-
-    model = PhoBERTEmotionClassifier(
-        model_name="vinai/phobert-base-v2",
-        num_labels=7,
-        dropout=0.1
-    )
-
-    print(f"\nModel architecture:")
-    print(model)
-
-    print(f"\nNumber of parameters: {model.get_num_parameters():,}")
-
-    # Test forward pass
-    batch_size = 2
-    seq_len = 128
-
-    dummy_input_ids = torch.randint(0, 1000, (batch_size, seq_len))
-    dummy_attention_mask = torch.ones(batch_size, seq_len)
-
-    with torch.no_grad():
-        logits = model(dummy_input_ids, dummy_attention_mask)
-
-    print(f"\nTest forward pass:")
-    print(f"Input shape: {dummy_input_ids.shape}")
-    print(f"Output shape: {logits.logits.shape}")
-    print(f"Output (logits): {logits.logits}")

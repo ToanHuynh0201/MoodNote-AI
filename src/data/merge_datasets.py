@@ -19,6 +19,10 @@ from pathlib import Path
 
 import pandas as pd
 
+from ..utils.logger import get_logger
+
+logger = get_logger("merge_datasets")
+
 # ── Label mapping ────────────────────────────────────────────────────────────
 
 VIGOEMOTIONS_TO_VSMEC: dict[str, str] = {
@@ -405,12 +409,12 @@ def main(
         "Other":    250,   # 896  + 250 → ~1146
     }
 
-    print("Starting dataset merge: UIT-VSMEC + ViGoEmotions")
-    print(f"  VSMEC source:       {vsmec_path}")
-    print(f"  ViGoEmotions source:{vigo_path}")
-    print(f"  Output:             {out_path}")
-    print(f"  Minority classes:   {sorted(minority_classes)}")
-    print(f"  Max per class:      {max_per_class}")
+    logger.info("Starting dataset merge: UIT-VSMEC + ViGoEmotions")
+    logger.info(f"  VSMEC source:        {vsmec_path}")
+    logger.info(f"  ViGoEmotions source: {vigo_path}")
+    logger.info(f"  Output:              {out_path}")
+    logger.info(f"  Minority classes:    {sorted(minority_classes)}")
+    logger.info(f"  Max per class:       {max_per_class}")
 
     all_stats = {}
 
@@ -418,11 +422,11 @@ def main(
     train_vsmec = vsmec_path / "train.csv"
     train_vigo = vigo_path / "train.csv"
     if not train_vsmec.exists():
-        print(f"Warning: {train_vsmec} not found, skipping train.")
+        logger.warning(f"{train_vsmec} not found, skipping train.")
     else:
         include_vigo = train_vigo.exists()
         if not include_vigo:
-            print(f"Warning: {train_vigo} not found. Merging train with VSMEC only.")
+            logger.warning(f"{train_vigo} not found. Merging train with VSMEC only.")
         stats = merge_split(
             vsmec_path=train_vsmec,
             vigoemotions_path=train_vigo,
@@ -450,7 +454,7 @@ def main(
             cnt = dist.get(cls, 0)
             print(f"    {cls:12s}: {cnt:5d} ({cnt/total*100:5.1f}%)")
     else:
-        print(f"Warning: {val_src} not found. Validation split not created.")
+        logger.warning(f"{val_src} not found. Validation split not created.")
 
     # test: VSMEC only (copy)
     test_src = vsmec_path / "test.csv"
@@ -467,7 +471,7 @@ def main(
             cnt = dist.get(cls, 0)
             print(f"    {cls:12s}: {cnt:5d} ({cnt/total*100:5.1f}%)")
     else:
-        print(f"Warning: {test_src} not found. Test split not created.")
+        logger.warning(f"{test_src} not found. Test split not created.")
 
     # Final summary
     print(f"\n{'='*60}")

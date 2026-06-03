@@ -1,63 +1,59 @@
 """
 Main training script for PhoBERT emotion classification
 """
+
 import sys
 from pathlib import Path
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import torch
 import argparse
+
 import numpy as np
+import torch
 from sklearn.utils.class_weight import compute_class_weight
+
 from src.data.dataset import EmotionDataset
-from src.models.phobert_classifier import PhoBERTEmotionClassifier, create_model
-from src.models.model_utils import save_model, get_device, print_model_summary
+from src.models.model_utils import get_device, print_model_summary, save_model
+from src.models.phobert_classifier import create_model
 from src.training.trainer import train_model
 from src.utils.config import load_all_configs
 from src.utils.logger import setup_logger
-from src.utils.metrics import compute_metrics, print_metrics, plot_confusion_matrix
+from src.utils.metrics import compute_metrics, plot_confusion_matrix, print_metrics
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description="Train PhoBERT for emotion classification")
 
     parser.add_argument(
-        "--config-dir",
-        type=str,
-        default="configs",
-        help="Directory containing config files"
+        "--config-dir", type=str, default="configs", help="Directory containing config files"
     )
     parser.add_argument(
         "--data-dir",
         type=str,
         default="data/processed",
-        help="Directory containing preprocessed data"
+        help="Directory containing preprocessed data",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
         default="models/checkpoints",
-        help="Directory to save model checkpoints"
+        help="Directory to save model checkpoints",
     )
     parser.add_argument(
         "--best-model-dir",
         type=str,
         default="models/best_model",
-        help="Directory to save best model"
+        help="Directory to save best model",
     )
-    parser.add_argument(
-        "--no-wandb",
-        action="store_true",
-        help="Disable Weights & Biases logging"
-    )
+    parser.add_argument("--no-wandb", action="store_true", help="Disable Weights & Biases logging")
 
     return parser.parse_args()
 
 
-def main():
+def main() -> None:
     """Main training function"""
     # Parse arguments
     args = parse_args()
@@ -72,8 +68,8 @@ def main():
     # Load configurations
     logger.info("\n1. Loading configurations...")
     configs = load_all_configs(args.config_dir)
-    model_config = configs['model']
-    training_config = configs['training']
+    model_config = configs["model"]
+    training_config = configs["training"]
 
     logger.info(f"Model: {model_config['model']['name']}")
     logger.info(f"Num labels: {model_config['model']['num_labels']}")
@@ -90,20 +86,20 @@ def main():
 
     train_dataset = EmotionDataset(
         data_path=data_path / "train.csv",
-        tokenizer_name=model_config['model']['name'],
-        max_length=model_config['model']['max_seq_length']
+        tokenizer_name=model_config["model"]["name"],
+        max_length=model_config["model"]["max_seq_length"],
     )
 
     val_dataset = EmotionDataset(
         data_path=data_path / "validation.csv",
-        tokenizer_name=model_config['model']['name'],
-        max_length=model_config['model']['max_seq_length']
+        tokenizer_name=model_config["model"]["name"],
+        max_length=model_config["model"]["max_seq_length"],
     )
 
     test_dataset = EmotionDataset(
         data_path=data_path / "test.csv",
-        tokenizer_name=model_config['model']['name'],
-        max_length=model_config['model']['max_seq_length']
+        tokenizer_name=model_config["model"]["name"],
+        max_length=model_config["model"]["max_seq_length"],
     )
 
     logger.info(f"Train samples: {len(train_dataset)}")
@@ -112,13 +108,13 @@ def main():
 
     # Compute class weights from training data (handles class imbalance)
     class_weights_tensor = None
-    if training_config['training'].get('use_class_weights', True):
+    if training_config["training"].get("use_class_weights", True):
         logger.info("\n3a. Computing class weights...")
-        train_labels = [train_dataset[i]['labels'].item() for i in range(len(train_dataset))]
-        classes = np.arange(model_config['model']['num_labels'])
-        weights = compute_class_weight('balanced', classes=classes, y=train_labels)
+        train_labels = [train_dataset[i]["labels"].item() for i in range(len(train_dataset))]
+        classes = np.arange(model_config["model"]["num_labels"])
+        weights = compute_class_weight("balanced", classes=classes, y=train_labels)
         class_weights_tensor = torch.tensor(weights, dtype=torch.float32)
-        label_names = model_config.get('emotion_labels', {})
+        label_names = model_config.get("emotion_labels", {})
         for i, w in enumerate(weights):
             label_name = label_names.get(i, str(i))
             logger.info(f"  Class {i} ({label_name}): weight={w:.4f}")
@@ -132,7 +128,7 @@ def main():
 
     # Train model
     logger.info("\n4. Training model...")
-    use_wandb = not args.no_wandb and training_config.get('wandb', {}).get('enabled', True)
+    use_wandb = not args.no_wandb and training_config.get("wandb", {}).get("enabled", True)
 
     trainer = train_model(
         model=model,
@@ -140,7 +136,7 @@ def main():
         eval_dataset=val_dataset,
         training_config=training_config,
         output_dir=args.output_dir,
-        use_wandb=use_wandb
+        use_wandb=use_wandb,
     )
 
     # Evaluate on test set
@@ -160,16 +156,13 @@ def main():
 
     # Compute detailed metrics
     detailed_metrics = compute_metrics(test_preds, test_labels)
-    print_metrics(detailed_metrics, model_config['emotion_labels'])
+    print_metrics(detailed_metrics, model_config["emotion_labels"])
 
     # Plot confusion matrix
     logger.info("\n7. Generating confusion matrix...")
     cm_path = Path(args.output_dir) / "confusion_matrix.png"
     plot_confusion_matrix(
-        test_preds,
-        test_labels,
-        emotion_labels=model_config['emotion_labels'],
-        save_path=cm_path
+        test_preds, test_labels, emotion_labels=model_config["emotion_labels"], save_path=cm_path
     )
 
     # Save best model
@@ -179,14 +172,14 @@ def main():
         tokenizer=train_dataset.tokenizer,
         save_dir=args.best_model_dir,
         config={
-            'model_config': model_config,
-            'training_config': training_config,
-            'test_results': {
-                'accuracy': detailed_metrics['accuracy'],
-                'f1_macro': detailed_metrics['f1_macro'],
-                'f1_weighted': detailed_metrics['f1_weighted']
-            }
-        }
+            "model_config": model_config,
+            "training_config": training_config,
+            "test_results": {
+                "accuracy": detailed_metrics["accuracy"],
+                "f1_macro": detailed_metrics["f1_macro"],
+                "f1_weighted": detailed_metrics["f1_weighted"],
+            },
+        },
     )
 
     logger.info("\n" + "=" * 60)
@@ -196,7 +189,7 @@ def main():
     logger.info(f"Checkpoints saved to: {args.output_dir}")
     logger.info(f"Confusion matrix saved to: {cm_path}")
 
-    logger.info(f"\nFinal Test Results:")
+    logger.info("\nFinal Test Results:")
     logger.info(f"  Accuracy: {detailed_metrics['accuracy']:.4f}")
     logger.info(f"  F1-Macro: {detailed_metrics['f1_macro']:.4f}")
     logger.info(f"  F1-Weighted: {detailed_metrics['f1_weighted']:.4f}")

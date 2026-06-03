@@ -11,9 +11,14 @@ Output format: CSV with columns:
 """
 import json
 from collections import Counter
-from datasets import load_dataset
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+from datasets import load_dataset
+
+from ..utils.logger import get_logger
+
+logger = get_logger("download_vigoemotions")
 
 # All 27 fine-grained emotion labels in ViGoEmotions
 VIGOEMOTIONS_LABELS = [
@@ -142,11 +147,11 @@ def download_vigoemotions(output_dir: str = "data/raw", token: str | None = None
     import os
     hf_token = token or os.environ.get("HF_TOKEN")
 
-    print("Downloading ViGoEmotions dataset from Hugging Face...")
+    logger.info("Downloading ViGoEmotions dataset from Hugging Face...")
     if hf_token:
-        print("  Using provided HuggingFace token.")
+        logger.info("  Using provided HuggingFace token.")
     else:
-        print("  No token provided — using cached login (run `huggingface-cli login` if needed).")
+        logger.info("  No token provided — using cached login (run `huggingface-cli login` if needed).")
 
     output_path = Path(output_dir) / "vigoemotions"
     output_path.mkdir(parents=True, exist_ok=True)
@@ -155,16 +160,16 @@ def download_vigoemotions(output_dir: str = "data/raw", token: str | None = None
         dataset = load_dataset("uitnlp/vigoemotions", token=hf_token)
     except Exception as e:
         if "gated" in str(e).lower() or "authenticated" in str(e).lower():
-            print("\nERROR: This is a gated dataset. To access it:")
-            print("  Option 1: huggingface-cli login")
-            print("  Option 2: python -m src.data.download_vigoemotions --token YOUR_TOKEN")
-            print("  Option 3: set HF_TOKEN=YOUR_TOKEN in environment")
-            print("\nGet your token at: https://huggingface.co/settings/tokens")
+            logger.error("This is a gated dataset. To access it:")
+            logger.error("  Option 1: huggingface-cli login")
+            logger.error("  Option 2: python -m src.data.download_vigoemotions --token YOUR_TOKEN")
+            logger.error("  Option 3: set HF_TOKEN=YOUR_TOKEN in environment")
+            logger.error("Get your token at: https://huggingface.co/settings/tokens")
         else:
-            print(f"Error downloading dataset: {e}")
+            logger.error(f"Error downloading dataset: {e}")
         raise
 
-    print(f"Dataset loaded successfully!")
+    logger.info("Dataset loaded successfully!")
 
     splits = {}
     all_label_counts: Counter = Counter()
@@ -173,14 +178,14 @@ def download_vigoemotions(output_dir: str = "data/raw", token: str | None = None
 
     for split_name in ["train", "validation", "test"]:
         if split_name not in dataset:
-            print(f"Warning: split '{split_name}' not found, skipping.")
+            logger.warning(f"Split '{split_name}' not found, skipping.")
             continue
 
         raw_df: pd.DataFrame = dataset[split_name].to_pandas()  # type: ignore[assignment]
-        print(f"\n{split_name}: {len(raw_df)} samples | columns: {list(raw_df.columns)}")
+        logger.info(f"{split_name}: {len(raw_df)} samples | columns: {list(raw_df.columns)}")
 
         fmt = detect_label_format(raw_df)
-        print(f"  Detected label format: {fmt}")
+        logger.info(f"  Detected label format: {fmt}")
 
         norm_df = normalize_to_list_format(raw_df, fmt)
         splits[split_name] = norm_df
@@ -191,7 +196,7 @@ def download_vigoemotions(output_dir: str = "data/raw", token: str | None = None
 
         output_file = output_path / f"{split_name}.csv"
         csv_df.to_csv(output_file, index=False, encoding="utf-8")
-        print(f"  Saved to {output_file}")
+        logger.info(f"  Saved to {output_file}")
 
         # Accumulate stats
         for label_list in norm_df["labels"]:
@@ -200,24 +205,22 @@ def download_vigoemotions(output_dir: str = "data/raw", token: str | None = None
         total_samples += len(norm_df)
 
         # Show sample
-        print(f"  Sample row:")
         sample = norm_df.iloc[0]
-        print(f"    text:   {sample['text'][:80]}")
-        print(f"    labels: {sample['labels']}")
+        logger.debug(f"  Sample row: text={sample['text'][:80]} | labels={sample['labels']}")
 
     # Summary stats
-    print(f"\n{'='*50}")
-    print(f"Total samples: {total_samples}")
-    print(f"Avg labels per sample: {total_labels / total_samples:.2f}" if total_samples else "")
-    print(f"\nTop 15 most common fine-grained labels (across all splits):")
+    logger.info(f"Total samples: {total_samples}")
+    if total_samples:
+        logger.info(f"Avg labels per sample: {total_labels / total_samples:.2f}")
+    logger.info("Top 15 most common fine-grained labels (across all splits):")
     for label, count in all_label_counts.most_common(15):
-        print(f"  {str(label):20s}: {count:5d}")
+        logger.info(f"  {str(label):20s}: {count:5d}")
 
-    print("\nViGoEmotions download complete!")
+    logger.info("ViGoEmotions download complete!")
     return splits
 
 
-def main():
+def main() -> None:
     import argparse
     parser = argparse.ArgumentParser(description="Download ViGoEmotions dataset from HuggingFace")
     parser.add_argument(
