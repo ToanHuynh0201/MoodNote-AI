@@ -17,5 +17,5 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.14" }
       - run: pip install pytest pyyaml python-dotenv pymongo scikit-learn numpy
-                        matplotlib seaborn yake pydantic
+                        matplotlib seaborn yake pydantic pandas pyvi datasets tqdm
       - run: pytest -q

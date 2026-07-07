@@ -19,6 +19,7 @@ data/raw/
 data/processed/
 data/merged/
 data/cache/
+data/real/
 
 # Models
 models/checkpoints/
@@ -60,9 +61,6 @@ nul
 
 #Document
 docs
-
-#Data
-./data
 
 best_model
 
