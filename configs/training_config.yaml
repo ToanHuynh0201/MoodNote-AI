@@ -1,0 +1,33 @@
+training:
+    learning_rate: 2e-5 # standard base-size RoBERTa fine-tuning LR
+    batch_size: 16 # T4 16GB safe với PhoBERT-base-v2 + R-Drop
+    gradient_accumulation_steps: 2 # effective batch = 16 * 2 = 32
+    num_epochs: 6 # giảm từ 10 → best val loss xuất hiện ở step ~800 (epoch ~2.7); 6 epochs đủ buffer
+    warmup_ratio: 0.1
+    weight_decay: 0.01 # standard cho BERT fine-tuning; 0.1 quá cao → over-regularize
+    fp16: true
+    seed: 42
+    early_stopping_patience: 4 # giảm từ 10 → 4; patience=10 cho phép overfit 3+ epochs thừa
+    use_llrd: true # Layer-wise LR Decay
+    llrd_factor: 0.85 # mỗi layer giảm 15% so với layer trên — bảo vệ pretrained features tốt hơn
+    use_class_weights: true
+    rdrop_alpha: 0.1 # R-Drop enabled — giảm gap val/test (0.6474 vs 0.5737); KL regularization giữa 2 forward passes
+
+optimizer:
+    type: "AdamW"
+    betas: [0.9, 0.999]
+    eps: 1e-8
+
+scheduler:
+    type: "cosine"
+
+logging:
+    log_steps: 50 # merged dataset ~3-4x lớn hơn, giảm log noise
+    eval_steps: 100 # granular hơn để bắt best checkpoint sớm hơn
+    save_steps: 100 # match eval_steps
+    save_total_limit: 1 # chỉ giữ 1 checkpoint (best) — tiết kiệm ~1.5GB local storage
+
+wandb:
+    project: "moodnote-ai"
+    name: "phobert-base-v2"
+    enabled: true
