@@ -66,3 +66,5 @@ best_model
 
 *.bat
 Makefile
+
+!notebooks/datagen_colab.ipynb
