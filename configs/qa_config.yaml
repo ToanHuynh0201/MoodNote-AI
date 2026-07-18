@@ -1,0 +1,14 @@
+manual_audit:
+    sample_size: 180 # trong khoảng 150-200 thuyết minh nêu
+    seed: 43
+    raters: ["rater_a", "rater_b"]
+    min_cohens_kappa: 0.60 # "substantial agreement" (Landis & Koch) — ngưỡng go/no-go theo đợt
+
+cross_llm_audit:
+    audit_fraction: 0.175 # ~17.5%, trong khoảng 15-20% thuyết minh nêu
+    seed: 44
+    max_unnatural_rate: 0.10 # ngưỡng tỉ lệ mẫu bị gắn cờ "rập khuôn" trước khi đợt sinh bị gắn cờ
+    max_label_mismatch_rate: 0.15 # ngưỡng tỉ lệ cross-LLM bất đồng nhãn
+
+acceptance:
+    drop_cross_llm_flagged: true # lọc từng mẫu bị cross-LLM gắn cờ, độc lập với round verdict

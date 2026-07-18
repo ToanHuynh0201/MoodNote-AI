@@ -1,0 +1,13 @@
+{
+  "generation_round": 1,
+  "kappa_score": null,
+  "kappa_passed": null,
+  "unnatural_rate": 0.0,
+  "unnatural_passed": true,
+  "label_mismatch_rate": 0.0,
+  "label_mismatch_passed": true,
+  "needs_prompt_revision": true,
+  "reasons": [
+    "Cohen's Kappa None chưa đạt ngưỡng 0.6 (hoặc không xác định)"
+  ]
+}

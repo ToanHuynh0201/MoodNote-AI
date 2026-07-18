@@ -1,0 +1,3 @@
+sample_id,text,label,model,generation_round
+llama-3-8b-instruct-0-534dfc2a39,"Tôi ngồi một mình trong phòng, nghĩ lại những chuyện đã xảy ra hôm nay.",0,Llama-3-8B-Instruct,1
+llama-3-8b-instruct-0-abfbc54c58,Hôm nay là một ngày bình thường nhưng tôi thấy lòng mình nhẹ nhõm lạ.,0,Llama-3-8B-Instruct,1

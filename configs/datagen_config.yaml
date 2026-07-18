@@ -1,0 +1,63 @@
+seed: 42
+
+models:
+    llama:
+        provider: "openrouter" # free-tier, dùng để thử prompt
+        display_name: "Llama-3-8B-Instruct"
+        openrouter_model_id: "meta-llama/llama-3.1-8b-instruct:free"
+        bulk_model_id: "meta-llama/Meta-Llama-3-8B-Instruct" # sinh hàng loạt trên Colab (HF 4-bit)
+    qwen:
+        provider: "colab_only" # không có bản free tương đương trên OpenRouter
+        display_name: "Qwen3-8B"
+        openrouter_model_id: null
+        bulk_model_id: "Qwen/Qwen3-8B"
+
+generation:
+    target_total_samples: 2800
+    target_per_label: 400 # 7 nhãn x 400 = 2800
+    split_ratios:
+        train: 0.70
+        validation: 0.15
+        test: 0.15
+    max_new_tokens: 220
+    temperature: 0.9
+    top_p: 0.95
+    repetition_penalty: 1.15
+    log_every_n_samples: 25
+
+# 3 trục đa dạng hóa đúng như thuyết minh nêu (văn phong, độ dài, ngữ cảnh). Biến thể
+# persona/tuổi tác nằm trong pool "van_phong"; biến thể chủ đề/tình huống nằm trong pool
+# "ngu_canh" — không thêm trục mới ngoài văn bản đã nộp.
+diversity_axes:
+    van_phong:
+        - "tuổi teen, ngôn ngữ đời thường, nhiều từ viết tắt"
+        - "người lớn, điềm tĩnh, câu văn đầy đủ"
+        - "trang trọng, chỉn chu như viết thư"
+        - "thân mật, xưng hô suồng sã như nói chuyện với bạn thân"
+        - "hài hước, tự trào"
+        - "nghiêm túc, trầm tư"
+    do_dai:
+        - "ngắn (2-3 câu)"
+        - "vừa (4-6 câu)"
+        - "dài (7-10 câu)"
+    ngu_canh:
+        - "học tập, thi cử"
+        - "gia đình"
+        - "tình bạn"
+        - "công việc, thực tập"
+        - "sức khỏe"
+        - "mạng xã hội"
+        - "chuyện tình cảm, thất tình"
+        - "thành công nhỏ trong ngày"
+        - "thời tiết, mùa trong năm"
+        - "tài chính, chi tiêu"
+
+dedup:
+    near_dup_threshold: 92.0 # rapidfuzz token_sort_ratio (0-100), trong nội bộ pool synthetic
+
+leakage_guard:
+    near_dup_threshold: 90.0 # so với text thật VSMEC (train+validation+test)
+    compare_splits: ["train", "validation", "test"]
+
+prompt:
+    instruction_template_id: "diary_v1"

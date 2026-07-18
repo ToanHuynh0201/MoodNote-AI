@@ -1,0 +1,8 @@
+{
+  "n_input": 2800,
+  "n_exact_removed": 2797,
+  "n_near_removed": 0,
+  "n_kept": 3,
+  "near_dup_threshold": 92.0,
+  "near_dup_dropped": []
+}
