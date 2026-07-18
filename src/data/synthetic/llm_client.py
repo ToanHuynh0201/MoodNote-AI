@@ -127,10 +127,17 @@ class HFLocalClient:
 
         token = hf_token or os.getenv("HF_TOKEN")
         self.tokenizer = auto_tokenizer_cls.from_pretrained(model_id, token=token)
+
+        quantization_config = None
+        if load_in_4bit:
+            from transformers import BitsAndBytesConfig
+
+            quantization_config = BitsAndBytesConfig(load_in_4bit=True)
+
         self.model = auto_model_cls.from_pretrained(
             model_id,
             token=token,
-            load_in_4bit=load_in_4bit,
+            quantization_config=quantization_config,
             device_map=device_map,
         )
 
