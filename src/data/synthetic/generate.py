@@ -89,7 +89,9 @@ def generate_dataset(
                     )
                 except Exception as e:
                     # Lỗi 1 mẫu không nên huỷ cả phiên sinh — Colab free tier rất quý thời gian.
-                    logger.error(f"Sinh mẫu lỗi cho {label_name} (#{i}): {e}")
+                    logger.error(
+                        f"Sinh mẫu lỗi cho {label_name} (#{i}): {e!r}", exc_info=True
+                    )
                     continue
 
                 sample = SyntheticSample(
