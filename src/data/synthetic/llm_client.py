@@ -145,11 +145,12 @@ class HFLocalClient:
         self, prompt: str, max_tokens: int = 220, temperature: float = 0.9, top_p: float = 0.95
     ) -> LLMResponse:
         messages = [{"role": "user", "content": prompt}]
-        input_ids = self.tokenizer.apply_chat_template(
-            messages, add_generation_prompt=True, return_tensors="pt"
-        )
+        encoded = self.tokenizer.apply_chat_template(
+            messages, add_generation_prompt=True, return_tensors="pt", return_dict=True
+        ).to(self.model.device)
+        input_ids = encoded["input_ids"]
         output_ids = self.model.generate(
-            input_ids,
+            **encoded,
             max_new_tokens=max_tokens,
             temperature=temperature,
             top_p=top_p,

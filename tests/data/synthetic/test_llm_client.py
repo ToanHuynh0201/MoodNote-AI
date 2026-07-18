@@ -19,16 +19,25 @@ class _FakeTensor:
         return self.data[idx]
 
 
+class _FakeEncoding(dict):
+    """Stands in for a transformers BatchEncoding — dict-like plus `.to(device)`."""
+
+    def to(self, device):
+        return self
+
+
 class _FakeTokenizer:
-    def apply_chat_template(self, messages, add_generation_prompt, return_tensors):
+    def apply_chat_template(self, messages, add_generation_prompt, return_tensors, return_dict):
         self.last_messages = messages
-        return _FakeTensor([[1, 2, 3]])
+        return _FakeEncoding(input_ids=_FakeTensor([[1, 2, 3]]))
 
     def decode(self, ids, skip_special_tokens):
         return "generated diary text"
 
 
 class _FakeModel:
+    device = "cpu"
+
     def generate(self, input_ids, max_new_tokens, temperature, top_p, do_sample):
         return _FakeTensor([[1, 2, 3, 4, 5, 6]])
 
