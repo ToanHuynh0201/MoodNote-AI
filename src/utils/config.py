@@ -108,5 +108,5 @@ def get_config_value(config: dict[str, Any], key_path: str, default: Any = None)
         for key in keys:
             value = value[key]
         return value
-    except KeyError, TypeError:
+    except (KeyError, TypeError):
         return default
