@@ -18,4 +18,5 @@ jobs:
         with: { python-version: "3.14" }
       - run: pip install pytest pyyaml python-dotenv pymongo scikit-learn numpy
                         matplotlib seaborn yake pydantic pandas pyvi datasets tqdm
+                        rapidfuzz
       - run: pytest -q
