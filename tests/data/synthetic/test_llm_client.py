@@ -27,6 +27,9 @@ class _FakeEncoding(dict):
 
 
 class _FakeTokenizer:
+    def __init__(self, decoded_text: str = "generated diary text") -> None:
+        self._decoded_text = decoded_text
+
     def apply_chat_template(
         self, messages, add_generation_prompt, return_tensors, return_dict, enable_thinking=None
     ):
@@ -35,7 +38,7 @@ class _FakeTokenizer:
         return _FakeEncoding(input_ids=_FakeTensor([[1, 2, 3]]))
 
     def decode(self, ids, skip_special_tokens):
-        return "generated diary text"
+        return self._decoded_text
 
 
 class _FakeModel:
@@ -124,6 +127,16 @@ def test_hf_local_client_uses_injected_model_and_tokenizer_without_importing_tra
     assert response.text == "generated diary text"
     assert response.model == "some/model"
     assert tokenizer.last_enable_thinking is False
+
+
+def test_hf_local_client_strips_leaked_think_block_from_output():
+    leaked = "<think>\nlet me reason about this in english\n</think>\n\nNhật ký tiếng Việt."
+    tokenizer = _FakeTokenizer(decoded_text=leaked)
+    client = HFLocalClient(model_id="some/model", model=_FakeModel(), tokenizer=tokenizer)
+
+    response = client.generate("prompt")
+
+    assert response.text == "Nhật ký tiếng Việt."
 
 
 def test_hf_local_client_raises_clear_import_error_without_injection(monkeypatch):

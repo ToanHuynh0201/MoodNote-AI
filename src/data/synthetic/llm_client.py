@@ -10,6 +10,7 @@ KHÔNG dùng để sinh dữ liệu thật.
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from typing import Protocol
 
@@ -164,6 +165,9 @@ class HFLocalClient:
         )
         generated = output_ids[0][input_ids.shape[-1] :]
         text = self.tokenizer.decode(generated, skip_special_tokens=True)
+        # enable_thinking=False chỉ là bias mạnh, không hard-block — model reasoning (vd. Qwen3)
+        # đôi khi vẫn tự mở lại <think>...</think>. Cắt bỏ nếu có, giữ nguyên nếu không.
+        text = re.sub(r"<think>.*?</think>\s*", "", text, flags=re.DOTALL).strip()
         return LLMResponse(text=text, model=self.model_id, raw=None)
 
 
