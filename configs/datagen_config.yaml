@@ -19,7 +19,7 @@ generation:
         train: 0.70
         validation: 0.15
         test: 0.15
-    max_new_tokens: 220
+    max_new_tokens: 300
     temperature: 0.9
     top_p: 0.95
     repetition_penalty: 1.15

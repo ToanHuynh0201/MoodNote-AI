@@ -145,8 +145,14 @@ class HFLocalClient:
         self, prompt: str, max_tokens: int = 220, temperature: float = 0.9, top_p: float = 0.95
     ) -> LLMResponse:
         messages = [{"role": "user", "content": prompt}]
+        # enable_thinking=False: Qwen3 mặc định sinh <think>...</think> trước câu trả lời,
+        # ăn hết max_new_tokens trước khi tới nội dung; template của model khác bỏ qua cờ này.
         encoded = self.tokenizer.apply_chat_template(
-            messages, add_generation_prompt=True, return_tensors="pt", return_dict=True
+            messages,
+            add_generation_prompt=True,
+            return_tensors="pt",
+            return_dict=True,
+            enable_thinking=False,
         ).to(self.model.device)
         input_ids = encoded["input_ids"]
         output_ids = self.model.generate(

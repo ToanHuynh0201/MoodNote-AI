@@ -27,8 +27,11 @@ class _FakeEncoding(dict):
 
 
 class _FakeTokenizer:
-    def apply_chat_template(self, messages, add_generation_prompt, return_tensors, return_dict):
+    def apply_chat_template(
+        self, messages, add_generation_prompt, return_tensors, return_dict, enable_thinking=None
+    ):
         self.last_messages = messages
+        self.last_enable_thinking = enable_thinking
         return _FakeEncoding(input_ids=_FakeTensor([[1, 2, 3]]))
 
     def decode(self, ids, skip_special_tokens):
@@ -114,11 +117,13 @@ def test_hf_local_client_uses_injected_model_and_tokenizer_without_importing_tra
 
     monkeypatch.setattr(llm_client_module, "_import_hf_stack", _raise_if_called)
 
-    client = HFLocalClient(model_id="some/model", model=_FakeModel(), tokenizer=_FakeTokenizer())
+    tokenizer = _FakeTokenizer()
+    client = HFLocalClient(model_id="some/model", model=_FakeModel(), tokenizer=tokenizer)
     response = client.generate("prompt")
 
     assert response.text == "generated diary text"
     assert response.model == "some/model"
+    assert tokenizer.last_enable_thinking is False
 
 
 def test_hf_local_client_raises_clear_import_error_without_injection(monkeypatch):
