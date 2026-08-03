@@ -4,7 +4,7 @@ import random
 
 import pytest
 
-from src.data.synthetic.prompts import build_prompt, sample_axis_values
+from src.data.synthetic.prompts import EXAMPLE_BY_LABEL, build_prompt, sample_axis_values
 
 
 def test_build_prompt_embeds_label_name_and_axis_values():
@@ -19,6 +19,7 @@ def test_build_prompt_embeds_label_name_and_axis_values():
     assert "hài hước, tự trào" in prompt
     assert "ngắn (2-3 câu)" in prompt
     assert "gia đình" in prompt
+    assert EXAMPLE_BY_LABEL["Sadness"] in prompt
 
 
 def test_build_prompt_raises_on_unknown_label():

@@ -1,7 +1,10 @@
 """
 Sinh prompt nhật ký theo nhãn cảm xúc: 3 trục đa dạng hóa đúng thuyết minh
 (văn phong, độ dài, ngữ cảnh) + instruction giọng văn nhật ký cá nhân.
-Không kèm ví dụ mẫu viết tay (quyết định đã chốt — thuần prompt-engineering).
+Có kèm 1 ví dụ mẫu/nhãn (đảo quyết định "thuần prompt-engineering" trước đó) vì
+dữ liệu round 1 (Llama3-8B/Qwen3-8B) xuất hiện lỗi dịch nghĩa đen từ tiếng Anh
+("chặn tai" thay vì "bịt tai"...) — xem data/synthetic/qa/round_verdict.json
+(needs_prompt_revision: true).
 """
 from __future__ import annotations
 
@@ -15,8 +18,45 @@ DIARY_VOICE_INSTRUCTION = (
     "Bạn đang viết một trang nhật ký cá nhân bằng tiếng Việt, ở ngôi thứ nhất "
     "(tôi/mình), kể lại một khoảnh khắc và cảm xúc thật trong ngày của bản thân. "
     "Đây KHÔNG PHẢI một bài đăng mạng xã hội — không dùng hashtag, không emoji, "
-    "không kêu gọi tương tác."
+    "không kêu gọi tương tác. Dùng tiếng Việt tự nhiên, đúng ngữ pháp và đúng "
+    "nghĩa từ; TUYỆT ĐỐI không dịch nghĩa đen thành ngữ/tục ngữ tiếng Anh sang "
+    "tiếng Việt, không chọn từ sai nghĩa hoặc ghép từ không tự nhiên."
 )
+
+EXAMPLE_BY_LABEL: dict[str, str] = {
+    "Enjoyment": (
+        "Hôm nay đi ăn với đám bạn thân xong về nhà mà lòng vẫn còn vui phơi "
+        "phới. Được cười thả ga, nói đủ thứ chuyện trên trời dưới đất, tự "
+        "nhiên thấy nhẹ cả người."
+    ),
+    "Sadness": (
+        "Cả buổi chiều cứ ngồi thẫn thờ, chẳng muốn làm gì. Nghĩ lại chuyện "
+        "lúc sáng mà lòng cứ trĩu xuống, buồn không biết chia sẻ cùng ai."
+    ),
+    "Anger": (
+        "Bực cả người vì bị hiểu lầm mà không ai chịu nghe mình giải thích. "
+        "Càng nghĩ càng tức, chỉ muốn đóng sầm cửa lại rồi ngồi im một lúc "
+        "cho hạ hỏa."
+    ),
+    "Fear": (
+        "Tự nhiên thấy lo lắng không yên, cứ nghĩ đến ngày mai là tim lại "
+        "đập nhanh. Sợ mình không chuẩn bị kịp, sợ mọi thứ vượt ngoài tầm "
+        "kiểm soát."
+    ),
+    "Disgust": (
+        "Nhìn cảnh đó mà thấy ghê hết cả người, chỉ muốn quay đi ngay lập "
+        "tức. Không hiểu sao người ta có thể làm chuyện như vậy được."
+    ),
+    "Surprise": (
+        "Đang ngồi yên thì nhận được tin báo mà giật cả mình, không tin nổi "
+        "vào tai mình luôn. Phải đọc lại đến hai ba lần mới dám chắc là "
+        "thật."
+    ),
+    "Other": (
+        "Một ngày bình thường trôi qua, chẳng có gì đặc biệt để kể. Làm mấy "
+        "việc quen thuộc rồi lên giường đi ngủ như mọi hôm."
+    ),
+}
 
 
 def build_prompt(
@@ -47,8 +87,11 @@ def build_prompt(
         raise ValueError(f"Unknown label index: {label}")
 
     label_name = labels[label]
+    example = EXAMPLE_BY_LABEL.get(label_name, "")
     return (
         f"{DIARY_VOICE_INSTRUCTION}\n\n"
+        f"Ví dụ giọng văn tự nhiên (chỉ tham khảo cách hành văn, KHÔNG sao "
+        f"chép nội dung):\n{example}\n\n"
         f"Cảm xúc chủ đạo cần thể hiện: {label_name}.\n"
         f"Văn phong: {style}.\n"
         f"Độ dài: {length}.\n"

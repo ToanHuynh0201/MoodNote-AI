@@ -76,7 +76,9 @@ def build_review_prompt(sample: SyntheticSample) -> str:
         f"Nhãn cảm xúc được gán trước: {sample.label_name}.\n\n"
         "Trả lời theo đúng 2 dòng:\n"
         "NHÃN: <tên cảm xúc bạn cho là đúng nhất>\n"
-        "TỰ_NHIÊN: <có/không - đoạn văn có tự nhiên như nhật ký thật không>"
+        "TỰ_NHIÊN: <có/không — đánh giá 'không' nếu câu văn dịch nghĩa đen từ "
+        "tiếng Anh, dùng sai nghĩa từ, kết hợp từ không tự nhiên, hoặc sai "
+        "ngữ pháp tiếng Việt>"
     )
 
 
