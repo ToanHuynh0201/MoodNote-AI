@@ -85,6 +85,13 @@ def export_for_raters(
     )
 
 
+def _read_rater_sheet(path: str) -> pd.DataFrame:
+    """Đọc sheet rater — .xlsx (người điền tay trong Excel) hoặc .csv."""
+    if str(path).lower().endswith((".xlsx", ".xlsm")):
+        return pd.read_excel(path)
+    return pd.read_csv(path, encoding="utf-8")
+
+
 def import_rater_labels(
     rater_a_path: str, rater_b_path: str, emotion_labels: dict[int, str] | None = None
 ) -> pd.DataFrame:
@@ -93,8 +100,8 @@ def import_rater_labels(
     theo sample_id để tính Cohen's Kappa.
 
     Args:
-        rater_a_path: Đường dẫn sheet đã điền của người thứ nhất
-        rater_b_path: Đường dẫn sheet đã điền của người thứ hai
+        rater_a_path: Đường dẫn sheet đã điền của người thứ nhất (.csv hoặc .xlsx)
+        rater_b_path: Đường dẫn sheet đã điền của người thứ hai (.csv hoặc .xlsx)
         emotion_labels: Mapping nhãn tùy chỉnh (mặc định DEFAULT_EMOTION_LABELS)
 
     Returns:
@@ -107,8 +114,8 @@ def import_rater_labels(
     """
     labels = emotion_labels or DEFAULT_EMOTION_LABELS
 
-    df_a = pd.read_csv(rater_a_path, encoding="utf-8")
-    df_b = pd.read_csv(rater_b_path, encoding="utf-8")
+    df_a = _read_rater_sheet(rater_a_path)
+    df_b = _read_rater_sheet(rater_b_path)
 
     if set(df_a["sample_id"]) != set(df_b["sample_id"]):
         raise ValueError(

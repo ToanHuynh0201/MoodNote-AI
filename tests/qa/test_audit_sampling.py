@@ -94,6 +94,24 @@ def test_import_rater_labels_converts_names_case_insensitively(tmp_path):
     assert (tmp_path / "merged_labels.csv").exists()
 
 
+def test_import_rater_labels_reads_xlsx_sheets(tmp_path):
+    rater_a_path = tmp_path / "rater_a_sheet.xlsx"
+    rater_b_path = tmp_path / "rater_b_sheet.xlsx"
+    for path, labels in (
+        (rater_a_path, ["Enjoyment", "Fear"]),
+        (rater_b_path, ["Enjoyment", "Anger"]),
+    ):
+        pd.DataFrame({"sample_id": ["s0", "s1"], "text": ["x", "y"], "label": labels}).to_excel(
+            path, index=False
+        )
+
+    merged = import_rater_labels(str(rater_a_path), str(rater_b_path))
+
+    assert merged["rater_a_label"].tolist() == [0, 3]
+    assert merged["rater_b_label"].tolist() == [0, 2]
+    assert (tmp_path / "merged_labels.csv").exists()
+
+
 def test_import_rater_labels_raises_on_unknown_label_name(tmp_path):
     rater_a_path = tmp_path / "rater_a_sheet.csv"
     rater_b_path = tmp_path / "rater_b_sheet.csv"

@@ -1,6 +1,6 @@
 {
-  "n_samples": 3,
-  "kappa": null,
+  "n_samples": 180,
+  "kappa": 0.6562362274129572,
   "threshold": 0.6,
-  "passed": false
+  "passed": true
 }
