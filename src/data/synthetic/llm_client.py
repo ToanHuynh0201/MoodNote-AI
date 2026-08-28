@@ -7,6 +7,7 @@ Hai kênh thật (theo hạ tầng đã chốt):
 Cộng thêm ScriptedLLMClient: trả lời theo kịch bản cố định, dùng cho test/dry-run offline,
 KHÔNG dùng để sinh dữ liệu thật.
 """
+
 from __future__ import annotations
 
 import os
@@ -156,12 +157,18 @@ class HFLocalClient:
             enable_thinking=False,
         ).to(self.model.device)
         input_ids = encoded["input_ids"]
+        # temperature=0.0 nghĩa là greedy decoding (cross-LLM audit cần review tất định).
+        # transformers từ chối temperature=0.0 khi do_sample=True, và bỏ qua kèm warning
+        # temperature/top_p khi do_sample=False — nên chỉ truyền chúng ở nhánh sampling.
+        sampling_kwargs = (
+            {"do_sample": True, "temperature": temperature, "top_p": top_p}
+            if temperature > 0
+            else {"do_sample": False}
+        )
         output_ids = self.model.generate(
             **encoded,
             max_new_tokens=max_tokens,
-            temperature=temperature,
-            top_p=top_p,
-            do_sample=True,
+            **sampling_kwargs,
         )
         generated = output_ids[0][input_ids.shape[-1] :]
         text = self.tokenizer.decode(generated, skip_special_tokens=True)

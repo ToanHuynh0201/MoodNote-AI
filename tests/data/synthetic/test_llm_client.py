@@ -44,7 +44,11 @@ class _FakeTokenizer:
 class _FakeModel:
     device = "cpu"
 
-    def generate(self, input_ids, max_new_tokens, temperature, top_p, do_sample):
+    def __init__(self):
+        self.last_kwargs: dict | None = None
+
+    def generate(self, **kwargs):
+        self.last_kwargs = kwargs
         return _FakeTensor([[1, 2, 3, 4, 5, 6]])
 
 
@@ -158,3 +162,29 @@ def test_scripted_llm_client_cycles_through_responses():
 
     assert texts == ["a", "b", "c", "a", "b"]
     assert client.calls == ["prompt"] * 5
+
+
+def test_hf_local_client_uses_greedy_decoding_when_temperature_is_zero():
+    """temperature=0.0 (cross-LLM audit) phải thành do_sample=False — transformers
+    raise nếu do_sample=True kèm temperature=0.0."""
+    tokenizer = _FakeTokenizer("bất kỳ")
+    model = _FakeModel()
+    client = HFLocalClient(model_id="some/model", model=model, tokenizer=tokenizer)
+
+    client.generate("prompt", temperature=0.0, top_p=1.0)
+
+    assert model.last_kwargs["do_sample"] is False
+    assert "temperature" not in model.last_kwargs
+    assert "top_p" not in model.last_kwargs
+
+
+def test_hf_local_client_samples_when_temperature_is_positive():
+    tokenizer = _FakeTokenizer("bất kỳ")
+    model = _FakeModel()
+    client = HFLocalClient(model_id="some/model", model=model, tokenizer=tokenizer)
+
+    client.generate("prompt", temperature=0.9, top_p=0.95)
+
+    assert model.last_kwargs["do_sample"] is True
+    assert model.last_kwargs["temperature"] == 0.9
+    assert model.last_kwargs["top_p"] == 0.95
