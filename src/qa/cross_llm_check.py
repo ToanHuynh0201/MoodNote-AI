@@ -74,8 +74,12 @@ def build_review_prompt(sample: SyntheticSample) -> str:
         "nhật ký sau và trả lời ĐÚNG theo định dạng, không giải thích thêm:\n\n"
         f"Đoạn nhật ký:\n{sample.text}\n\n"
         f"Nhãn cảm xúc được gán trước: {sample.label_name}.\n\n"
+        # Không liệt kê sẵn 7 nhãn thì reviewer tự đặt tên nhãn tiếng Việt ("Lo âu",
+        # "Hài hước") — find_label_index_by_name() không map được và mẫu bị gắn cờ oan.
+        "Chỉ được chọn ĐÚNG MỘT trong 7 nhãn sau, viết y nguyên tiếng Anh: "
+        f"{', '.join(DEFAULT_EMOTION_LABELS.values())}.\n\n"
         "Trả lời theo đúng 2 dòng:\n"
-        "NHÃN: <tên cảm xúc bạn cho là đúng nhất>\n"
+        "NHÃN: <một trong 7 nhãn trên>\n"
         "TỰ_NHIÊN: <có/không — đánh giá 'không' nếu câu văn dịch nghĩa đen từ "
         "tiếng Anh, dùng sai nghĩa từ, kết hợp từ không tự nhiên, hoặc sai "
         "ngữ pháp tiếng Việt>"

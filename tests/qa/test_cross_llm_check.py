@@ -5,10 +5,12 @@ from types import SimpleNamespace
 from src.data.synthetic.schema import SyntheticSample, now_iso
 from src.qa.cross_llm_check import (
     CrossLLMFlag,
+    build_review_prompt,
     parse_review_response,
     run_cross_llm_audit,
     select_cross_llm_audit_pool,
 )
+from src.utils.emotion_constants import DEFAULT_EMOTION_LABELS
 
 
 class _FakeReviewerClient:
@@ -60,6 +62,14 @@ def test_select_cross_llm_audit_pool_deterministic_with_seed():
     second = select_cross_llm_audit_pool(samples, fraction=0.25, seed=5)
 
     assert [s.sample_id for s in first] == [s.sample_id for s in second]
+
+
+def test_build_review_prompt_lists_all_seven_allowed_labels():
+    """Thiếu danh sách nhãn thì reviewer trả nhãn tự do ("Lo âu") và bị gắn cờ oan."""
+    prompt = build_review_prompt(_make_sample("s0", model="Llama-3-8B-Instruct"))
+
+    for label_name in DEFAULT_EMOTION_LABELS.values():
+        assert label_name in prompt
 
 
 def test_parse_review_response_extracts_label_and_ok_flag():
