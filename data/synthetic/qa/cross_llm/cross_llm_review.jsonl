@@ -1,1 +1,980 @@
-{"sample_id":"llama-3-8b-instruct-0-534dfc2a39","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-b66b3c4886","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-caf276edbe","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-01cf49e0fb","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-2f200886cd","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-564db7443c","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-3-dcbd881e85","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-c3a7c8e4b9","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-df007cbaf9","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-d44655df66","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-f21138faf4","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-8b36a5ecc3","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-49fdf57fef","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-a82c71352c","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-0fc1efff66","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-8e772dbff0","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-dc7feafb81","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-b1f8737537","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-e6130b5494","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-4fb85bf290","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-3e8b68da6e","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-f37976532c","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-0b2a71f5eb","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-61d2c94efa","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-8858b7349e","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-250da593d2","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-ef7aed262e","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-61e578f501","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-3ccac057fa","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-169bcad844","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-27c5106335","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-5ff51c6053","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-b3774e5392","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-84656f4c54","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-dde00df118","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-36beafb6a3","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-bbbd914b4c","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-126996ff07","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-ce9486b1c8","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-6e2469936b","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-344f43faae","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-a430b9a904","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-755460074b","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-0f1b0ed704","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-1b9a312ab2","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-130623c805","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-e57116cfc2","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-8ef53ab705","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-8a44408939","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-5af71bdd68","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-16bdb8b8f9","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-71b77ed92a","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-feca3d39fe","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-08882b9710","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-2bd93ffe3d","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-6f97aaf22e","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-4765953d5b","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-c19b1d1fb7","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-bac9055d84","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-99401eeeef","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-40e8e363b8","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-489a48ab1f","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-bbe7c26aad","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-bfda50d016","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-9eccd7fb79","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-79811cdf1d","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-4f683deaf7","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-6ce02b5129","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-7dd8dcf8bb","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-1e49374e7a","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"unnatural_style","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-0-d05d3979f9","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"unnatural_style","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-0-b87bcb1f35","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"unnatural_style","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-2-3936c8ef3b","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-7900247488","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-e510a7016b","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-7c579c378f","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-3e87fcad8b","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-9af40f5faf","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-10da12c0b0","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-d9e62ad602","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-8c493f7d95","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-ea2dcaa91b","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-a5cedac1e0","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"label_mismatch","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-488bd4b7e7","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-7992bee0a9","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-5a72488b9c","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-7a7ebf386f","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-ba98c2c480","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-50c09f19bb","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-044f07f1ea","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-b2cc211623","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-949395a9dd","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-7065050076","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-c62511d72d","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-0af9814517","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-7b6e7d5560","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-d0ce7a97e4","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-24196c01b7","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-e09834db82","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-2806ecd2d4","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-02207e730a","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-2-b74d992386","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-3906693b3f","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-afe398ca5c","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-56838e9ed2","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"label_mismatch","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-b8c241c26b","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-96d721bf65","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-85f926b952","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-c433c39f70","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-eb589284c0","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-7825dda3dd","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-b5ab4f4e1a","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-96055fe1b6","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-3-7d3286871a","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-76d5576ee7","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-2d4d8e38f3","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-0-234ece24df","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-c176a62c80","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-9268bf926a","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-2a565d449d","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-40f8f59d91","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-8e778b58e5","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-8f45030e37","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-472c8784aa","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-ac022ed4a9","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-4705bba22d","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-967bdf98b5","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-0dd4f3a01d","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-dea142c885","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-3d43a71a3b","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-ef37267699","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-1d27951b79","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-f8470de3df","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-bee3dfc6b8","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"unnatural_style","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-5-1ea3f7a93c","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-c813a0606b","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-0a85354c5a","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-bf1f02dfc8","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-f6ae57449b","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-c12a729712","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-290137d08d","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-618184fe56","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-e27206129c","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-7e06aea3ed","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-e70616fe8b","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-e3526e9bcd","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"label_mismatch","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-5589ab1914","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-8da9d5e4ba","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-647a6ce8bf","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-1536297f68","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-a6665d5ca9","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-34bf3b71a1","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-9cdd834974","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-d733764529","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-3-fee8a50f38","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-89c7c139f2","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-7101d60331","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-5753294358","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-367f0224cb","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"unnatural_style","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-3-20fbcc1efa","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-cb14e4387e","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-9ce99bcd4b","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-6f95e22f9c","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-e899c3ae4b","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-5aa187b0ec","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-a1bc1bee82","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-c840647be2","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-aa5d690cc6","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-25915b2afd","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-0e859a8ebf","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-5fa0d79601","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-b515119de4","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-626e61a40c","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-6504502039","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-3d78b96c06","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-948a5eb633","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-f15e0275fc","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-31075e2169","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-357ecef1c6","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-3e168df4c9","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-a279b2df52","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-030e8a49b2","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-c5c56c2489","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-f4f9001fbd","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-ff4ae7e017","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-549502552a","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-62a5402c28","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-0d5d1f606e","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-4ef52ba37c","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-837f88d9a3","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-bed208ecea","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-b43dfed759","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-409579c3c0","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-680f2dbf7a","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-bcefac2694","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-1-1c39b842bb","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-ae60fa0286","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-f69e220d4a","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-d459cd64c6","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-97fe1970b5","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-6986648d09","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-aa3fe7cfb1","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-4cd4ef70ae","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-ba856fbaff","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-fb8d0f50dd","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-e6fb0b7670","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-268f1807b2","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-b9f28ffb9d","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-26b8e8d1c2","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-4bac48a506","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-429e2591a5","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-c2491eae47","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-0f2ad01eb2","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-c3ebfbe666","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-e28f2c5782","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-d9a5d3e8a4","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-705b26c276","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-3cf89b243b","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-840a01fb89","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-2d2c0754bb","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-e00c08de82","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-bc8d725438","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-4c01553429","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-8e87c91255","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-7a4ef81d26","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-6e98a42031","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-2676238b78","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-bc827c6158","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-2fd0476b1c","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-c169d1bd5a","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-2727b1a3bf","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-8f6c96128a","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-aa5236ce3f","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-19c4e32cc8","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-5a88184558","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-3eea7a4c18","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-eea8e7cd7d","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-2380806426","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-ae9a165af7","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-d05a16eaf8","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-7e961bab4d","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-31a1224431","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-0001ea03aa","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-34d5ad8c03","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-e5cb1a06f2","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-2e6c57ef04","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-6c03a5d4e0","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-12d29b7be0","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-014aee76f0","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-7351b62a1a","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-9f11808d28","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-620a9fae50","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-feb223b264","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-88d70521fd","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-d69c91b55f","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-8da6fffd57","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-c72596c4a2","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-5a6908bca6","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-f7e2c0e47f","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-c7a9e2d09a","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-19dd8d0fb1","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-e9478031cf","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-c1aa4cface","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-df01c04066","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-4321c3899c","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-d688ddb308","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-2dd296769d","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-db7d8014d6","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-1f057375a9","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-4487a30989","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-6edde07f37","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-6f96491692","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-5-3d57bad98c","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-a99ff61e3c","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-547e4d28db","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-f7df05c013","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-9550c93b9c","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-9ecb88ecde","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-ca55b3910a","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-fe55413487","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-a8e07a4623","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-20d857a523","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-ed13287770","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-db428c7e48","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-22fc4ec801","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-b2f76169f1","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-193fdc0fad","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-9fd65e48dc","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-c1f1f82e88","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-6bafb70a6d","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-e27c3fbb11","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-1cb68bcc66","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-02cf2079cf","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-fccdb90657","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-6554c94a31","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-f1331e9f75","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-648c2c6820","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-2c8f58fb11","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-10c52b1238","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-176c563b66","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-f208b045a1","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-52c2dd8f78","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-1551f3b7be","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-e0b6ae3c53","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-da82a182e6","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-0b9abb8a79","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-20317e020f","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"label_mismatch","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-28532478f4","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-46011fc2df","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-efc4c877e2","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-d9ee2d1565","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-58c466dc52","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"unnatural_style","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-0-bd72e02f43","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-c44efb112e","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-20e8d59805","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-fab5e15b4c","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-9405cc181b","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-dbb7940e78","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-b89c56715f","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-1cecd04402","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-6c2032aa32","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-b52f3aab9b","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-2-44b63b4526","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-e6f93c89e0","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-2a37d3fa5a","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-b64ee91350","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-f8bf4a8996","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-1041aab986","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-85ac380257","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-1a05f73456","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-407568e49e","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-8db8175bec","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-946607c9d1","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"unnatural_style","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-6-b19c2be2e6","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-af1e302bbc","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-6cd2974c79","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-1878da0cda","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-34b95709fd","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-b877213d31","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-0f96c98dc1","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-b33c9881d7","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-d1304f87a5","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-7086a4914d","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-a79abfd86b","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-f26d265bbb","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-5-2d870a666c","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-b23a9ec09f","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-a5bf776dbd","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-a6d5fc8a5c","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-469649ecfd","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-45cff35a97","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-2919460e3b","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-b9516dc13e","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-0f3d95fe96","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-af93258da8","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-7e3431a0af","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-a314715ae2","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-4f4a1ffba7","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-38193a5f33","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-196e1df7d7","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"unnatural_style","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-4-976d6540a6","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-78184d9b11","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-698785e04c","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-872662403b","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-1cc6b4f92d","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-120a1d0da8","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-bedb6a1a25","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-71ae64d476","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-849fc39140","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-2f79f769d2","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-72fff67235","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-26a09990ee","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-4b10bcdf05","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-86124f07c0","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-5de5ed48c2","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-2b0845ff0c","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-777bd30bbe","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-2938704de1","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-90bb0d1753","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-6a05647e5a","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-0-23043e6250","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-1c3a45c0a5","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-25a444c49f","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-16c09efee2","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-0b84413f02","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-d84fbae9ff","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-b39c28fb5d","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-f53c4af844","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-70083398d5","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-3d4b80fd18","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-703bc0d641","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-f2287611bb","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-c06524791a","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"unnatural_style","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-4-1716c5740a","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-ca2c9b74f5","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-40de0cf6d6","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-01d499ec0a","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-5ad1bcb79f","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-bdc001e68c","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"unnatural_style","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-5-f51734e44d","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-74e837d05f","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-4f57f3170f","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-9d05f93040","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-7914ef9796","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-d002cacb23","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-c6be284f0c","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-36af619cf0","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-9f87a0ee6a","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-42f4b7a554","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-293149463b","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-1d6395a656","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-3fa901e0d0","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-06d3b73376","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-c1d96b76ef","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-5d3f3328b8","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-d662ae474a","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-0aa10fe8fc","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-698cfd16f9","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-93e38fde46","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-92a78b79af","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-2e0c15192d","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-93648c077a","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-a294f2e295","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-3549036eeb","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-da43f4471c","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"unnatural_style","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-3-ade889ac93","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-76e05c81f5","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"unnatural_style","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-1-68ed234dc5","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-16fb2128bd","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-69c612bca6","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-6480913059","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-a85dca93b9","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-b03c39738d","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-c12ce40d69","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-c89bf8e124","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-bae89dc68a","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-429b140a58","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-67996ed160","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-97c0741f20","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"unnatural_style","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-1-5b9859f04b","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-30e4194d29","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-851dfeb9f0","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-eb086af4a2","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-64d473b7c5","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-4422a21af6","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-42767d9a87","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-809f00a778","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-0cc1ecd0e5","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-d0dbeedacc","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-1-75961dc968","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-ccb236c8a1","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-94a5c228c6","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-ef1b2574b6","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-722c310824","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-3a8b37fa05","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-73b926f094","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-d93319a204","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-cb333a00f6","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-0780f42b64","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-9b36acafe8","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-efdcff7d33","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-ad89085c11","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-d5ca37cc35","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-f9cb411ec0","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-2-43e8b04103","reviewer_model":"Qwen3-8B","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-4b3657fe11","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-70a39bd4a4","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-1353538288","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-8cb5542090","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-5147902d83","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"unnatural_style","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: không"}
+{"sample_id":"llama-3-8b-instruct-0-acd0637816","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-23cd6fc060","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-140559abc9","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-82f1b6d725","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-f7e043c793","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-1-7582197d17","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-d606b4bd2f","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-744751ccd3","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-4-115857a347","reviewer_model":"Qwen3-8B","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-7db96b9e7b","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-cfc5d20734","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-43d2a976dc","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-0a01a73cc8","reviewer_model":"Qwen3-8B","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-0-bd3a890a9c","reviewer_model":"Qwen3-8B","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-ce928cf4f3","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-5b95894033","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-e51b808051","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-83f4239d8a","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-e68606869a","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-5-40c3be1e3b","reviewer_model":"Qwen3-8B","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-6-0f73f2075c","reviewer_model":"Qwen3-8B","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness  \nTỰ_NHIÊN: có"}
+{"sample_id":"llama-3-8b-instruct-3-2f4ba562dd","reviewer_model":"Qwen3-8B","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear  \nTỰ_NHIÊN: có"}
+{"sample_id":"qwen3-8b-5-b78f468afa","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-91e9d92ef5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-a54660cbea","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-43bb390b9f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-9d4a883585","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-bb8c185eb7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"label_mismatch","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-966c7e915f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-c38b48c481","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-bea1eedfd9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-74b7d37e37","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-adc4dd7d8b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-bad65718cc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-98717ba349","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-6f67a8d1a2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-2892049a7c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-4d7291c48e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-1b24af5be4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-54016410d8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-793e8d8fd0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-5fa6e458ea","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-3a1ade1172","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-4acab2178b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-7b7b523ee1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-7d8f66d2eb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-578682a584","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-1825dcfd76","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-719f7f3207","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-3b31308704","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-38948544ca","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-379ecb2058","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-34990d49ea","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-448f3b58c4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-7a21f3474c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-319b90bdce","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-b9e9600505","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-c192c2f3a4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-f6f93e7ad1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-755b7c1e9e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-520de9cf6b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-df8c24f41a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-17a87fef45","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-0579ea5117","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-3848c4b88d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"unnatural_style","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: không"}
+{"sample_id":"qwen3-8b-5-bdea1baf3d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-514d98b94d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-2cacbb49e8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-2fc6ab5167","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-6168005f7a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-5ceb2dc753","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-8d07a10e17","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-583343fc69","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-017e845de7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-f335189ea4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-6ed00d38dd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-29faac3696","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-3be29e31fb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-2616ea421b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-939e6a2c19","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-6ac1375f15","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-20f5fdbe0d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-0244cf16bb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-1671b049f7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-e770db4944","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-99c024c022","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-0b47b5b741","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"label_mismatch","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-4df9c40fab","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-daf77dd019","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-561ff20897","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-f4ebadc7e7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-52da65b0f3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-aaea8a2cba","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-e464bf0721","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-f8239ffe21","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-b4d6aa4c91","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-f6f4577342","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-ea8de4c5eb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-2ee83341f4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-a9769c1b9b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-bba8c050e4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-2d2ca80e58","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-7b43e01e6d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-0c59dbd014","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-f9c8988ec3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-f2f96bf024","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-36dbb577fe","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-b39e584966","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-cb4a26c929","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-1d1c0416ee","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-81f615e836","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-f4101f64f5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-e137590859","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-734a6f0572","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-1f0de4bff1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-bbd8c152d8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-7a976ebbb6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-fb6ab2fd7c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-96795c45fc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-ff991d5b21","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-37afd2c6cf","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-ca81da44e8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-83f9bff41a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-05d7846c77","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-28a1779d6a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-ca8c6344b9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-a505c76731","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-ea2465e7da","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-3f3e9f5256","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-1b1071fd56","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-4becec327f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-1da93fd6c6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-6ed53b60ff","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-504dea3e06","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-12ffffd382","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-3cc2aba7a4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-c99149c797","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-cb9b6c532b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-5a5b49cae8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-301488c7d2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-c74f3ed79d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-a1de55ab41","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-6212d6dc14","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-e6e27ab6a0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-a12bd9fcb1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-80d10dfca9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-d4d2365d0d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-d326cef550","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-e0f18caa41","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-133b5ae099","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-aeb8304a8e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-a225067091","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-c452500266","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-8d28a30156","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-3732540ba0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-831313acdf","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-c72e29b5f4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-3d4a8f23cd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-3f9094189a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-b6bc9b2934","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-8c93efebbb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-ad3118a9eb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-df15fcec8a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-12d1cf11bd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-eb4764e552","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-4cb84be7be","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-26e3eb123b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-ff8907deac","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-d366be70a3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-93bc723269","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-e8b917381d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-04f109b4a4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-48c0b9aca0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"label_mismatch","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-32479413eb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-cf9a3a4ab7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-3077bb9a54","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-b6a77a7077","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-0c001164a2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-4415b43d3c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-f3bbd76ebe","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-41f4d7fa84","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-7482896898","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-d973479dce","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-30d2b399ac","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-62fc1d9fa1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-8e2c7f5600","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-8e2bd699d3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-201d2822cd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"label_mismatch","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-67ffbfcaa4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-11d02411a8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-651847db5a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-6883351abf","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-5f48931f58","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-e1e17884e4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-275294bbb4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-d0443f08f9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-bbc91fd777","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-79e58840ba","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-fa6be99d10","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-3d8d2a7778","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-075e01a80b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-fa695954bc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-6f94a18557","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-8fb7f9db6c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-bf7e199c6a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-90deda8f09","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-dbd96a25ac","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-8f844f7be8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-777f63d795","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-65443b8181","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-7130f2c0bd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-922910f7b8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-743aeb2730","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-1219bb41e7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-587afddfa2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-eeddabd20b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-784ee71045","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-c8c2dcb4e2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-666ecd4c02","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-84aa4dbe0b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-b94918ffbd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-c04d38ff47","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-262616ce28","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-e6da7a8bd6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-19c9532d32","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-f9da7e4c04","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-d33c5cd286","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-ac4c902df9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-68d0e79fe1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-1f26988710","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-fff48a1deb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-9a3eea53c0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-570f9cc471","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-13ca3dfe87","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-ea6a4a2f48","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-65d2c9480e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-6cc14aad0a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-3efcc68f28","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-bb701daf76","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-250e2af821","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-ddfdcda1b2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-846685c139","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-4ef1204a35","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-4c7282550a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-ee274044d6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-d1ae67f170","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-fee22b3830","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-0c15060153","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-0a391a9bc6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-a773a77a69","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-83f076fd94","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-b987126fa9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-45689aa01f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-41d9efea3d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-7027b5bd87","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-d1852cc898","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-3ef6150e39","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-0f68894970","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-197b5b6b54","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-45e36c4adb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-4977e38f19","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-35bb96a93a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-a9568033b1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-b4c5d846cd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"label_mismatch","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-a71a03e2aa","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-61ec48455f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-4844ec1d03","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-e84d619993","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-98449f64e6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-a1596dc0d8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-aa0622f8de","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-8ca4631bc8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-178c3864c8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-ccf0909953","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-c5905e752f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-7989f0dde9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-cc7af67a70","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-04d4daef42","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-9671b3ad8b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-fb60fd591f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-dd28b33612","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-842798fb56","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-f7adca03bd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"label_mismatch","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-6a5e0c3d9d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-7c136dd8aa","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-e9cd846e30","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-1d8aa8c9bb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-3967d11944","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-ff782fc2c9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-b9449804f2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-ae6c797495","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-2e82d6b421","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-361e765d4b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-a6309c5525","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-ac42c8b770","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-a191fde13a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-d4d1e4320f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-5dd385c79c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-4b76672609","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-95cf0d98a5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-ff807eb229","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-c6bd4bf12f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-6b38de9887","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-5a210c6c5e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-89310d850e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-c0325879d5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-f7efb2bef6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-dbab5160c6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-d2073c708e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-ad872ddbd3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-a3cf322954","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-194ae19eaa","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-75c7ff6bb2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-20742eb031","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-cec10e5383","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-1d23cbab00","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-cc8619984e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-0e41c60aba","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-5e9bc1dbfc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-4fd86c85d0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-5a5b9d6681","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-2d5a1456a5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-587f89944d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-fc2589c315","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-bcb8a09204","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-17c21fe0ba","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-cad73f4939","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-40e5f4bf79","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-d0342f179f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-5f9b6ed15f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-98aefa220a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-ca60ac9347","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-b80fd91766","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-08a313713a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-d622fba2fe","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-4444258df2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-3b153a9fdb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-e8cdab3f46","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-3b9f300152","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-24761ef3be","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-848f1f1372","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-6bdd840e5e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-d00e42d5c1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-7021126432","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-983caf4d42","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-0492327dfc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-8fee08a1be","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-a8dde37584","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-a4b924a160","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-85ee41365e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-77dc878cfb","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-8966d3ae5f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-b8cb71bb60","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-87b42a89ae","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-7d9d6da60d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-33654e551d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-32ef2ece8c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-5bba0175b6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-64d4441eae","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-30c08b4868","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-959452eefe","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-5b6d0e0c6c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-3747a32717","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-b0af6d3c50","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-6d49cb1db1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-25793f8345","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-e6ba4d2b5f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-61e31b5de0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-43af81563b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-f82fe71cc1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-839b8d2cd7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-7f5cea4678","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-f36589ff93","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-1b1220225a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-e58887f4bd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-c381e0ee1f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-b6212aeba2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-02a1b4a399","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-bd6c2bbb79","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"label_mismatch","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-3b301f07e2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-2a45bd1bd3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-c8464b1a21","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-17a5c25a17","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-b4c3a7d17e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-60585619d1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-b55499534c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-77638fb9ef","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-d3695a0fb6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-6be84df74f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-d5f40dfefc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-c11583ffe3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-5cbc9fba8d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-67ae656da8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-b9ddf8439b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-0d05d1a85b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-305d46b4e1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-082e55ec2b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-8e8d63ade9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-be7edbdbf0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-80eb500fa3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-b06b2eeddf","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-8f4c735232","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-a8464a9428","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-7310b91687","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-1297b2592b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-12fe2a5fb7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-7218d01b6f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-7934cf6b08","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-8df7163e72","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-05e04b2d3e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-509e09b838","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-34c12bcf66","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-de25e0da66","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-70ee555759","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-aa8d25cd4e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-802c3cbe10","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-f5427970bf","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-a55cf0ecdd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-81e8cb2002","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-8eb10925ad","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-6f4a6a18d4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-20c7c9de8f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-f4af34eee2","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-f8609afa6c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-c7184e9225","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-d1c8c62d6e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-c9602d5402","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-096e1e31a6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-1799187931","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-9c94d9456c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-d39a168dfe","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-538c06a6c9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-95face6881","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-1ef61a1f8f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-9a6669af4c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-0e28a130d6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-134b635e98","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-3510080790","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-5928380d09","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-9225ae45d9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-0064936c23","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-f679962fa6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-a4b5b11d72","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-cc831aa6f9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-66313f18de","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-bc639f8ba5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-f9dfe3864f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-4c589035c3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-aba82982e5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-e497d64320","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-5b5de2c634","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-256ec0c8cd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-2e0171216b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-1582039fe7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-36bf61ffa9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-7b35358a98","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-32ddb25852","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-17da5d08d1","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-213c7a595e","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-c095b2fb48","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-8fe6e4e113","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-593d54c1cd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-fd5d2ec0ed","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-7d87b1b6dc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-e8619fe060","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-ea40360021","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-81965a02b8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-6eeb79be7f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-7806aad638","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-fbea0ad119","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-8213c9b4bc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-67a90e30e6","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-c9db6ed23f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-5537820776","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-6e5e578a5f","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-d76ee33097","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-7926bccd66","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-44b0bcff09","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-185675e1e4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-c83635189a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-6aa3030d99","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-1773801b9a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-834edcffd9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-223629d81d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-618ae3701b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-efb6aa07a8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"label_mismatch","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-fff7608924","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-6acbf771e0","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-a013dd1ba9","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-0-1323097dcd","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":0,"flag":"ok","raw_response":"NHÃN: Enjoyment\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-317de8a46a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-f162a05666","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-a369f48a67","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-19a9e1151c","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-a78d8b94a8","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-b1b4ff3d4d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-6c3299f52b","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":6,"flag":"ok","raw_response":"NHÃN: Other\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-57aaabd35d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-b6b9070cd5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-7e79733431","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-1cd09bc1cf","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-5-58d7364d91","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":5,"flag":"ok","raw_response":"NHÃN: Surprise\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-cd4dc272a3","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-2-d626805d8d","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":2,"flag":"ok","raw_response":"NHÃN: Anger\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-674dd0c9a7","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-3-0a9b062d3a","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":3,"flag":"ok","raw_response":"NHÃN: Fear\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-832caae1dc","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-1-bda69e5ea5","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"ok","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-4-f79106fb22","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":4,"flag":"ok","raw_response":"NHÃN: Disgust\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-c25b7c9c51","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
+{"sample_id":"qwen3-8b-6-20318df2a4","reviewer_model":"Llama-3-8B-Instruct","reviewer_label":1,"flag":"label_mismatch","raw_response":"NHÃN: Sadness\nTỰ_NHIÊN: Có"}
