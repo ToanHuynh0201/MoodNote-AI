@@ -12,7 +12,9 @@ Hai hàm `compare_scenarios()` và `render_comparison_markdown()` là hàm thu�
 from __future__ import annotations
 
 import copy
+import csv
 import json
+import statistics
 from pathlib import Path
 from typing import Any
 
@@ -74,6 +76,7 @@ def run_scenario(
     results_dir: str = "reports",
     use_wandb: bool = True,
     smoke: bool = False,
+    seed: int | None = None,
 ) -> dict[str, Any]:
     """
     Fine-tune PhoBERT cho một kịch bản rồi đánh giá trên tập test cố định.
@@ -85,23 +88,35 @@ def run_scenario(
         ablation_dir: Thư mục chứa <scenario>/train.csv do build_datasets.py sinh ra
         validation_path: Tập validation dùng chung cho cả 3 kịch bản
         test_path: Tập test cố định của UIT-VSMEC — chỉ đọc, không bao giờ ghi
-        results_dir: Nơi ghi ablation_<scenario>.json và confusion matrix
+        results_dir: Nơi ghi ablation_<scenario>_seed<N>.json và confusion matrix
         use_wandb: Bật/tắt logging W&B
         smoke: Chạy thử rút gọn (32 dòng mỗi split, 1 epoch) để kiểm tra đường ống
+        seed: Seed cho lần chạy này; None → lấy training_config["training"]["seed"].
+            File kết quả gắn hậu tố _seed<N> nên chạy nhiều seed không ghi đè nhau.
 
     Returns:
-        dict kết quả của kịch bản (đồng thời được ghi ra reports/ablation_<scenario>.json)
+        dict kết quả (đồng thời ghi ra reports/ablation_<scenario>_seed<N>.json)
     """
     if scenario not in SCENARIOS:
         raise ValueError(f"Kịch bản không hợp lệ: {scenario!r}. Chọn trong {SCENARIOS}.")
 
     # Import nặng để trong hàm: compare_scenarios/render_comparison_markdown phải
     # dùng được ở môi trường không cài torch/transformers.
+    from transformers import set_seed
+
     from ..data.real.dataset import EmotionDataset
     from ..models.model_utils import get_device, print_model_summary, save_model
     from ..models.phobert_classifier import create_model
     from ..utils.metrics import compute_metrics, plot_confusion_matrix, print_metrics
     from .trainer import train_model
+
+    eff_seed = seed if seed is not None else int(training_config["training"]["seed"])
+    # Phải seed TRƯỚC create_model: head classifier (nn.Linear/nn.LayerNorm) khởi tạo ở
+    # đó, nếu không set_seed thì mỗi lần chạy ra head khác nhau ngoài kiểm soát → phương
+    # sai giữa các seed không phản ánh đúng. Trainer của HF cũng set_seed nội bộ nhưng
+    # SAU khi model đã dựng.
+    set_seed(eff_seed)
+    sfx = f"_seed{eff_seed}"
 
     train_path = str(Path(ablation_dir) / scenario / "train.csv")
     if smoke:
@@ -144,8 +159,9 @@ def run_scenario(
 
     # Mỗi kịch bản là một run W&B riêng để so sánh được trên cùng project.
     run_config = copy.deepcopy(training_config)
+    run_config["training"]["seed"] = eff_seed  # TrainingArguments(seed=...) khớp eff_seed
     wandb_cfg = run_config.setdefault("wandb", {})
-    wandb_cfg["name"] = f"{wandb_cfg.get('name', 'phobert')}-{scenario}"
+    wandb_cfg["name"] = f"{wandb_cfg.get('name', 'phobert')}-{scenario}{sfx}"
 
     trainer = train_model(
         model=model,
@@ -167,10 +183,20 @@ def run_scenario(
         predictions.predictions,
         predictions.label_ids,
         emotion_labels=model_config["emotion_labels"],
-        save_path=results_path / f"confusion_matrix_{scenario}.png",
+        save_path=results_path / f"confusion_matrix_{scenario}{sfx}.png",
     )
 
-    model_dir = f"models/best_model/{scenario}"
+    # Dự đoán từng câu -> cho phép kiểm định ghép cặp (McNemar) mà không cần train lại.
+    preds_file = results_path / f"preds_{scenario}{sfx}.csv"
+    pred_ids = predictions.predictions.argmax(axis=1).tolist()
+    true_ids = predictions.label_ids.tolist()
+    with preds_file.open("w", encoding="utf-8", newline="") as fh:
+        writer = csv.writer(fh)
+        writer.writerow(["pred", "true"])
+        writer.writerows(zip(pred_ids, true_ids, strict=True))
+    logger.info(f"[{scenario}] Đã ghi dự đoán từng câu -> {preds_file}")
+
+    model_dir = f"models/best_model/{scenario}{sfx}"
     save_model(
         model=trainer.model,
         tokenizer=tokenizer,
@@ -182,8 +208,8 @@ def run_scenario(
         "scenario": scenario,
         "smoke": smoke,
         "model_name": m_cfg["name"],
-        "seed": training_config["training"]["seed"],
-        "num_epochs": training_config["training"]["num_epochs"],
+        "seed": eff_seed,
+        "num_epochs": run_config["training"]["num_epochs"],
         "train_csv": train_path,
         "validation_csv": validation_path,
         "test_csv": test_path,
@@ -191,14 +217,48 @@ def run_scenario(
         "n_validation": len(datasets["validation"]),
         "n_test": len(datasets["test"]),
         "model_dir": model_dir,
+        "preds_csv": str(preds_file),
         "metrics": metrics,
     }
 
-    out_file = results_path / f"ablation_{scenario}.json"
+    out_file = results_path / f"ablation_{scenario}{sfx}.json"
     out_file.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     logger.info(f"[{scenario}] Đã ghi kết quả -> {out_file}")
 
     return result
+
+
+def aggregate_seeds(results: list[dict]) -> dict[str, Any]:
+    """
+    Gộp nhiều kết quả run_scenario() CÙNG một kịch bản (khác seed) thành một dict
+    "kết quả trung bình" có hình dạng như run_scenario() trả về, để đưa thẳng vào
+    compare_scenarios(). Hàm thuần — chỉ statistics stdlib.
+
+    Args:
+        results: list dict kết quả (>= 1 phần tử), cùng scenario
+
+    Returns:
+        dict gồm scenario/smoke/model_name/n_train, `metrics` = mean từng chỉ số
+        overall, `metrics_std` = độ lệch chuẩn quần thể (pstdev), `n_seeds`, `seeds`.
+        list 1 phần tử → mọi std = 0.0.
+    """
+    if not results:
+        raise ValueError("aggregate_seeds() nhận list rỗng.")
+
+    metric_keys = [k for k, v in results[0]["metrics"].items() if isinstance(v, (int, float))]
+    per_metric = {k: [r["metrics"][k] for r in results] for k in metric_keys}
+
+    first = results[0]
+    return {
+        "scenario": first["scenario"],
+        "smoke": any(r.get("smoke") for r in results),
+        "model_name": first.get("model_name"),
+        "n_train": first["n_train"],
+        "metrics": {k: statistics.fmean(v) for k, v in per_metric.items()},
+        "metrics_std": {k: statistics.pstdev(v) for k, v in per_metric.items()},
+        "n_seeds": len(results),
+        "seeds": [r.get("seed") for r in results],
+    }
 
 
 def compare_scenarios(
@@ -286,8 +346,23 @@ def render_comparison_markdown(comparison: dict) -> str:
     ]
     for name, row in comparison["scenarios"].items():
         tag = f"`{name}`" + (" (phương án nền)" if name == baseline else "")
-        cells = [tag, f"{row['n_train']:,}"] + [f"{row['scores'][m]:.4f}" for m in metrics]
+        std = row.get("scores_std") or {}
+        score_cells = [
+            f"{row['scores'][m]:.4f} ± {std[m]:.4f}"
+            if std.get(m) is not None
+            else f"{row['scores'][m]:.4f}"
+            for m in metrics
+        ]
+        cells = [tag, f"{row['n_train']:,}", *score_cells]
         lines.append("| " + " | ".join(cells) + " |")
+
+    n_seeds = comparison.get("n_seeds") or {}
+    if n_seeds:
+        parts = ", ".join(f"`{k}` {v} seed" for k, v in n_seeds.items())
+        lines += [
+            "",
+            f"_Số lần chạy: {parts}. Ô số dạng mean ± độ lệch chuẩn quần thể qua các seed._",
+        ]
 
     lines += [
         "",
@@ -298,6 +373,15 @@ def render_comparison_markdown(comparison: dict) -> str:
     ]
     for metric, delta in comparison["synthetic_contribution"].items():
         lines.append(f"| {metric} | {delta:+.4f} |")
+
+    mcn = comparison.get("mcnemar")
+    if mcn:
+        lines += [
+            "",
+            f"McNemar (`combined` vs `{baseline}`, seed {mcn['seed']}, cùng {mcn['n']} câu "
+            f"test): p = {mcn['p_value']:.4g} — chỉ `combined` đúng: {mcn['only_treat_correct']}, "
+            f"chỉ `{baseline}` đúng: {mcn['only_base_correct']}.",
+        ]
 
     if comparison["passed"]:
         verdict = (
@@ -321,9 +405,12 @@ def render_comparison_markdown(comparison: dict) -> str:
         "  UIT-VSMEC. Kịch bản `synthetic_only` vì vậy có tiếp xúc gián tiếp với dữ liệu",
         "  thật ở khâu chọn checkpoint, dù không mẫu thật nào đi vào gradient. Đây là",
         "  đánh đổi có chủ đích: giữ tiêu chí dừng giống nhau để tập train là biến duy nhất.",
-        "- `num_epochs` giống nhau ở cả 3 kịch bản, nên `combined` (nhiều dữ liệu gấp đôi)",
-        "  đi qua số bước cập nhật gấp đôi `real_only`.",
-        "- Mỗi kịch bản chạy một seed duy nhất; chưa ước lượng phương sai giữa các lần chạy.",
+        "- `real_only` và `combined` chạy nhiều seed, số báo cáo là mean ± độ lệch chuẩn.",
+        "  `synthetic_only` chỉ chạy một seed — là mốc control, không vào tiêu chí pass/fail.",
+        "- Cả 3 kịch bản dùng chung `num_epochs` + `early_stopping_patience` để mỗi model",
+        "  train tới hội tụ trên tập validation chung; không ép bằng `max_steps`, nên",
+        "  `combined` (gấp đôi dữ liệu) vẫn đi nhiều bước optimizer hơn `real_only` trong",
+        "  cùng số epoch, và lịch learning-rate cosine giãn theo `num_epochs`.",
         "",
     ]
 

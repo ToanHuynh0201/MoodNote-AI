@@ -2,7 +2,11 @@
 
 import pytest
 
-from src.training.ablation_runner import compare_scenarios, render_comparison_markdown
+from src.training.ablation_runner import (
+    aggregate_seeds,
+    compare_scenarios,
+    render_comparison_markdown,
+)
 
 
 def _result(scenario, accuracy, f1_macro, f1_weighted, n_train=100, smoke=False):
@@ -98,3 +102,78 @@ def test_render_comparison_markdown_warns_loudly_on_smoke_results():
     markdown = render_comparison_markdown(compare_scenarios(results))
 
     assert "CHẠY SMOKE" in markdown
+
+
+def _seed_run(scenario, accuracy, f1_macro, f1_weighted, seed, n_train=100):
+    run = _result(scenario, accuracy, f1_macro, f1_weighted, n_train=n_train)
+    run["seed"] = seed
+    run["model_name"] = "vinai/phobert-base-v2"
+    return run
+
+
+def test_aggregate_seeds_averages_overall_metrics():
+    runs = [
+        _seed_run("real_only", 0.60, 0.55, 0.59, seed=42, n_train=5548),
+        _seed_run("real_only", 0.62, 0.57, 0.61, seed=43, n_train=5548),
+        _seed_run("real_only", 0.64, 0.59, 0.63, seed=44, n_train=5548),
+    ]
+
+    agg = aggregate_seeds(runs)
+
+    assert agg["scenario"] == "real_only"
+    assert agg["n_seeds"] == 3
+    assert agg["seeds"] == [42, 43, 44]
+    assert agg["n_train"] == 5548
+    assert agg["metrics"]["accuracy"] == pytest.approx(0.62)
+    assert agg["metrics"]["f1_macro"] == pytest.approx(0.57)
+
+
+def test_aggregate_seeds_reports_population_std():
+    import statistics
+
+    accs = [0.60, 0.62, 0.64]
+    runs = [
+        _seed_run("combined", a, 0.5, 0.5, seed=s) for a, s in zip(accs, (1, 2, 3), strict=True)
+    ]
+
+    agg = aggregate_seeds(runs)
+
+    assert agg["metrics_std"]["accuracy"] == pytest.approx(statistics.pstdev(accs))
+    assert agg["metrics_std"]["f1_macro"] == pytest.approx(0.0)
+
+
+def test_aggregate_seeds_single_run_has_zero_std():
+    agg = aggregate_seeds([_seed_run("synthetic_only", 0.30, 0.28, 0.31, seed=42)])
+
+    assert agg["n_seeds"] == 1
+    assert agg["metrics"]["accuracy"] == pytest.approx(0.30)
+    assert all(v == pytest.approx(0.0) for v in agg["metrics_std"].values())
+
+
+def test_aggregate_seeds_rejects_empty_list():
+    with pytest.raises(ValueError, match="rỗng"):
+        aggregate_seeds([])
+
+
+def test_render_comparison_markdown_shows_mean_and_std_when_multi_seed():
+    comparison = compare_scenarios(_results())
+    comparison["n_seeds"] = {"real_only": 3, "synthetic_only": 1, "combined": 3}
+    comparison["scenarios"]["combined"]["scores_std"] = {
+        "accuracy": 0.008,
+        "f1_macro": 0.010,
+        "f1_weighted": 0.009,
+    }
+    comparison["mcnemar"] = {
+        "seed": 42,
+        "n": 693,
+        "only_base_correct": 20,
+        "only_treat_correct": 45,
+        "p_value": 0.0032,
+    }
+
+    markdown = render_comparison_markdown(comparison)
+
+    assert "0.7000 ± 0.0080" in markdown
+    assert "3 seed" in markdown
+    assert "McNemar" in markdown
+    assert "0.0032" in markdown

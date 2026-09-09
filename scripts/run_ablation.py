@@ -33,6 +33,13 @@ def main() -> None:
         help="Kịch bản cần chạy, hoặc 'all' để chạy tuần tự cả 3",
     )
     parser.add_argument("--config-dir", default="configs", help="Thư mục chứa config")
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Seed cho lần chạy này (mặc định: training.seed trong config). "
+        "File kết quả gắn hậu tố _seed<N> nên chạy nhiều seed không đè nhau.",
+    )
     parser.add_argument("--no-wandb", action="store_true", help="Tắt logging W&B")
     parser.add_argument(
         "--smoke",
@@ -67,10 +74,11 @@ def main() -> None:
             results_dir=ablation_cfg["results_dir"],
             use_wandb=use_wandb,
             smoke=args.smoke,
+            seed=args.seed,
         )
         m = result["metrics"]
         logger.info(
-            f"{scenario}: accuracy={m['accuracy']:.4f} "
+            f"{scenario} (seed {result['seed']}): accuracy={m['accuracy']:.4f} "
             f"f1_macro={m['f1_macro']:.4f} f1_weighted={m['f1_weighted']:.4f}"
         )
 

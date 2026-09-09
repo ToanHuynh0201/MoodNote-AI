@@ -2,7 +2,7 @@ training:
     learning_rate: 2e-5 # standard base-size RoBERTa fine-tuning LR
     batch_size: 16 # T4 16GB safe với PhoBERT-base-v2 + R-Drop
     gradient_accumulation_steps: 2 # effective batch = 16 * 2 = 32
-    num_epochs: 6 # giảm từ 10 → best val loss xuất hiện ở step ~800 (epoch ~2.7); 6 epochs đủ buffer
+    num_epochs: 12 # buffer để real_only hội tụ (ở 6 epoch val f1_macro còn đang tăng); early stopping tự cắt combined/synthetic_only
     warmup_ratio: 0.1
     weight_decay: 0.01 # standard cho BERT fine-tuning; 0.1 quá cao → over-regularize
     fp16: true
@@ -14,12 +14,12 @@ training:
     rdrop_alpha: 0.1 # R-Drop enabled — giảm gap val/test (0.6474 vs 0.5737); KL regularization giữa 2 forward passes
 
 optimizer:
-    type: "AdamW"
+    type: 'AdamW'
     betas: [0.9, 0.999]
     eps: 1e-8
 
 scheduler:
-    type: "cosine"
+    type: 'cosine'
 
 logging:
     log_steps: 50 # merged dataset ~3-4x lớn hơn, giảm log noise
@@ -28,19 +28,21 @@ logging:
     save_total_limit: 1 # chỉ giữ 1 checkpoint (best) — tiết kiệm ~1.5GB local storage
 
 wandb:
-    project: "moodnote-ai"
-    name: "phobert-base-v2"
+    project: 'moodnote-ai'
+    name: 'phobert-base-v2'
     enabled: true
 
 # Thí nghiệm ablation 3 kịch bản (Nội dung 2 thuyết minh). Cả 3 kịch bản dùng chung
 # đúng bộ hyperparameter phía trên — biến duy nhất là tập train.
 ablation:
-    scenarios: ["real_only", "synthetic_only", "combined"]
-    baseline: "real_only" # "phương án nền" để so sánh
-    metrics: ["accuracy", "f1_macro", "f1_weighted"] # đúng 3 chỉ số thuyết minh nêu
-    real_dir: "data/real/processed"
-    synthetic_dir: "data/synthetic/accepted"
-    ablation_dir: "data/ablation"
-    validation_path: "data/real/processed/validation.csv" # dùng chung cho cả 3
-    test_path: "data/real/processed/test.csv" # cố định, read-only
-    results_dir: "reports"
+    scenarios: ['real_only', 'synthetic_only', 'combined']
+    baseline: 'real_only' # "phương án nền" để so sánh
+    metrics: ['accuracy', 'f1_macro', 'f1_weighted'] # đúng 3 chỉ số thuyết minh nêu
+    seeds: [42, 43, 44] # đa seed để báo cáo mean ± std, tránh kết luận nằm trong nhiễu
+    multi_seed_scenarios: ['real_only', 'combined'] # synthetic_only chỉ chạy 1 seed (control)
+    real_dir: 'data/real/processed'
+    synthetic_dir: 'data/synthetic/accepted'
+    ablation_dir: 'data/ablation'
+    validation_path: 'data/real/processed/validation.csv' # dùng chung cho cả 3
+    test_path: 'data/real/processed/test.csv' # cố định, read-only
+    results_dir: 'reports'

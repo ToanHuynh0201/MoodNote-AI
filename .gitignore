@@ -35,6 +35,7 @@ wandb/
 .ipynb_checkpoints/
 *.ipynb
 !train_colab.ipynb
+!notebooks/datagen_colab.ipynb
 
 # IDE
 .vscode/
@@ -68,4 +69,3 @@ best_model
 *.bat
 Makefile
 
-!notebooks/datagen_colab.ipynb
