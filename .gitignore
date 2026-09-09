@@ -20,6 +20,7 @@ data/processed/
 data/merged/
 data/cache/
 data/real/
+data/ablation/
 
 # Models
 models/checkpoints/

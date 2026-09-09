@@ -69,12 +69,25 @@ class WandbSection(BaseModel):
     enabled: bool
 
 
+class AblationSection(BaseModel):
+    scenarios: list[str]
+    baseline: str
+    metrics: list[str]
+    real_dir: str
+    synthetic_dir: str
+    ablation_dir: str
+    validation_path: str
+    test_path: str
+    results_dir: str
+
+
 class TrainingConfigSchema(BaseModel):
     training: TrainingSection
     optimizer: OptimizerSection
     scheduler: SchedulerSection
     logging: LoggingSection
     wandb: WandbSection
+    ablation: AblationSection
 
 
 class ApiSection(BaseModel):

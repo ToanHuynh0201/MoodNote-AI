@@ -31,3 +31,16 @@ wandb:
     project: "moodnote-ai"
     name: "phobert-base-v2"
     enabled: true
+
+# Thí nghiệm ablation 3 kịch bản (Nội dung 2 thuyết minh). Cả 3 kịch bản dùng chung
+# đúng bộ hyperparameter phía trên — biến duy nhất là tập train.
+ablation:
+    scenarios: ["real_only", "synthetic_only", "combined"]
+    baseline: "real_only" # "phương án nền" để so sánh
+    metrics: ["accuracy", "f1_macro", "f1_weighted"] # đúng 3 chỉ số thuyết minh nêu
+    real_dir: "data/real/processed"
+    synthetic_dir: "data/synthetic/accepted"
+    ablation_dir: "data/ablation"
+    validation_path: "data/real/processed/validation.csv" # dùng chung cho cả 3
+    test_path: "data/real/processed/test.csv" # cố định, read-only
+    results_dir: "reports"
